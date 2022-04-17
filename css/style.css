@@ -2,21 +2,21 @@ body{
 	margin: 0%;
 	padding: 0%;
 }
+
 #registrationForm{
 	width: 100vw;
 	height: 100vh;
 	background: rgba(215, 122, 97, 0.85);
 }
 .registrationCard{
-	width: 80%;
-	height: 80%;
-	margin: auto;
+	width: 80%; height: 80%;
+	margin: auto; top:10%;
 	position: relative;
-	top:10%;
 	background: #EFF1F3;
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 	border-radius: 20px;
 }
+
 .registrationPicDiv{
 	width: 40%;
 	height: 100%;
@@ -27,4 +27,7 @@ body{
 	width: 100%;
 	object-fit: cover;
 	border-radius: 20px 0px 0px 20px;
+}
+.registrationCard>form{
+
 }
