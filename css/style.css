@@ -1,18 +1,62 @@
 body{
-	margin: 0%;
-	padding: 0%;
+	margin: 0;
+	padding: 0;
 }
-#registrationForm{
-	width: 100%;
-	height: 100%;
-	background: rgba(215, 122, 97, 0.85);
+.circle-navigation
+{
+	width: 66px;
+	height: 66px;
+	border-radius: 50%;
+	background-color: #D77A61;
+	margin: 0 17.5px;
+	position: absolute;
+	top: 32px;
+	z-index: 2;
 }
-#registrationForm>div{
-	width: 80%;
-	height: 80%;
-	margin: auto;
-
-	background: #EFF1F3;
-	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
-	border-radius: 20px;
+.icons-side-bar
+{
+	height: 100vh;
+	width: auto;
+	background-color: #223843;
+	position: fixed;
+	left: 0;
+}
+.navigation-links > .icon-link img, .account-button-link > .icon-link img 
+{
+	cursor: pointer;
+	position: relative;
+	z-index: 3	;
+	width: 50px;
+	height: 50px;
+	padding: 40px 25px;
+}
+.profile-link
+{
+	position: absolute;
+	bottom: 0;
+}
+.icon-link:nth-child(1).active ~ .circle-navigation
+{
+	transform: translateY(calc(138px*0));
+	transition: 1s;
+}
+.icon-link:nth-child(2).active ~ .circle-navigation
+{
+	transform: translateY(calc(135px));
+	transition: 1s;
+}
+.icon-link:nth-child(3).active ~ .circle-navigation
+{
+	transform: translateY(calc(274px));
+	transition: 1s;
+}
+.icon-link:nth-child(4).active ~ .circle-navigation
+{
+	transform: translateY(calc(405px));
+	transition: 1s;
+}
+.icon-link:nth-child(5).active ~ .circle-navigation
+{
+	transform: translateY(calc(100vh - 134px));
+	transition: 1s;
 }
