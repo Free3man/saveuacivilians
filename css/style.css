@@ -1,3 +1,7 @@
+@font-face {
+	font-family: Montserrat;
+	src: url(../font/Montserrat-VariableFont_wght.ttf);
+}
 body{
 	margin: 0%;
 	padding: 0%;
@@ -45,7 +49,7 @@ body{
 }
 .registrationForm>h1{
 	width: 100%;
-	margin: 5% 0%;
+	margin: 10% 0%;
 }
 
 .data{
@@ -82,7 +86,7 @@ body{
 }
 .signUp{
 	width: 37.5%;
-	height: 50px;
+	height: 52px;
 	margin: auto 0%;
 
 	color: #EFF1F3;
