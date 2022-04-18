@@ -29,5 +29,5 @@ let pictureSwitcher = setInterval(()=>{
         }
         image.style.opacity = opacity;
     }, 15);
-}, 7000);
+}, 15000);
 //Mainflow
