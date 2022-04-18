@@ -32,4 +32,5 @@ let pictureSwitcher = setInterval(()=>{
 }, 15000);
 //Mainflow
 //Temporary things
-document.querySelector(".registrationCard").style.display = "none";
+// document.querySelector(".registrationCard").style.display = "none";
+document.querySelector(".loginCard").style.display = "none";

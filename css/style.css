@@ -18,10 +18,10 @@ body{
 .registrationCard{
 	width: 80%;
 	height: 80%;
-	margin: auto;
-	top:10%;
+	top: 10%;
+	left: 10%;
 
-	position: relative;
+	position: absolute;
 	display: flex;
 	flex-wrap: wrap;
 	background: #EFF1F3;
@@ -54,31 +54,31 @@ body{
 	margin: 10% 0%;
 }
 
-.data{
+.signUpData{
 	width: 100%;
 }
-.data>input{
+.signUpData>input{
 	width: 100%;
-	border: 2px solid #EFF1F3;
+	border-radius: 5px;
 
+	border: 2px solid #EFF1F3;
 	background-color: #EFF1F3;
+
 	transition: 0.5s;
 
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 24px;
 }
-.data>input:focus {
+.signUpData>input:focus {
 	border: 2px solid #555555;
 }
-.data>input.mistake{
+/* .signUpData>input.mistake{
 	border: 2px solid red;
-	border-radius: 5px;
 }
-.data>input.success{
+.signUpData>input.success{
 	border: 2px solid green;
-	border-radius: 5px;
-}
+} */
 
 .actions{
 	width: 100%;
@@ -126,6 +126,7 @@ body{
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 	border-radius: 20px;
 }
+
 .loginPicDiv{
 	width: 40%;
 	height: 100%;
@@ -135,4 +136,8 @@ body{
 	width: 100%;
 	object-fit: cover;
 	border-radius: 0px 20px 20px 0px;
+}
+
+.loginForm{
+	width: 60%;
 }
