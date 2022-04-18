@@ -6,28 +6,30 @@ body{
 	margin: 0%;
 	padding: 0%;
 }
-.hidden{
-	display: none;
-}
 
 #signUpInForm{
 	width: 100vw;
 	height: 100vh;
 	background: rgba(215, 122, 97, 0.85);
 }
-.registrationCard{
+
+#registrationCard{
 	width: 80%;
 	height: 80%;
-	top: 10%;
+	top: -90%;
 	left: 10%;
+	border-radius: 20px;
 
 	position: absolute;
 	display: flex;
 	flex-wrap: wrap;
-	background: #EFF1F3;
 
+	transition: 1.5s;
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
-	border-radius: 20px;
+	background: #EFF1F3;
+}
+#registrationCard.active{
+	top: 10%;
 }
 
 .registrationPicDiv{
@@ -103,19 +105,23 @@ button{
 	margin: auto 0% auto auto;
 }
 
-.loginCard{
+#loginCard{
 	width: 80%;
 	height: 80%;
-	margin: auto;
-	top:10%;
+	top: 10%;
+	left: 10%;
+	border-radius: 20px;
 
-	position: relative;
+	position: absolute;
 	display: flex;
 	flex-wrap: wrap;
-	background: #EFF1F3;
 
+	transition: 1.5s;
+	background: #EFF1F3;
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
-	border-radius: 20px;
+}
+#loginCard.active{
+	top: 110%;
 }
 
 .loginPicDiv{

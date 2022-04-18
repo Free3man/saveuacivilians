@@ -6,7 +6,7 @@
     </head>
     <body>
         <div id="signUpInForm">
-            <div class="registrationCard">
+            <div id="loginCard">
                 <div class="registrationPicDiv">
                     <img class="registrationPic" src="/pics/systemPics/registration/1.svg"
                     alt="Picture is not found">
@@ -14,38 +14,38 @@
                 <form class="registrationForm">
 					<h1>Реєстраційна форма</h1>
 					<div class="signUpData">
-						<input type="text" name="name" id="name" placeholder="ПІБ або організація">
+						<input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1">
 						<hr>
-						<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Контактний номер">
+						<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Контактний номер" tabindex="2">
 						<hr>
-						<input type="email" name="email" id="emailR" placeholder="E-mail">
+						<input type="email" name="email" id="emailR" placeholder="E-mail" tabindex="3">
 						<hr>
 						<input type="password" name="password" id="passwordR" 
-								placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8">
+								placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8" tabindex="4">
 						<hr>
 						<input type="password" name="password" id="password" 
-								placeholder="Підтвердіть пароль" maxlength="16" minlength="8">
+								placeholder="Підтвердіть пароль" maxlength="16" minlength="8" tabindex="5">
 						<hr>
 					</div>
 					<div class="registrationActions">
-						<button id="signUp">Зареєструватися</button>
-						<button id="login">Вже є аккаунт? <u>Увійти</u></button>
+						<button id="signUp" tabindex="6">Зареєструватися</button>
+						<button id="login" tabindex="7">Вже є аккаунт? <u>Увійти</u></button>
 					</div>
                 </form>
             </div>
-			<div class="loginCard">
+			<div id="loginCard">
 				<form class="loginForm">
 					<h1>Вхід до акаунту</h1>
 					<div class="loginData">
-						<input type="email" name="email" id="emailL" placeholder="E-mail">
+						<input type="email" name="email" id="emailL" placeholder="E-mail" tabindex="1">
 						<hr>
 						<input type="password" name="password" id="passwordL" 
-								placeholder="Пароль" maxlength="16" minlength="8">
+								placeholder="Пароль"  minlength="8" maxlength="16"tabindex="2">
 						<hr>
 					</div>
 					<div class="loginActions">
-						<button id="signIn">Увійти</button>
-						<button id="registration"><u>Ще не має акаунту?</u></button>
+						<button id="signIn" tabindex="3">Увійти</button>
+						<button id="registration" tabindex="4"><u>Ще не має акаунту?</u></button>
 					</div>
 				</form>
 				<div class="loginPicDiv">
