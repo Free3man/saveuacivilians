@@ -71,10 +71,10 @@ input{
 input:focus {
 	border: 2px solid #555555;
 }
-/* .signUpData>input.mistake{
+/* input.mistake{
 	border: 2px solid red;
 }
-.signUpData>input.success{
+input.success{
 	border: 2px solid green;
 } */
 
