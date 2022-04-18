@@ -9,7 +9,7 @@
             <div class="registrationCard">
                 <div class="registrationPicDiv">
                     <img class="registrationPic" src="/pics/systemPics/registration/1.svg"
-                    alt="The picture is not found">
+                    alt="Picture is not found">
                 </div>
                 <form class="registrationForm">
 					<h1>Реєстраційна форма</h1>
@@ -27,37 +27,30 @@
 								placeholder="Підтвердіть пароль" maxlength="16" minlength="8">
 						<hr>
 					</div>
-					<div class="actions">
-						<button class="signUp">Зареєструватися</button>
-						<button class="moveToLogin">Вже є аккаунт? <u>Увійти</u></button>
+					<div class="registrationActions">
+						<button id="signUp">Зареєструватися</button>
+						<button id="login">Вже є аккаунт? <u>Увійти</u></button>
 					</div>
                 </form>
             </div>
 			<div class="loginCard">
 				<form class="loginForm">
-					<h1>Реєстраційна форма</h1>
+					<h1>Вхід до акаунту</h1>
 					<div class="loginData">
-						<input type="text" name="name" id="name" placeholder="ПІБ або організація">
-						<hr>
-						<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Контактний номер">
-						<hr>
-						
+						<input type="email" name="e-mail" id="e-mail" placeholder="E-mail">
 						<hr>
 						<input type="password" name="password" id="password" 
-								placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8">
-						<hr>
-						<input type="password" name="password" id="password" 
-								placeholder="Підтвердіть пароль" maxlength="16" minlength="8">
+								placeholder="Пароль" maxlength="16" minlength="8">
 						<hr>
 					</div>
-					<div class="actions">
-						<button class="signUp">Зареєструватися</button>
-						<button class="login">Вже є аккаунт? <u>Увійти</u></button>
+					<div class="loginActions">
+						<button id="signIn">Увійти</button>
+						<button id="registration"><u>Ще не має акаунту?</u></button>
 					</div>
 				</form>
 				<div class="loginPicDiv">
 					<img class="loginPic" src="/pics/systemPics/registration/1.svg"
-					alt="The picture is not found">
+					alt="Picture is not found">
 				</div>
 			</div>
         </div>
