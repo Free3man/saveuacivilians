@@ -6,7 +6,7 @@
     </head>
     <body>
         <div id="signUpInForm">
-            <div class="registrationCard hidden">
+            <div class="registrationCard">
                 <div class="registrationPicDiv">
                     <img class="registrationPic" src="/pics/systemPics/registration/1.svg"
                     alt="The picture is not found">
@@ -29,10 +29,37 @@
 					</div>
 					<div class="actions">
 						<button class="signUp">Зареєструватися</button>
-						<button class="login">Вже є аккаунт? <u>Увійти</u></button>
+						<button class="moveToLogin">Вже є аккаунт? <u>Увійти</u></button>
 					</div>
                 </form>
             </div>
+			<div class="loginCard">
+				<form class="loginForm">
+					<h1>Реєстраційна форма</h1>
+					<div class="data">
+						<input type="text" name="Name" id="Name" placeholder="ПІБ або організація">
+						<hr>
+						<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Контактний номер">
+						<hr>
+						<input type="text" name="postAdress" id="postAdress" placeholder="Поштова адреса">
+						<hr>
+						<input type="password" name="password" id="password" 
+								placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8">
+						<hr>
+						<input type="password" name="password" id="password" 
+								placeholder="Підтвердіть пароль" maxlength="16" minlength="8">
+						<hr>
+					</div>
+					<div class="actions">
+						<button class="signUp">Зареєструватися</button>
+						<button class="login">Вже є аккаунт? <u>Увійти</u></button>
+					</div>
+				</form>
+				<div class="loginPicDiv">
+					<img class="loginPic" src="/pics/systemPics/registration/1.svg"
+					alt="The picture is not found">
+				</div>
+			</div>
         </div>
         <script src="/js/script.js"></script>
     </body>

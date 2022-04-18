@@ -31,3 +31,5 @@ let pictureSwitcher = setInterval(()=>{
     }, 15);
 }, 15000);
 //Mainflow
+//Temporary things
+document.querySelector(".registrationCard").style.display = "none";
