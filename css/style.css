@@ -5,6 +5,8 @@
 body{
 	margin: 0%;
 	padding: 0%;
+	max-height: 100vh;
+	max-width: 100vw;
 }
 
 #signUpInForm{
@@ -13,7 +15,7 @@ body{
 	background: rgba(215, 122, 97, 0.85);
 }
 
-/* #registrationCard{
+#registrationCard{
 	width: 80%;
 	height: 80%;
 	top: -90%;
@@ -27,7 +29,7 @@ body{
 	transition: 1.5s;
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 	background: #EFF1F3;
-} */
+} 
 #registrationCard.active{
 	top: 10%;
 }
@@ -58,7 +60,7 @@ body{
 
 input{
 	width: 100%;
-	margin: 40px;
+	margin: 2px;
 	border-radius: 5px;
 
 	border: 2px solid #EFF1F3;
@@ -121,7 +123,7 @@ button{
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 }
 #loginCard.active{
-	top: 110%;
+	top: -90%;
 }
 
 .loginPicDiv{

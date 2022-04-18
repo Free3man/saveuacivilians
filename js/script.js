@@ -11,17 +11,33 @@ document.getElementById("signIn").addEventListener("click", (event) => {
         mail: document.getElementById("emailL").value,
         password: document.getElementById("passwordL").value
     };
+    console.log(user);
 });
+document.getElementById("passwordR").addEventListener("onblur", () => {
+    if (document.getElementById("passwordR").value != document.getElementById("password").value &&
+        document.getElementById("passwordR").value != "" &&
+        document.getElementById("password").value != "") {
+        alert("Паролі не збігаюся");
+    }
+});
+// document.getElementById("signUp").addEventListener("click", (event)=>{
+//     event.preventDefault();
+//     let newUser = {
+//         name: document.getElementById("name").value,
+//         phoneNumber: document.getElementById("phoneNumber").value,
+//         mail: document.getElementById("emailL").value,
+//         password: document.getElementById("passwordL").value
+//     };
+// });
 document.getElementById("registration").addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(loginCard);
-    // document.getElementById("registrationCard").classList.add("active");
-    // document.getElementById("loginCard").classList.add("active");
+    registrationCard.classList.add("active");
+    loginCard.classList.add("active");
 });
 document.getElementById("login").addEventListener("click", (event) => {
     event.preventDefault();
-    document.getElementById("registrationCard").classList.remove("active");
-    document.getElementById("loginCard").classList.remove("active");
+    registrationCard.classList.remove("active");
+    loginCard.classList.remove("active");
 });
 //Timers
 let pictureSwitcher = setInterval(() => {
@@ -36,8 +52,7 @@ let pictureSwitcher = setInterval(() => {
                     clearInterval(changer);
                     changed = false;
                 }
-            }
-            else {
+            } else {
                 opacity -= 0.01;
                 if (opacity <= 0) {
                     changed = true;
