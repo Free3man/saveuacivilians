@@ -1,34 +1,38 @@
+"use strict";
 //Variables
 const image = document.querySelector(".registrationPic"),
     registrationCard = document.getElementById("registrationCard"),
-    loginCard = document.getElementById("loginCard");
+    loginCard = document.getElementById("loginCard"),
+    password = document.getElementById("passwordR"),
+    passwordCheck = document.getElementById("password"),
+    passwordLog = document.getElementById("passwordL");
 let currentPicture = 1;
 //Fucntions
+function checkPassword() {
+    if (document.getElementById("passwordR").value != document.getElementById("password").value &&
+        document.getElementById("passwordR").value != "" &&
+        document.getElementById("password").value != ""){
+        alert("Паролі не збігаюся");
+    }
+}
 //EventListers
 document.getElementById("signIn").addEventListener("click", (event) => {
     event.preventDefault();
     let user = {
         mail: document.getElementById("emailL").value,
-        password: document.getElementById("passwordL").value
+        password: passwordLog.value
     };
     console.log(user);
 });
-document.getElementById("passwordR").addEventListener("onblur", () => {
-    if (document.getElementById("passwordR").value != document.getElementById("password").value &&
-        document.getElementById("passwordR").value != "" &&
-        document.getElementById("password").value != "") {
-        alert("Паролі не збігаюся");
-    }
+document.getElementById("signUp").addEventListener("click", (event)=>{
+    event.preventDefault();
+    let newUser = {
+        name: document.getElementById("name").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        mail: document.getElementById("emailL").value,
+        password: password.value
+    };
 });
-// document.getElementById("signUp").addEventListener("click", (event)=>{
-//     event.preventDefault();
-//     let newUser = {
-//         name: document.getElementById("name").value,
-//         phoneNumber: document.getElementById("phoneNumber").value,
-//         mail: document.getElementById("emailL").value,
-//         password: document.getElementById("passwordL").value
-//     };
-// });
 document.getElementById("registration").addEventListener("click", (event) => {
     event.preventDefault();
     registrationCard.classList.add("active");
@@ -39,6 +43,11 @@ document.getElementById("login").addEventListener("click", (event) => {
     registrationCard.classList.remove("active");
     loginCard.classList.remove("active");
 });
+password.addEventListener("change", checkPassword);
+passwordCheck.addEventListener("change", checkPassword);
+password.addEventListener("paste", (event) => event.preventDefault());
+passwordCheck.addEventListener("paste", (event) => event.preventDefault());
+passwordLog.addEventListener("paste", (event) => event.preventDefault());
 //Timers
 let pictureSwitcher = setInterval(() => {
     if (registrationCard.classList.contains("active")) {
