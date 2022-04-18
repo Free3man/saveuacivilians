@@ -66,7 +66,7 @@ let pictureSwitcher = setInterval(() => {
                 if (opacity <= 0) {
                     changed = true;
                     opacity = 0;
-                    image.src = `pics/systemPics/registration/${currentPicture}.svg`;
+                    image.src = `img/system/registration/${currentPicture}.svg`;
                 }
             }
             image.style.opacity = opacity;
