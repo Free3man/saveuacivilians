@@ -12,9 +12,9 @@
         <nav class="side-bar">
             <div class="icons-side-bar">
                 <div class="navigation-links">
-                    <div class="icon-link"><img src="img/map_link.svg" alt="Інтерактивна мапа"></div> 
-                    <div class="icon-link"><img src="img/volunteering_link.svg" alt="Волонтерські заявки"></div>
-                    <div class="icon-link"><img src="img/donation_link.svg" alt="Пожертвування"></div>
+                    <div class="icon-link"><img src="img/mapLink.svg" alt="Інтерактивна мапа"></div> 
+                    <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+                    <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
                     <div class="icon-link"><img src="img/info_link.svg" alt="Інформаційна сторінка"></div>
                     <div class="icon-link profile-link"><img src="img/profile_link.svg" alt="Профіль"></div>
                     <div class="circle-navigation">
@@ -24,8 +24,44 @@
             </div>
         </nav>
         <main>
-            <section class="add-request-form">
-                
+            <section class="section_page" style="float: right;">
+                <div class="volunteering-modal">
+                    <div class="hint-volunteering">
+                        <div class="diagram-info">
+                            <div class="icon-section">
+                                <img src="/img/cloud-check.svg" alt="" data-section="">
+                                <img style="position: relative; right: 40px;" src="/img/stopwatch.svg" alt="">
+                                <img src="/img/extra-info-form.png" alt="">
+                            </div>
+                            <div class="circle_box">
+                                <div>
+                                    <svg>
+                                        <circle cx="100" cy="100" r="95"/>
+                                        <circle cx="100" cy="100" r="95" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>80%</span>
+                                </div>	
+                            </div>	
+                            <div class="icon-section">
+                                <img src="/img/info-form.png" alt="">
+                                <img style="position: relative; left: 40px;" src="/img/stuff-form.png" alt="">
+                                <img src="/img/adress-form.png" alt="">
+                            </div>
+                        </div>
+                        <p>
+                            <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
+                        </p>
+                    </div>
+                    <div class="info-volunteering">
+                        <div class="content-box">
+                            <input type="text" name="" placeholder="Заголовок">
+                            <textarea placeholder="Інформаційна"></textarea>
+                        </div>
+                        <div class="control-box">
+                            <button>Далі</button>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
         <script src="js/script.js"></script>
