@@ -15,21 +15,55 @@ function checkPassword() {
         alert("Паролі не збігаюся");
     }
 }
+function authorise(user) {
+    
+}
 //EventListers
-document.getElementById("signIn").addEventListener("click", (event) => {
+document.getElementById("signIn").addEventListener("click", async (event) => {
     event.preventDefault();
-    let user = {
-        mail: document.getElementById("emailL").value,
-        password: passwordLog.value
-    };
-    console.log(user);
+    const mail = document.getElementById("emailL").value;
+    if (mail != "" && passwordLog!="")
+    {
+        let user = {
+            mail: mail.value,
+            password: passwordLog.value
+        };
+        // const userFromServer = 
+        await fetch('php/login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then((responce)=>{
+            console.log(responce.body);
+        }).then(()=>{
+
+        });
+        // .then(()=> {
+        //     if (Response == 1){
+        //         console.log("success");
+        //     }
+        //     console.log(JSON.parse(Response));
+        //     console.log(Response);
+        // })
+        // .catch(() => {
+        //     alert("Could not reach server! Check for ");
+        // })
+        // .finally(() => {
+        //     document.getElementById("loginForm").reset();
+        // });
+    }
+    else {
+        alert("Login or password can`t be empty");
+    }
 });
 document.getElementById("signUp").addEventListener("click", (event)=>{
     event.preventDefault();
     let newUser = {
         name: document.getElementById("name").value,
         phoneNumber: document.getElementById("phoneNumber").value,
-        mail: document.getElementById("emailL").value,
+        mail: document.getElementById("emailR").value,
         password: password.value
     };
 });

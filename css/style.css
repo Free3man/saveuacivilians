@@ -45,7 +45,7 @@ body{
 	border-radius: 20px 0px 0px 20px;
 }
 
-.registrationForm{
+#registrationForm{
 	width: 45%;
 	height: 100%;
 	margin: auto;
@@ -53,7 +53,7 @@ body{
 	font-family: 'Montserrat';
 	font-style: normal;
 }
-.registrationForm>h1{
+#registrationForm>h1{
 	width: 100%;
 	margin: 10% 0%;
 }
@@ -139,7 +139,7 @@ button{
 	border-radius: 0px 20px 20px 0px;
 }
 
-.loginForm{
+#loginForm{
 	width: 45%;
 	height: 100%;
 	margin-left: 7.5%;
@@ -147,7 +147,7 @@ button{
 	font-family: 'Montserrat';
 	font-style: normal;
 }
-.loginForm>h1{
+#loginForm>h1{
 	width: 100%;
 	margin: 15% 0%;
 }
