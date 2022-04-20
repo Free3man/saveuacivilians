@@ -15,44 +15,26 @@ function checkPassword() {
         alert("Паролі не збігаюся");
     }
 }
-function authorise(user) {
-    
-}
+function authorise(user) {}
 //EventListers
 document.getElementById("signIn").addEventListener("click", async (event) => {
     event.preventDefault();
-    const mail = document.getElementById("emailL").value;
-    if (mail != "" && passwordLog!="")
+    const mail = document.getElementById("emailL");
+    const loginForm = document.getElementById("loginForm");
+    if (mail.value != "" && passwordLog.value!="")
     {
-        let user = {
-            mail: mail.value,
-            password: passwordLog.value
-        };
-        // const userFromServer = 
-        await fetch('php/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        }).then((responce)=>{
-            console.log(responce.body);
-        }).then(()=>{
-
+        await fetch("php/login.php", {
+            method: "POST",
+            // headers: {"Content-Type": "application/json"},
+            body: new FormData(loginForm)
+        }).then((response)=>response.text())
+        .then((response)=>{
+            console.log(response);
+        }).catch(()=>{
+            alert("Could not reach server! Search for issues");
+        }).finally(()=>{
+            document.getElementById("loginForm").reset();
         });
-        // .then(()=> {
-        //     if (Response == 1){
-        //         console.log("success");
-        //     }
-        //     console.log(JSON.parse(Response));
-        //     console.log(Response);
-        // })
-        // .catch(() => {
-        //     alert("Could not reach server! Check for ");
-        // })
-        // .finally(() => {
-        //     document.getElementById("loginForm").reset();
-        // });
     }
     else {
         alert("Login or password can`t be empty");
