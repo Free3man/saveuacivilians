@@ -35,7 +35,9 @@ document.getElementById("signIn").addEventListener("click", async (event) => {
                 body: new FormData(loginForm)
             }).then((response) => response.text())
             .then((response) => {
-                console.log(response);
+                if (response == false){
+                    
+                }
             }).catch(() => {
                 alert("Could not reach server! Search for issues");
             }).finally(() => {
@@ -50,11 +52,8 @@ document.getElementById("signIn").addEventListener("click", async (event) => {
         }
     }
 });
-mail.addEventListener("change", (event) => checkInputValidity(event.target));
-passwordLog.addEventListener("change", (event) => checkInputValidity(event.target));
-// inputs.forEach(item => {
-//     item.addEventListener("change", (event) => checkInputValidity(event.target));
-// });
+Array.prototype.forEach.call(inputs, 
+    item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
 document.getElementById("signUp").addEventListener("click", (event) => {
     event.preventDefault();
     let newUser = {
