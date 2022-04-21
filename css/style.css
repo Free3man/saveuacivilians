@@ -65,6 +65,7 @@ input{
 
 	border: 2px solid #EFF1F3;
 	background-color: #EFF1F3;
+	outline: none;
 
 	transition: 0.5s;
 
@@ -75,10 +76,25 @@ input{
 input:focus {
 	border: 2px solid #555555;
 }
-/* input.mistake{
+input.mistake{
 	border: 2px solid red;
+	animation: mistake 0.2s;
 }
-input.success{
+@keyframes mistake {
+	0%{
+		margin-left: -5px;
+	}
+	33%{
+		margin-left: 9px;
+	}
+	66%{
+		margin-left: -5px;
+	}
+	100%{
+		margin-left: 2px;
+	}
+}
+/*input.success{
 	border: 2px solid green;
 } */
 

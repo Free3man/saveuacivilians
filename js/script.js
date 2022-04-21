@@ -5,42 +5,57 @@ const image = document.querySelector(".registrationPic"),
     loginCard = document.getElementById("loginCard"),
     password = document.getElementById("passwordR"),
     passwordCheck = document.getElementById("password"),
-    passwordLog = document.getElementById("passwordL");
+    passwordLog = document.getElementById("passwordL"),
+    mail = document.getElementById("emailL"),
+    inputs = document.getElementsByTagName("input");
 let currentPicture = 1;
 //Fucntions
 function checkPassword() {
     if (document.getElementById("passwordR").value != document.getElementById("password").value &&
         document.getElementById("passwordR").value != "" &&
-        document.getElementById("password").value != ""){
+        document.getElementById("password").value != "") {
         alert("Паролі не збігаюся");
     }
 }
 function authorise(user) {}
+function checkInputValidity(element) {
+    if (element.value) {
+        element.classList.remove("mistake");
+    } else {
+        element.classList.add("mistake");
+    }
+}
 //EventListers
 document.getElementById("signIn").addEventListener("click", async (event) => {
     event.preventDefault();
-    const mail = document.getElementById("emailL");
     const loginForm = document.getElementById("loginForm");
-    if (mail.value != "" && passwordLog.value!="")
-    {
+    if (mail.value != "" && passwordLog.value != "") {
         await fetch("php/login.php", {
-            method: "POST",
-            // headers: {"Content-Type": "application/json"},
-            body: new FormData(loginForm)
-        }).then((response)=>response.text())
-        .then((response)=>{
-            console.log(response);
-        }).catch(()=>{
-            alert("Could not reach server! Search for issues");
-        }).finally(()=>{
-            document.getElementById("loginForm").reset();
-        });
-    }
-    else {
-        
+                method: "POST",
+                body: new FormData(loginForm)
+            }).then((response) => response.text())
+            .then((response) => {
+                console.log(response);
+            }).catch(() => {
+                alert("Could not reach server! Search for issues");
+            }).finally(() => {
+                document.getElementById("loginForm").reset();
+            });
+    } else {
+        if (mail.value == "") {
+            mail.classList.add("mistake");
+        }
+        if (passwordLog.value == "") {
+            passwordLog.classList.add("mistake");
+        }
     }
 });
-document.getElementById("signUp").addEventListener("click", (event)=>{
+mail.addEventListener("change", (event) => checkInputValidity(event.target));
+passwordLog.addEventListener("change", (event) => checkInputValidity(event.target));
+// inputs.forEach(item => {
+//     item.addEventListener("change", (event) => checkInputValidity(event.target));
+// });
+document.getElementById("signUp").addEventListener("click", (event) => {
     event.preventDefault();
     let newUser = {
         name: document.getElementById("name").value,
