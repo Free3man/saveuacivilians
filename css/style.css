@@ -85,18 +85,12 @@ input.success{
 button{
 	border: none;
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 22px;
-}
-.actions{
-	width: 100%;
-	height: 30%;
-	display: flex;
+	font-size: 100%;
+	line-height: 110%;
 }
 #signUp{
 	width: 40%;
-	height: 52px;
-	margin: auto 0%;
+	height: 40px;
 
 	color: #EFF1F3;
 	border-radius: 20px;
@@ -104,7 +98,9 @@ button{
 	background: #223843;
 }
 #login{ 
-	margin: auto 0% auto auto;
+	width: 50%;
+	height: 30px;
+	margin-left: 2.5%;
 }
 
 #loginCard{
@@ -152,19 +148,21 @@ button{
 	margin: 15% 0%;
 }
 
-.loginActions{
-	margin-top: 30%;
+.actions{
+	width: 50%;
+	position: absolute;
+	bottom: 5%;
 }
 #signIn{
-	width: 37.5%;
-	height: 52px;
-	margin: auto 0%;
+	width: 35%;
+	height: 40px;
 
-	color: #EFF1F3;
 	border-radius: 20px;
-	
+	color: #EFF1F3;
 	background: #223843;
 }
 #registration{
-	margin: 5%;
+	width: 45%;
+	height: 30px;
+	margin-left: 10%;
 }

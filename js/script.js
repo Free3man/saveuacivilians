@@ -37,7 +37,7 @@ document.getElementById("signIn").addEventListener("click", async (event) => {
         });
     }
     else {
-        alert("Login or password can`t be empty");
+        
     }
 });
 document.getElementById("signUp").addEventListener("click", (event)=>{
