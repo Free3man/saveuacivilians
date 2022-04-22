@@ -2,7 +2,9 @@
 const iconLinks = document.querySelectorAll(".icon-link"),
       sectionFormLinks = document.querySelectorAll(".icon-section img"),
       contentForm = document.querySelector(".content-box"),
-      sideBar = document.querySelector(".icons-side-bar"),
+      sideBarPC = document.querySelector(".icons-side-bar-pc"),
+      headerMobile = document.querySelector(".mobile-profile-bar"),
+      footerMobile = document.querySelector(".footer-side-bar-mobile"),
       sectionPage = document.querySelector(".section_page"),
       rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.", "Якщо характер допомоги є гумунітарним: збір продовольства або медична допомога, то задля відстежування прогресу вкажіть усі необхідні ресурси у таблиці.", "Оберіть вашу локацію (місце збору гуманітарної допомоги, зустрічі для перевезення).", "Оберіть дату та час завершення заявки.", "Напишіть у цій секції додаткові контактні дані, розкажіть більш детально про вашу організацію (необов’язково)."];
 
@@ -28,6 +30,12 @@ const formData = {
 };
 
 //addEventListener
+
+window.addEventListener("load", () =>
+{
+    sectionPage.style.height = `calc(100vh - ${(headerMobile.clientHeight + footerMobile.clientHeight)}px)`;
+})
+
 iconLinks.forEach(iconLink => {
     iconLink.addEventListener("click", function() {
         iconLinks.forEach(linkRemove => linkRemove.classList.remove("active"));
@@ -35,7 +43,10 @@ iconLinks.forEach(iconLink => {
     });
 });
 
-sectionPage.style.width = `calc(100vw - ${sideBar.offsetWidth}px)`;
+
+// sectionPage.style.height = `calc(100vh - ${sideBarPC.offsetWidth}px)`;
+
+
 // sectionFormLinks.forEach(formLink => {
 //     formLink.addEventListener("click", function() {
         
