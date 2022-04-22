@@ -30,19 +30,17 @@ const formData = {
 };
 
 //addEventListener
-
 window.addEventListener("load", () =>
 {
-    sectionPage.style.height = `calc(100vh - ${(headerMobile.clientHeight + footerMobile.clientHeight)}px)`;
-})
-
+    sectionPage.style.height = `calc(100vh - ${(headerMobile.clientHeight +
+                                                        footerMobile.clientHeight)}px)`;
+});
 iconLinks.forEach(iconLink => {
     iconLink.addEventListener("click", function() {
         iconLinks.forEach(linkRemove => linkRemove.classList.remove("active"));
         this.classList.add("active");
     });
 });
-
 
 // sectionPage.style.height = `calc(100vh - ${sideBarPC.offsetWidth}px)`;
 
