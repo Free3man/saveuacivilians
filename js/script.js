@@ -12,7 +12,7 @@ const formData = {
     mainInfo: "",
     typeOfWork: "",
     table: {
-        field1:{
+        row1:{
             stuff: "",
             number: 0,
             units: "", 
