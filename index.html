@@ -6,42 +6,54 @@
         <title>SaveUACivilians - соціальна мережа для волонтерів</title>
         <meta name="description" content="Шукаєш на волонтерську допомогу? SaveUACivilians прийде на допомогу!"> 
         <meta namme="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
-
     </head>
     <body>
-        <nav class="side-bar">
-            <div class="icons-side-bar">
-                <div class="navigation-links">
-<<<<<<< HEAD
-                    <div class="icon-link"><img src="img/mapLink.svg" alt="Інтерактивна мапа"></div> 
-                    <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
-                    <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
-                    <div class="icon-link"><img src="img/info_link.svg" alt="Інформаційна сторінка"></div>
-                    <div class="icon-link profile-link"><img src="img/profile_link.svg" alt="Профіль"></div>
-                    <div class="circle-navigation">
-                
-                    </div>
-=======
-                    <div class="icon-link"><img src="img/system/systemmap_link.svg" alt="Інтерактивна мапа"></div> 
-                    <div class="icon-link"><img src="img/system/volunteering_link.svg" alt="Волонтерські заявки"></div>
-                    <div class="icon-link"><img src="img/system/donation_link.svg" alt="Пожертвування"></div>
-                    <div class="icon-link"><img src="img/system/info_link.svg" alt="Інформаційна сторінка"></div>
-                    <div class="icon-link profile-link"><img src="img/system/profile_link.svg" alt="Профіль"></div>
-                    <div class="circle-navigation"></div>
->>>>>>> 786c02c33422fc51658042953b7d7a1de64cd441
+        <!-- navigation -->
+        <nav class="icons-side-bar-pc">
+            <div class="navigation-links">
+                <div class="icon-link"><img src="img/mapLink.svg" alt=""></div> 
+                <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+                <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
+                <div class="icon-link"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
+                <div class="icon-link profile-link"><img src="img/userLink.svg" alt="Профіль"></div>
+                <div class="circle-navigation">
+            
                 </div>
             </div>
         </nav>
-        <main>
-<<<<<<< HEAD
-            <section class="section_page" style="float: right;">
+        <!-- navigation mobile -->
+        <nav class="mobile-profile-bar">
+            <div class="navigation-links">
+                <div class="mobile-icon-link"><img src="img/userLink.svg" alt="Профіль"></div>
+                <div class="mobile-icon-link"><img src="img/exitLink.svg" alt="Вийти"></div>
+            </div> 
+        </nav>
+        
+        <!-- main-section -->
+        <main class="desktop_main">
+            <section class="section_page" >
                 <div class="volunteering-modal">
+                    <!-- mobile -->
+                    <div class="mobile-volunteering-hint">
+                        <div class="icon-panel">
+                            <img src="img/contractForm.svg" alt="">
+                            <img src="img/orderForm.svg" alt="">
+                            <img src="img/adressForm.svg" alt="">
+                            <img src="img/dataForm.svg" alt="">
+                            <img src="img/timerForm.svg" alt="">
+                            <img src="img/acceptForm.svg" alt="">
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <!-- pc -->
                     <div class="hint-volunteering">
                         <div class="diagram-info">
                             <div class="icon-section">
-                                <img src="/img/cloud-check.svg" alt="" data-section="">
-                                <img style="position: relative; right: 40px;" src="/img/stopwatch.svg" alt="">
-                                <img src="/img/extra-info-form.png" alt="">
+                                <img style="bottom: 20px;" src="/img/acceptForm.svg" alt="">
+                                <img style="right: 50px;" src="img/timerForm.svg" alt="">
+                                <img style="top: 20px;" src="/img/dataForm.svg" alt="">
                             </div>
                             <div class="circle_box">
                                 <div>
@@ -53,12 +65,12 @@
                                 </div>	
                             </div>	
                             <div class="icon-section">
-                                <img src="/img/info-form.png" alt="">
-                                <img style="position: relative; left: 40px;" src="/img/stuff-form.png" alt="">
-                                <img src="/img/adress-form.png" alt="">
+                                <img style="bottom: 20px;" src="img/contractForm.svg" alt="">
+                                <img style="left: 50px;" src="img/orderForm.svg" alt="">
+                                <img style="top: 20px;" src="/img/adressForm.svg" alt="">
                             </div>
-                        </div>
-                        <p>
+                        </div>  
+                        <p class="hint-paragraph"> 
                             <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
                         </p>
                     </div>
@@ -70,13 +82,22 @@
                         <div class="control-box">
                             <button>Далі</button>
                         </div>
-                    </div>
+                        <p class="hint-paragraph">
+                            <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
+                        </p>
+                    </div>                
                 </div>
             </section>
-=======
-            <section class="add-request-form"></section>
->>>>>>> 786c02c33422fc51658042953b7d7a1de64cd441
         </main>
+        <!-- navigation mobile -->
+        <footer class="footer-side-bar-mobile">
+            <div class="navigation-links">
+                <div class="icon-link"><img src="img/mapLink.svg" alt=""></div> 
+                <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+                <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
+                <div class="icon-link"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
+            </div>
+        </footer>
         <script src="js/script.js"></script>
     </body>
 </html>
