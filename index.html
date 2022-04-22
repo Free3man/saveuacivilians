@@ -6,55 +6,62 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
     <body>
-        <div id="signUpInForm">
-            <div id="registrationCard">
-                <div class="registrationPicDiv">
-                    <img class="registrationPic" src="/img/system/registration/1.svg"
-                    alt="Picture is not found">
-                </div>
-                <form id="registrationForm">
-					<h1>Реєстраційна форма</h1>
-					<div class="signUpData">
-						<input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1">
-						<hr>
-						<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Контактний номер" tabindex="2">
-						<hr>
-						<input type="email" name="email" id="emailR" placeholder="E-mail" tabindex="3">
-						<hr>
-						<input type="password" name="password" id="passwordR" 
-								placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8" tabindex="4">
-						<hr>
-						<input type="password" name="password" id="password" 
-								placeholder="Підтвердіть пароль" maxlength="16" minlength="8" tabindex="5">
-						<hr>
+		<main>
+			<div id="sign-up-in-form">
+				<div id="registration-card">
+					<div class="registration-pic-div">
+						<img class="registration-pic" src="/img/system/registration/1.svg"
+						alt="Picture is not found">
 					</div>
-					<div class="actions">
-						<button id="signUp" tabindex="6">Зареєструватися</button>
-						<button id="login" tabindex="7">Вже є аккаунт? <u>Увійти</u></button>
+					<form id="registration-form">
+						<h1>Реєстраційна форма</h1>
+						<div>
+							<input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1">
+							<hr>
+							<input type="text" name="phoneNumber" id="phone-number" placeholder="Контактний номер" tabindex="2">
+							<hr>
+							<input type="email" name="email" id="email-reg" placeholder="E-mail" tabindex="3">
+							<hr>
+							<input type="password" name="password" id="password-reg" 
+									placeholder="Пароль (8-16 символів)" maxlength="16" minlength="8" tabindex="4">
+							<hr>
+							<input type="password" name="password" id="password-check" 
+									placeholder="Підтвердіть пароль" maxlength="16" minlength="8" tabindex="5">
+							<hr>
+						</div>
+						<div class="actions">
+							<button id="sign-up" tabindex="6">Зареєструватися</button>
+							<button id="login" tabindex="7">Вже є аккаунт? <u>Увійти</u></button>
+						</div>
+					</form>
+				</div>
+				<div id="login-card">
+					<form id="login-form">
+						<h1>Вхід до акаунту</h1>
+						<div>
+							<input type="email" name="email" id="email-log" placeholder="E-mail" tabindex="1">
+							<hr>
+							<input type="password" name="password" id="password-log" 
+									placeholder="Пароль" minlength="8" maxlength="16" tabindex="2">
+							<hr>
+						</div>
+						<div class="actions">
+							<button id="sign-in" tabindex="3">Увійти</button>
+							<button id="registration" tabindex="4"><u>Ще не має акаунту?</u></button>
+						</div>
+					</form>
+					<div class="login-pic-div">
+						<img class="login-pic" src="/img/system/registration/1.svg"
+						alt="Picture is not found">
 					</div>
-                </form>
-            </div>
-			<div id="loginCard">
-				<form id="loginForm">
-					<h1>Вхід до акаунту</h1>
-					<div class="loginData">
-						<input type="email" name="email" id="emailL" placeholder="E-mail" tabindex="1">
-						<hr>
-						<input type="password" name="password" id="passwordL" 
-								placeholder="Пароль" minlength="8" maxlength="16" tabindex="2">
-						<hr>
-					</div>
-					<div class="actions">
-						<button id="signIn" tabindex="3">Увійти</button>
-						<button id="registration" tabindex="4"><u>Ще не має акаунту?</u></button>
-					</div>
-				</form>
-				<div class="loginPicDiv">
-					<img class="loginPic" src="/img/system/registration/1.svg"
-					alt="Picture is not found">
 				</div>
 			</div>
-        </div>
+			<div id="no-account">
+				<h1>Акаунт не знайдено!</h1>
+				<button id="">Зареєструватись?</button>
+			</div>
+		</main>
+        
         <script src="/js/script.js"></script>
     </body>
 </html>

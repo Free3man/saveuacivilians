@@ -9,13 +9,13 @@ body{
 	max-width: 100vw;
 }
 
-#signUpInForm{
+#sign-up-in-form{
 	width: 100vw;
 	height: 100vh;
 	background: rgba(215, 122, 97, 0.85);
 }
 
-#registrationCard{
+#registration-card{
 	width: 80%;
 	height: 80%;
 	top: -90%;
@@ -30,22 +30,22 @@ body{
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 	background: #EFF1F3;
 } 
-#registrationCard.active{
+#registration-card.active{
 	top: 10%;
 }
 
-.registrationPicDiv{
+.registration-pic-div{
 	width: 40%;
 	height: 100%;
 }
-.registrationPic{
+.registration-pic{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 	border-radius: 20px 0px 0px 20px;
 }
 
-#registrationForm{
+#registration-form{
 	width: 45%;
 	height: 100%;
 	margin: auto;
@@ -53,7 +53,7 @@ body{
 	font-family: 'Montserrat';
 	font-style: normal;
 }
-#registrationForm>h1{
+#registration-form>h1{
 	width: 100%;
 	margin: 10% 0%;
 }
@@ -104,7 +104,7 @@ button{
 	font-size: 100%;
 	line-height: 110%;
 }
-#signUp{
+#sign-up{
 	width: 40%;
 	height: 40px;
 
@@ -119,7 +119,7 @@ button{
 	margin-left: 2.5%;
 }
 
-#loginCard{
+#login-card{
 	width: 80%;
 	height: 80%;
 	top: 10%;
@@ -134,24 +134,24 @@ button{
 	background: #EFF1F3;
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 }
-#loginCard.active{
+#login-card.active{
 	top: -90%;
 }
 
-.loginPicDiv{
+.login-pic-div{
 	width: 40%;
 	height: 100%;
 	position: absolute;
 	right: 0%;
 }
-.loginPic{
+.login-pic{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 	border-radius: 0px 20px 20px 0px;
 }
 
-#loginForm{
+#login-form{
 	width: 45%;
 	height: 100%;
 	margin-left: 7.5%;
@@ -159,7 +159,7 @@ button{
 	font-family: 'Montserrat';
 	font-style: normal;
 }
-#loginForm>h1{
+#login-form>h1{
 	width: 100%;
 	margin: 15% 0%;
 }
@@ -169,7 +169,7 @@ button{
 	position: absolute;
 	bottom: 5%;
 }
-#signIn{
+#sign-in{
 	width: 35%;
 	height: 40px;
 
@@ -181,4 +181,20 @@ button{
 	width: 45%;
 	height: 30px;
 	margin-left: 10%;
+}
+/* temporary */
+/* #sign-up-in-form{
+	display: none;
+} */
+#no-account{
+	background-color: red;
+	width: 30%;
+	height: 25%;
+	position: absolute;
+	right: 2.5%;
+	bottom: 5%;
+}
+#no-account>h1{
+	margin: auto;
+	
 }

@@ -1,19 +1,20 @@
 "use strict";
 //Variables
-const image = document.querySelector(".registrationPic"),
-    registrationCard = document.getElementById("registrationCard"),
-    loginCard = document.getElementById("loginCard"),
-    password = document.getElementById("passwordR"),
-    passwordCheck = document.getElementById("password"),
-    passwordLog = document.getElementById("passwordL"),
-    mail = document.getElementById("emailL"),
+const imageRegForm = document.querySelector(".registration-pic"),
+    registrationCard = document.getElementById("registration-card"),
+    loginCard = document.getElementById("login-card"),
+    password = document.getElementById("password-reg"),
+    passwordCheck = document.getElementById("password-check"),
+    passwordLog = document.getElementById("password-log"),
+    mail = document.getElementById("email-log"),
     inputs = document.getElementsByTagName("input");
 let currentPicture = 1;
 //Fucntions
 function checkPassword() {
-    if (document.getElementById("passwordR").value != document.getElementById("password").value &&
-        document.getElementById("passwordR").value != "" &&
-        document.getElementById("password").value != "") {
+    if (password.value != passwordCheck.value &&
+        password.value != "" &&
+        password.value != "") {
+        //TODO rework alert in a modal form
         alert("Паролі не збігаюся");
     }
 }
@@ -26,9 +27,9 @@ function checkInputValidity(element) {
     }
 }
 //EventListers
-document.getElementById("signIn").addEventListener("click", async (event) => {
+document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
-    const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById("login-form");
     if (mail.value != "" && passwordLog.value != "") {
         await fetch("php/login.php", {
                 method: "POST",
@@ -41,7 +42,7 @@ document.getElementById("signIn").addEventListener("click", async (event) => {
             }).catch(() => {
                 alert("Could not reach server! Search for issues");
             }).finally(() => {
-                document.getElementById("loginForm").reset();
+                loginForm.reset();
             });
     } else {
         if (mail.value == "") {
@@ -54,7 +55,7 @@ document.getElementById("signIn").addEventListener("click", async (event) => {
 });
 Array.prototype.forEach.call(inputs, 
     item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
-document.getElementById("signUp").addEventListener("click", (event) => {
+document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
     let newUser = {
         name: document.getElementById("name").value,
@@ -96,10 +97,10 @@ let pictureSwitcher = setInterval(() => {
                 if (opacity <= 0) {
                     changed = true;
                     opacity = 0;
-                    image.src = `img/system/registration/${currentPicture}.svg`;
+                    imageRegForm.src = `img/system/registration/${currentPicture}.svg`;
                 }
             }
-            image.style.opacity = opacity;
+            imageRegForm.style.opacity = opacity;
         }, 15);
     }
 }, 15000);
