@@ -15,11 +15,10 @@ body{
 	background: rgba(215, 122, 97, 0.85);
 }
 
-#registration-card{
+.card{
 	width: 80%;
 	height: 80%;
-	top: -90%;
-	left: 10%;
+
 	border-radius: 20px;
 
 	position: absolute;
@@ -27,22 +26,43 @@ body{
 	flex-wrap: wrap;
 
 	transition: 1.5s;
-	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 	background: #EFF1F3;
+	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
+}
+#registration-card{
+	top: -90%;
+	left: 10%;
 } 
 #registration-card.active{
 	top: 10%;
 }
+#login-card{
+	top: 10%;
+	left: 10%;
+}
+#login-card.active{
+	top: -90%;
+}
 
-.registration-pic-div{
+.pic-div{
 	width: 40%;
 	height: 100%;
 }
-.registration-pic{
+.login-pic-div{
+	position: absolute;
+	right: 0%;
+}
+
+.img{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+.registration-img{
 	border-radius: 20px 0px 0px 20px;
+}
+.login-img{
+	border-radius: 0px 20px 20px 0px;
 }
 
 #registration-form{
@@ -119,37 +139,8 @@ button{
 	margin-left: 2.5%;
 }
 
-#login-card{
-	width: 80%;
-	height: 80%;
-	top: 10%;
-	left: 10%;
-	border-radius: 20px;
 
-	position: absolute;
-	display: flex;
-	flex-wrap: wrap;
 
-	transition: 1.5s;
-	background: #EFF1F3;
-	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
-}
-#login-card.active{
-	top: -90%;
-}
-
-.login-pic-div{
-	width: 40%;
-	height: 100%;
-	position: absolute;
-	right: 0%;
-}
-.login-pic{
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	border-radius: 0px 20px 20px 0px;
-}
 
 #login-form{
 	width: 45%;
@@ -183,18 +174,15 @@ button{
 	margin-left: 10%;
 }
 /* temporary */
-/* #sign-up-in-form{
-	display: none;
-} */
 #no-account{
-	background-color: red;
+	background-color: #EFF1F3;
 	width: 30%;
 	height: 25%;
 	position: absolute;
 	right: 2.5%;
 	bottom: 5%;
+
 }
-#no-account>h1{
-	margin: auto;
+#no-account>span{
 	
 }
