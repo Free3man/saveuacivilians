@@ -15,7 +15,7 @@ body{
 	background: rgba(215, 122, 97, 0.85);
 }
 
-.card{
+#registration-card, #login-card{
 	width: 80%;
 	height: 80%;
 
@@ -44,7 +44,7 @@ body{
 	top: -90%;
 }
 
-.pic-div{
+.login-pic-div, .pic-div{
 	width: 40%;
 	height: 100%;
 }
@@ -53,7 +53,7 @@ body{
 	right: 0%;
 }
 
-.img{
+.registration-img, .login-img{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
@@ -65,15 +65,20 @@ body{
 	border-radius: 0px 20px 20px 0px;
 }
 
-#registration-form{
+#registration-form, #login-form{
 	width: 45%;
 	height: 100%;
-	margin: auto;
-
+	
 	font-family: 'Montserrat';
 	font-style: normal;
 }
-#registration-form>h1{
+#registration-form{
+	margin: auto;
+}
+#login-form{
+	margin-left: 7.5%;
+}
+#login-form>h1,#registration-form>h1{
 	width: 100%;
 	margin: 10% 0%;
 }
@@ -114,9 +119,9 @@ input.mistake{
 		margin-left: 2px;
 	}
 }
-/*input.success{
+input.success{
 	border: 2px solid green;
-} */
+}
 
 button{
 	border: none;
@@ -124,8 +129,12 @@ button{
 	font-size: 100%;
 	line-height: 110%;
 }
-#sign-up{
-	width: 40%;
+.actions{
+	width: 50%;
+	bottom: 5%;
+	position: absolute;
+}
+#sign-up, #sign-in{
 	height: 40px;
 
 	color: #EFF1F3;
@@ -133,40 +142,16 @@ button{
 	
 	background: #223843;
 }
+#sign-up{
+	width: 40%;
+}
+#sign-in{
+	width: 35%;
+}
 #login{ 
 	width: 50%;
 	height: 30px;
 	margin-left: 2.5%;
-}
-
-
-
-
-#login-form{
-	width: 45%;
-	height: 100%;
-	margin-left: 7.5%;
-
-	font-family: 'Montserrat';
-	font-style: normal;
-}
-#login-form>h1{
-	width: 100%;
-	margin: 15% 0%;
-}
-
-.actions{
-	width: 50%;
-	position: absolute;
-	bottom: 5%;
-}
-#sign-in{
-	width: 35%;
-	height: 40px;
-
-	border-radius: 20px;
-	color: #EFF1F3;
-	background: #223843;
 }
 #registration{
 	width: 45%;
@@ -175,14 +160,19 @@ button{
 }
 /* temporary */
 #no-account{
-	background-color: #EFF1F3;
 	width: 30%;
 	height: 25%;
+
 	position: absolute;
 	right: 2.5%;
 	bottom: 5%;
 
+	border-radius: 20px;
+
+	background-color: #EFF1F3;
+
 }
-#no-account>span{
-	
+#no-account>p{
+	width: 100;
+	text-align: center;
 }
