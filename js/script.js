@@ -19,7 +19,12 @@ function checkPassword() {
     }
 }
 function authorise(user) {
+    console.log("au");
+    console.log(user.id);
     console.log(user.email);
+    console.log(user.password);
+    console.log(user.name);
+    console.log(user.phoneNumber);
 }
 function checkInputValidity(element) {
     if (element.value) {
@@ -28,32 +33,16 @@ function checkInputValidity(element) {
         element.classList.add("mistake");
     }
 }
-function noSuchEmail() {
-    const cross = document.getElementById("cross"),
-        accountNotFound = document.getElementById("no-account");
-    accountNotFound.classList.add("active");
-    setTimeout(() => {
-        const iterations = 50;
-        let counter = 0;
-        cross.style.display = "block";
-        const crossInterval = setInterval(() => {
-            cross.style.opacity = +cross.style.opacity + 1 / iterations;
-            if (iterations == counter) {
-                clearInterval(crossInterval);
-            }
-            counter++;
-        }, 500 / iterations);
-    }, 5000);
-    cross.addEventListener("click",
-        () => accountNotFound.classList.remove("active"));
-    document.getElementById("no-registration").addEventListener("click", () => {
-        accountNotFound.classList.remove("active");
-        registrationCard.classList.add("active");
-        loginCard.classList.add("active");
+function checkConnection(){
+    fetch("php/checkNetSpeedConnection.php", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({data: 5})
+    }).then(response => {
+        console.log(response);
+        console.log(response.json());
     });
-}
-function badPassword() {
-    document.getElementById("bad-password").style.display = "block";
+    // .then(response => console.log("2"==response));
 }
 //EventListers
 document.getElementById("sign-in").addEventListener("click", async (event) => {
@@ -61,37 +50,55 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
     const loginForm = document.getElementById("login-form");
     if (mail.value != "" && passwordLog.value != "") {
         await fetch("php/login.php", {
-                method: "POST",
-                body: new FormData(loginForm)
-            })
-            .then((response) => {
-                if(response.ok && response.status == 200){
-                    // console.log(response.text());
-                    return response.json();
-                    // return response.text();
-                }
-            })
-            .then((response) => {
-                console.log(JSON.parse(response));
-                if (response == "0") {
-                    badPassword();
+            method: "POST",
+            body: new FormData(loginForm)
+        }).then((response) => {
+            if (response.ok && response.status == 200) {
+                return response.json();
+            }
+        }).then((response) => {
+            if (response == 0) {
+                document.getElementById("no-account").classList.remove("active");
+                document.getElementById("bad-password").style.display = "block";
+            } else {
+                if (response == 1) {
+                    document.getElementById("bad-password").style.display = "none";
+                    const cross = document.getElementById("cross"),
+                        accountNotFound = document.getElementById("no-account");
+                    accountNotFound.classList.add("active");
+                    setTimeout(() => {
+                        const iterations = 50;
+                        let counter = 0;
+                        cross.style.display = "block";
+                        const crossInterval = setInterval(() => {
+                            cross.style.opacity = +cross.style.opacity + 1 / iterations;
+                            if (iterations == counter) {
+                                clearInterval(crossInterval);
+                            }
+                            counter++;
+                        }, 500 / iterations);
+                    }, 5000);
+                    cross.addEventListener("click",
+                        () => accountNotFound.classList.remove("active"));
+                    document.getElementById("no-registration").addEventListener("click", () => {
+                        accountNotFound.classList.remove("active");
+                        registrationCard.classList.add("active");
+                        loginCard.classList.add("active");
+                    });
                 } else {
-                    if (response == false) {
-                        noSuchEmail();
-                    } else {
-                        authorise(response);
-                    }
+                    authorise(response);
                 }
-            }).catch(() => {
-                // if (checkConnection()){
+            }
+        }).catch(() => {
+            // if (checkConnection()){
 
-                // }
-                // else {
-                //     badConnection();
-                // }
-            }).finally(() => {
-                loginForm.reset();
-            });
+            // }
+            // else {
+            //     badConnection();
+            // }
+        }).finally(() => {
+            loginForm.reset();
+        });
     } else {
         if (mail.value == "") {
             mail.classList.add("mistake");
@@ -153,3 +160,6 @@ let pictureSwitcher = setInterval(() => {
     }
 }, 15000);
 //Mainflow
+// mail.value = "1@gmail.com";
+// passwordLog.value = "123";
+checkConnection();
