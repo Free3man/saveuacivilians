@@ -18,7 +18,9 @@ function checkPassword() {
         alert("Паролі не збігаюся");
     }
 }
-function authorise(user) {}
+function authorise(user) {
+    console.log(user.email);
+}
 function checkInputValidity(element) {
     if (element.value) {
         element.classList.remove("mistake");
@@ -62,23 +64,31 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
                 method: "POST",
                 body: new FormData(loginForm)
             })
-            .then((response)=>console.log(response.json()))
-            // .then((response) => response.json())
             .then((response) => {
-                console.log(response);
-                // console.log(JSON.parse(response));
+                if(response.ok && response.status == 200){
+                    // console.log(response.text());
+                    return response.json();
+                    // return response.text();
+                }
+            })
+            .then((response) => {
+                console.log(JSON.parse(response));
                 if (response == "0") {
                     badPassword();
                 } else {
                     if (response == false) {
                         noSuchEmail();
                     } else {
-                        authorise(JSON.parse(response));
-                        console.log(JSON.parse(response));
+                        authorise(response);
                     }
                 }
             }).catch(() => {
-                alert("Could not reach server! Search for issues");
+                // if (checkConnection()){
+
+                // }
+                // else {
+                //     badConnection();
+                // }
             }).finally(() => {
                 loginForm.reset();
             });
@@ -143,4 +153,3 @@ let pictureSwitcher = setInterval(() => {
     }
 }, 15000);
 //Mainflow
-mail.value = "1@gmail.com";
