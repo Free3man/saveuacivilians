@@ -26,6 +26,33 @@ function checkInputValidity(element) {
         element.classList.add("mistake");
     }
 }
+function noSuchEmail() {
+    const cross = document.getElementById("cross"),
+        accountNotFound = document.getElementById("no-account");
+    accountNotFound.classList.add("active");
+    setTimeout(() => {
+        const iterations = 50;
+        let counter = 0;
+        cross.style.display = "block";
+        const crossInterval = setInterval(() => {
+            cross.style.opacity = +cross.style.opacity + 1 / iterations;
+            if (iterations == counter) {
+                clearInterval(crossInterval);
+            }
+            counter++;
+        }, 500 / iterations);
+    }, 5000);
+    cross.addEventListener("click",
+        () => accountNotFound.classList.remove("active"));
+    document.getElementById("no-registration").addEventListener("click", () => {
+        accountNotFound.classList.remove("active");
+        registrationCard.classList.add("active");
+        loginCard.classList.add("active");
+    });
+}
+function badPassword() {
+    document.getElementById("bad-password").style.display = "block";
+}
 //EventListers
 document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
@@ -34,10 +61,21 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         await fetch("php/login.php", {
                 method: "POST",
                 body: new FormData(loginForm)
-            }).then((response) => response.text())
+            })
+            .then((response)=>console.log(response.json()))
+            // .then((response) => response.json())
             .then((response) => {
-                if (response == false){
-                    
+                console.log(response);
+                // console.log(JSON.parse(response));
+                if (response == "0") {
+                    badPassword();
+                } else {
+                    if (response == false) {
+                        noSuchEmail();
+                    } else {
+                        authorise(JSON.parse(response));
+                        console.log(JSON.parse(response));
+                    }
                 }
             }).catch(() => {
                 alert("Could not reach server! Search for issues");
@@ -53,7 +91,7 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         }
     }
 });
-Array.prototype.forEach.call(inputs, 
+Array.prototype.forEach.call(inputs,
     item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
@@ -105,3 +143,4 @@ let pictureSwitcher = setInterval(() => {
     }
 }, 15000);
 //Mainflow
+mail.value = "1@gmail.com";

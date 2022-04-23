@@ -167,6 +167,7 @@ button{
 	width: 25%;
 	height: 30%;
 
+	display: none;
 	position: absolute;
 	right: 2.5%;
 	bottom: 5%;
@@ -176,25 +177,32 @@ button{
 	background-color: #EFF1F3;
 
 }
-.warning{
+#no-account.active{
+	display: block;
+}
+#warning{
 	width: 30%;
 	height: 30%;
 	margin: auto;
 	margin-top: 5%;
 }
-.warning>img{
+#warning>img{
 	width: 100%;
 	height: 100%;
 	margin: auto;
 }
-.cross{
+#cross{
 	width: 10%;
 	height: 10%;
+
+	display: none;
+	opacity: 0;
+
 	position: absolute;
 	top:10%;
 	right:5%;
 }
-.cross>img{
+#cross>img{
 	width: 100%;
 	height: 100%;
 	margin: auto;
@@ -212,4 +220,9 @@ button{
 	bottom: 10%;
 	left: 10%;
 	position: absolute;
+}
+#bad-password{
+	color: #da1515;
+	margin: 5% 0%;
+	display: none;
 }
