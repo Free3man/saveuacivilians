@@ -4,7 +4,7 @@
     while (($line = mysqli_fetch_assoc($users))) {
         if ($line["E-Mail"] == $_POST["email"]){
             if ($line["Password"] == $_POST["password"]){
-                echo var_dump($line);
+                echo json_encode($line);
             }
             else {
                 echo 0;
