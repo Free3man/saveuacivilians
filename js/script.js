@@ -143,10 +143,11 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
     // const registrationForm = document.getElementById("registration-form");
     let newUser = {
         name: document.getElementById("name").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        mail: document.getElementById("emailR").value,
+        phoneNumber: document.getElementById("phone-number").value,
+        mail: document.getElementById("email-reg").value,
         password: password.value
     };
+	console.log(newUser);
     fetch("php/registration.php", {
         method: "POST",
         body: JSON.stringify(newUser)

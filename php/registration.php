@@ -10,6 +10,8 @@
         }
     }
     if (!$emailFound) {
-        
+        $sql = "INSERT INTO users (, `email`, `password`, `name`, `phoneNumber`) VALUES (1, 1, 1, 1)";
+        mysqli_query($connection, $sql);
+        // echo mysqli_query($connection, "SELECT * FROM `users`");
     }
 ?>
