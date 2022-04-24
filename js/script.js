@@ -18,6 +18,18 @@ function checkPassword() {
         alert("Паролі не збігаюся");
     }
 }
+function checkInputValidity(element) {
+    if (element.value) {
+        element.classList.remove("mistake");
+    } else {
+        element.classList.add("mistake");
+    }
+}
+
+function badPassword(){
+    document.getElementById("no-account").classList.remove("active");
+    document.getElementById("bad-password").style.display = "block";
+}
 function authorise(user) {
     console.log("au");
     console.log(user.id);
@@ -26,13 +38,42 @@ function authorise(user) {
     console.log(user.name);
     console.log(user.phoneNumber);
 }
-function checkInputValidity(element) {
-    if (element.value) {
-        element.classList.remove("mistake");
-    } else {
-        element.classList.add("mistake");
+function noAccount(){
+    function blink(element){
+        const oneSideIterations = 50;
+        setInterval({
+
+        }, 100/oneSideIterations);
     }
+    document.getElementById("bad-password").style.display = "none";
+    const cross = document.getElementById("cross"),
+        accountNotFound = document.getElementById("no-account"),
+        warningSign = document.getElementById("warning");
+    accountNotFound.classList.add("active");
+    setTimeout(() => {
+        const iterations = 50;
+        let counter = 0, opacity = 0;
+        cross.style.display = "block";
+        const crossInterval = setInterval(() => {
+            cross.style.opacity = opacity;
+            if (iterations == counter) {
+                clearInterval(crossInterval);
+            }
+            counter++;
+            opacity += 1/iterations;
+        }, 500 / iterations);
+    }, 5000);
+    cross.addEventListener("click",
+        () => accountNotFound.classList.remove("active"));
+    document.getElementById("no-registration").addEventListener("click", () => {
+        accountNotFound.classList.remove("active");
+        registrationCard.classList.add("active");
+        loginCard.classList.add("active");
+    });
 }
+
+
+
 function checkConnection(){
     fetch("php/checkNetSpeedConnection.php", {
         method: "POST",
@@ -44,7 +85,14 @@ function checkConnection(){
     });
     // .then(response => console.log("2"==response));
 }
+function somethingWentWrong(){
+
+}
+function badConnection(){
+
+}
 //EventListers
+//login
 document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
     const loginForm = document.getElementById("login-form");
@@ -58,44 +106,21 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             }
         }).then((response) => {
             if (response == 0) {
-                document.getElementById("no-account").classList.remove("active");
-                document.getElementById("bad-password").style.display = "block";
+                badPassword();
             } else {
                 if (response == 1) {
-                    document.getElementById("bad-password").style.display = "none";
-                    const cross = document.getElementById("cross"),
-                        accountNotFound = document.getElementById("no-account");
-                    accountNotFound.classList.add("active");
-                    setTimeout(() => {
-                        const iterations = 50;
-                        let counter = 0;
-                        cross.style.display = "block";
-                        const crossInterval = setInterval(() => {
-                            cross.style.opacity = +cross.style.opacity + 1 / iterations;
-                            if (iterations == counter) {
-                                clearInterval(crossInterval);
-                            }
-                            counter++;
-                        }, 500 / iterations);
-                    }, 5000);
-                    cross.addEventListener("click",
-                        () => accountNotFound.classList.remove("active"));
-                    document.getElementById("no-registration").addEventListener("click", () => {
-                        accountNotFound.classList.remove("active");
-                        registrationCard.classList.add("active");
-                        loginCard.classList.add("active");
-                    });
+                    noAccount();
                 } else {
                     authorise(response);
                 }
             }
         }).catch(() => {
-            // if (checkConnection()){
-
-            // }
-            // else {
-            //     badConnection();
-            // }
+            if (checkConnection()){
+                somethingWentWrong();
+            }
+            else {
+                badConnection();
+            }
         }).finally(() => {
             loginForm.reset();
         });
@@ -108,17 +133,18 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         }
     }
 });
-Array.prototype.forEach.call(inputs,
-    item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
+//registration
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
-    let newUser = {
-        name: document.getElementById("name").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        mail: document.getElementById("emailR").value,
-        password: password.value
-    };
+    // let newUser = {
+    //     name: document.getElementById("name").value,
+    //     phoneNumber: document.getElementById("phoneNumber").value,
+    //     mail: document.getElementById("emailR").value,
+    //     password: password.value
+    // };
 });
+Array.prototype.forEach.call(inputs,
+    item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
 document.getElementById("registration").addEventListener("click", (event) => {
     event.preventDefault();
     registrationCard.classList.add("active");
@@ -135,7 +161,7 @@ password.addEventListener("paste", (event) => event.preventDefault());
 passwordCheck.addEventListener("paste", (event) => event.preventDefault());
 passwordLog.addEventListener("paste", (event) => event.preventDefault());
 //Timers
-let pictureSwitcher = setInterval(() => {
+const pictureSwitcher = setInterval(() => {
     if (registrationCard.classList.contains("active")) {
         currentPicture = 1 + currentPicture % 7;
         let opacity = 1;
@@ -162,4 +188,4 @@ let pictureSwitcher = setInterval(() => {
 //Mainflow
 // mail.value = "1@gmail.com";
 // passwordLog.value = "123";
-checkConnection();
+// checkConnection();
