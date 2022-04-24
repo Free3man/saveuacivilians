@@ -30,6 +30,49 @@ function badPassword(){
     document.getElementById("no-account").classList.remove("active");
     document.getElementById("bad-password").style.display = "block";
 }
+function noAccount(){
+    document.getElementById("bad-password").style.display = "none";
+    const cross = document.getElementById("cross"),
+        accountNotFound = document.getElementById("no-account"),
+        warningSign = document.getElementById("warning");
+    setTimeout(() => {
+        const iterations = 50;
+        let counter = 0, opacity = 0;
+        cross.style.display = "block";
+        const crossInterval = setInterval(() => {
+            opacity += 1/iterations;
+            cross.style.opacity = opacity;
+            counter++;
+            if (iterations == counter) {
+                clearInterval(crossInterval);
+            }
+        }, 500 / iterations);
+    }, 5000);
+    accountNotFound.classList.add("active");
+    cross.addEventListener("click", () => accountNotFound.classList.remove("active"));
+    document.getElementById("no-registration").addEventListener("click", () => {
+        accountNotFound.classList.remove("active");
+        registrationCard.classList.add("active");
+        loginCard.classList.add("active");
+    });
+    const steps = 100;
+    let counter = 0;
+    let opacity = 1;
+    warningSign.style.opacity = opacity;
+    const blink = setInterval(function(){
+        if (counter<steps/2){
+            opacity -= 2/steps;
+        }
+        else{
+            opacity += 2/steps;
+        }
+        warningSign.style.opacity = opacity;
+        counter++;
+        if (steps == counter) {
+            clearInterval(blink);
+        }
+    }, 100/steps);
+}
 function authorise(user) {
     console.log("au");
     console.log(user.id);
@@ -38,61 +81,24 @@ function authorise(user) {
     console.log(user.name);
     console.log(user.phoneNumber);
 }
-function noAccount(){
-    function blink(element){
-        const oneSideIterations = 50;
-        setInterval({
-
-        }, 100/oneSideIterations);
-    }
-    document.getElementById("bad-password").style.display = "none";
-    const cross = document.getElementById("cross"),
-        accountNotFound = document.getElementById("no-account"),
-        warningSign = document.getElementById("warning");
-    accountNotFound.classList.add("active");
-    setTimeout(() => {
-        const iterations = 50;
-        let counter = 0, opacity = 0;
-        cross.style.display = "block";
-        const crossInterval = setInterval(() => {
-            cross.style.opacity = opacity;
-            if (iterations == counter) {
-                clearInterval(crossInterval);
-            }
-            counter++;
-            opacity += 1/iterations;
-        }, 500 / iterations);
-    }, 5000);
-    cross.addEventListener("click",
-        () => accountNotFound.classList.remove("active"));
-    document.getElementById("no-registration").addEventListener("click", () => {
-        accountNotFound.classList.remove("active");
-        registrationCard.classList.add("active");
-        loginCard.classList.add("active");
-    });
-}
-
-
 
 function checkConnection(){
+    const data = {
+        zero: null
+    };
     fetch("php/checkNetSpeedConnection.php", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({data: 5})
-    }).then(response => {
-        console.log(response);
-        console.log(response.json());
-    });
-    // .then(response => console.log("2"==response));
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(() => {return true;})
+    .finally(()=>{return false;});
 }
-function somethingWentWrong(){
+function stableConnection(){
+    document.getElementById("connection-failed").style.display = "none";
+}
 
-}
-function badConnection(){
-
-}
 //EventListers
-//login
 document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
     const loginForm = document.getElementById("login-form");
@@ -116,10 +122,10 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             }
         }).catch(() => {
             if (checkConnection()){
-                somethingWentWrong();
+                stableConnection();
             }
             else {
-                badConnection();
+                document.getElementById("connection-failed").style.display = "block";
             }
         }).finally(() => {
             loginForm.reset();
@@ -133,7 +139,6 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         }
     }
 });
-//registration
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
     // let newUser = {
@@ -143,6 +148,7 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
     //     password: password.value
     // };
 });
+document.addEventListener("click", ()=>stableConnection());
 Array.prototype.forEach.call(inputs,
     item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
 document.getElementById("registration").addEventListener("click", (event) => {
@@ -188,4 +194,4 @@ const pictureSwitcher = setInterval(() => {
 //Mainflow
 // mail.value = "1@gmail.com";
 // passwordLog.value = "123";
-// checkConnection();
+checkConnection();
