@@ -4,12 +4,12 @@
     $emailFound = false;
     while (($line = mysqli_fetch_assoc($users))) {
         if ($line["email"] == $_POST["email"]){
-            $emailFound;
+            $emailFound = true;
             echo "exist";
             break;
         }
     }
-    if (!$emailFound){
+    if (!$emailFound) {
         
     }
 ?>

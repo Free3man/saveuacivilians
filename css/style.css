@@ -222,7 +222,7 @@ button{
 	position: absolute;
 }
 
-#bad-password{
+#bad-password, #bad-input{
 	color: #da1515;
 	margin: 5% 0%;
 	display: none;

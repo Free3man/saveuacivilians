@@ -1,6 +1,6 @@
 "use strict";
 //Variables
-const imageRegForm = document.querySelector(".registration-pic"),
+const imageRegForm = document.querySelector(".registration-img"),
     registrationCard = document.getElementById("registration-card"),
     loginCard = document.getElementById("login-card"),
     password = document.getElementById("password-reg"),
@@ -97,7 +97,6 @@ function checkConnection(){
 function stableConnection(){
     document.getElementById("connection-failed").style.display = "none";
 }
-
 //EventListers
 document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
@@ -141,12 +140,29 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
 });
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
-    // let newUser = {
-    //     name: document.getElementById("name").value,
-    //     phoneNumber: document.getElementById("phoneNumber").value,
-    //     mail: document.getElementById("emailR").value,
-    //     password: password.value
-    // };
+    // const registrationForm = document.getElementById("registration-form");
+    let newUser = {
+        name: document.getElementById("name").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        mail: document.getElementById("emailR").value,
+        password: password.value
+    };
+    fetch("php/registration.php", {
+        method: "POST",
+        body: JSON.stringify(newUser)
+    }).then(response => {if (response.status == 200 && response.ok) {
+        return response.json();
+    }}).then((response)=>{
+        if (response == "exist"){
+            document.getElementById("bad-input").style.display = "block";
+        }
+        else{
+
+        }
+    })
+    .catch(()=>{
+        
+    });
 });
 document.addEventListener("click", ()=>stableConnection());
 Array.prototype.forEach.call(inputs,
