@@ -125,17 +125,20 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             body: new FormData(loginForm)
         }).then((response) => {
             if (response.ok && response.status == 200) {
+                // console.log(JSON.parse(response.text()));
                 console.log(response.text());
             }
-        }).then((response) => {
-            console.log(response);
+        }).then((answer) => {
+            console.log(answer);
             let data = null;
             try {
-                data = JSON.parse(response);
+                //data = JSON.parse(answer);
                 console.log(1);
-                // console.log(JSON.parse(response));
+                console.log(JSON.parse(answer));
+                console.log(1);
             } catch (SyntaxError) {
-                data = response;
+                console.log(2);
+                data = answer;
             }
             console.log(data);
             // if (data == ErrorCode.emailNotFound()) {
