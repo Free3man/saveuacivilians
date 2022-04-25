@@ -1,4 +1,13 @@
 "use strict";
+//Enums
+class ErrorCode{
+    connettionFailed(){return  "connection failed";}
+    emailExist() {return "email exist";}
+    emailNotFound() {return "email not found";}
+    wrongPassword() {return "wrong password";}
+}
+//Classes
+
 //Variables
 const imageRegForm = document.querySelector(".registration-img"),
     registrationCard = document.getElementById("registration-card"),
@@ -48,6 +57,7 @@ function noAccount(){
             }
         }, 500 / iterations);
     }, 5000);
+
     accountNotFound.classList.add("active");
     cross.addEventListener("click", () => accountNotFound.classList.remove("active"));
     document.getElementById("no-registration").addEventListener("click", () => {
@@ -55,6 +65,7 @@ function noAccount(){
         registrationCard.classList.add("active");
         loginCard.classList.add("active");
     });
+
     const steps = 100;
     let counter = 0;
     let opacity = 1;
@@ -83,21 +94,28 @@ function authorise(user) {
 }
 
 function checkConnection(){
-    const data = {
-        zero: null
-    };
-    fetch("php/checkNetSpeedConnection.php", {
+    const data = {zero: "0"};
+    let result = false;
+    result = fetch("php/checkNetSpeedConnection.php", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
-    }).then(response => response.json())
-    .then(() => {return true;})
-    .finally(()=>{return false;});
+    }).then(response => {
+        return response.status == 200 && response.ok || false;
+    });
+    //console.log(result);
+    return result;
 }
 function stableConnection(){
-    document.getElementById("connection-failed").style.display = "none";
+    if(checkConnection()){
+        document.getElementById("connection-failed").style.display = "none";
+    }
+    else{
+        document.getElementById("connection-failed").style.display = "block";
+    }
 }
 //EventListers
+//login
 document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
     const loginForm = document.getElementById("login-form");
@@ -107,18 +125,27 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             body: new FormData(loginForm)
         }).then((response) => {
             if (response.ok && response.status == 200) {
-                return response.json();
+                console.log(response.text());
             }
         }).then((response) => {
-            if (response == 0) {
-                badPassword();
-            } else {
-                if (response == 1) {
-                    noAccount();
-                } else {
-                    authorise(response);
-                }
+            console.log(response);
+            let data = null;
+            try {
+                data = JSON.parse(response);
+                console.log(data);
+            } catch (SyntaxError) {
+                data = response;
+                console.log(data);
             }
+            // if (data == ErrorCode.emailNotFound()) {
+            //     badPassword();
+            // } else {
+            //     if (data == ErrorCode.wrongPassword()) {
+            //         noAccount();
+            //     } else {
+            //         authorise(data);
+            //     }
+            // }
         }).catch(() => {
             if (checkConnection()){
                 stableConnection();
@@ -138,6 +165,7 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         }
     }
 });
+// reistration
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
     // const registrationForm = document.getElementById("registration-form");
@@ -165,7 +193,7 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
         
     });
 });
-document.addEventListener("click", ()=>stableConnection());
+document.getElementById("retry").addEventListener("click", ()=> stableConnection());
 Array.prototype.forEach.call(inputs,
     item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
 document.getElementById("registration").addEventListener("click", (event) => {
@@ -211,4 +239,4 @@ const pictureSwitcher = setInterval(() => {
 //Mainflow
 // mail.value = "1@gmail.com";
 // passwordLog.value = "123";
-checkConnection();
+// checkConnection();

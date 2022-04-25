@@ -5,13 +5,12 @@
     while (($line = mysqli_fetch_assoc($users))) {
         if ($line["email"] == $_POST["email"]){
             $emailFound = true;
-            echo "exist";
+            echo Errors::$emailExist;
             break;
         }
     }
     if (!$emailFound) {
         $sql = "INSERT INTO users (, `email`, `password`, `name`, `phoneNumber`) VALUES (1, 1, 1, 1)";
         mysqli_query($connection, $sql);
-        // echo mysqli_query($connection, "SELECT * FROM `users`");
     }
 ?>

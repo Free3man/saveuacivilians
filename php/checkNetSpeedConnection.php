@@ -1,4 +1,3 @@
 <?php
-    $post = json_decode($_POST);
-    echo json_encode($post);
+    echo json_encode(json_decode($_POST["data"])["zero"]);
 ?>

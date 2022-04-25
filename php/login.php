@@ -7,11 +7,11 @@
                 echo json_encode($line);
             }
             else {
-                echo 0;
+                echo Errors::$wrongPassword;
             }
         }
         else {
-            echo 1;
+            echo Errors::$emailNotFound;
         }
     }
 ?>
