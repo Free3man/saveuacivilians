@@ -132,11 +132,12 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             let data = null;
             try {
                 data = JSON.parse(response);
-                console.log(data);
+                console.log(1);
+                // console.log(JSON.parse(response));
             } catch (SyntaxError) {
                 data = response;
-                console.log(data);
             }
+            console.log(data);
             // if (data == ErrorCode.emailNotFound()) {
             //     badPassword();
             // } else {
