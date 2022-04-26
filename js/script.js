@@ -1,11 +1,18 @@
-"use strict";
+//"use strict";
 //Enums
-class ErrorCode{
-    connettionFailed(){return  "connection failed";}
-    emailExist() {return "email exist";}
-    emailNotFound() {return "email not found";}
-    wrongPassword() {return "wrong password";}
-}
+// class ErrorCode{
+//     get connettionFailed(){return "connection failed";}
+//     get emailExist() {return "email exist";}
+//     get emailNotFound() {return "email not found";}
+//     get wrongPassword() {return "wrong password";}
+// }
+const ErrorCode = 
+{
+    connettionFailed: "connection failed",
+    emailExist: "email exist",
+    emailNotFound: "email not found",
+    wrongPassword: "wrong password"
+};
 //Classes
 
 //Variables
@@ -85,7 +92,6 @@ function noAccount(){
     }, 100/steps);
 }
 function authorise(user) {
-    console.log("au");
     console.log(user.id);
     console.log(user.email);
     console.log(user.password);
@@ -125,39 +131,35 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
             body: new FormData(loginForm)
         }).then((response) => {
             if (response.ok && response.status == 200) {
-                // console.log(JSON.parse(response.text()));
-                console.log(response.text());
+                return response.json();
             }
-        }).then((answer) => {
-            console.log(answer);
-            let data = null;
-            try {
-                //data = JSON.parse(answer);
-                console.log(1);
-                console.log(JSON.parse(answer));
-                console.log(1);
-            } catch (SyntaxError) {
-                console.log(2);
-                data = answer;
+            else{
+                if (checkConnection()){
+                    stableConnection();
+                }
+                else {
+                    document.getElementById("connection-failed").style.display = "block";
+                }
             }
-            console.log(data);
-            // if (data == ErrorCode.emailNotFound()) {
-            //     badPassword();
-            // } else {
-            //     if (data == ErrorCode.wrongPassword()) {
-            //         noAccount();
-            //     } else {
-            //         authorise(data);
-            //     }
-            // }
-        }).catch(() => {
-            if (checkConnection()){
-                stableConnection();
+        }).then(answer => {
+            if ((answer.error == ErrorCode.wrongPassword) && answer.hasOwnProperty("error")) 
+            {
+                badPassword();
+            } else {
+                if ((answer.error == ErrorCode.emailNotFound) && answer.hasOwnProperty("error")) 
+                {
+                    noAccount();
+                } 
+                else 
+                {
+                    authorise(answer);
+                }
             }
-            else {
-                document.getElementById("connection-failed").style.display = "block";
-            }
-        }).finally(() => {
+        })
+        // .catch(() => {
+            
+        // })
+        .finally(() => {
             loginForm.reset();
         });
     } else {
@@ -169,7 +171,7 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
         }
     }
 });
-// reistration
+// registration
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
     // const registrationForm = document.getElementById("registration-form");
@@ -190,7 +192,7 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
             document.getElementById("bad-input").style.display = "block";
         }
         else{
-
+            
         }
     })
     .catch(()=>{

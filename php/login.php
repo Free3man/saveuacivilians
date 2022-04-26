@@ -1,4 +1,4 @@
-<?php
+<?
     require_once("connect.php");
     $users = mysqli_query($connection, "SELECT * FROM `users`");
     while (($line = mysqli_fetch_assoc($users))) {
@@ -7,11 +7,11 @@
                 echo json_encode($line);
             }
             else {
-                echo Errors::$wrongPassword;
+                echo json_encode(Errors::$wrongPassword);
             }
         }
         else {
-            echo Errors::$emailNotFound;
+            echo json_encode(Errors::$emailNotFound);
         }
     }
 ?>

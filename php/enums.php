@@ -1,9 +1,9 @@
 <?
     class Errors
     {
-        static public $connetionFailed = 'connection failed';
-        static public $emailExist = 'email exist';
-        static public $emailNotFound = 'email not found';
-        static public $wrongPassword = 'wrong password';
+        static public $connetionFailed = ['error'=>'connection failed'];
+        static public $emailExist      = ['error'=>'email exist'];
+        static public $emailNotFound   = ['error'=>'email not found'];
+        static public $wrongPassword   = ['error'=>'wrong password'];
     }
 ?>
