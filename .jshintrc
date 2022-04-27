@@ -14,5 +14,6 @@
     "trailing": true,
     "devel": true,
     "jquery": true,
-    "node": true
+    "node": true,
+    "loopfunc": true
 }
