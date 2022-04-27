@@ -29,13 +29,7 @@ function checkPassword() {
         alert("Паролі не збігаюся");
     }
 }
-function checkInputValidity(element) {
-    if (element.value) {
-        element.classList.remove("mistake");
-    } else {
-        element.classList.add("mistake");
-    }
-}
+
 
 function badPassword(){
     document.getElementById("no-account").classList.remove("active");
@@ -199,8 +193,14 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
         // });
 });
 document.getElementById("retry").addEventListener("click", ()=> stableConnection());
-for (const item of inputs) {
-    item.addEventListener("change", (event) => checkInputValidity(event.target));
+for (let input of inputs) {
+    input.addEventListener("change", (event) => {
+        if (event.target.value) {
+            event.target.classList.remove("mistake");
+        } else {
+            event.target.classList.add("mistake");
+        }
+    });
 }
 document.getElementById("registration").addEventListener("click", (event) => {
     event.preventDefault();
