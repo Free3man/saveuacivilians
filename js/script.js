@@ -1,17 +1,12 @@
 //"use strict";
 //Enums
-// class ErrorCode{
-//     get connettionFailed(){return "connection failed";}
-//     get emailExist() {return "email exist";}
-//     get emailNotFound() {return "email not found";}
-//     get wrongPassword() {return "wrong password";}
-// }
 const ErrorCode = 
 {
     connettionFailed: "connection failed",
     emailExist: "email exist",
     emailNotFound: "email not found",
-    wrongPassword: "wrong password"
+    wrongPassword: "wrong password",
+    success: "success"
 };
 //Classes
 
@@ -126,7 +121,7 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
     event.preventDefault();
     const loginForm = document.getElementById("login-form");
     if (mail.value != "" && passwordLog.value != "") {
-        await fetch("php/login.php", {
+        fetch("php/login.php", {
             method: "POST",
             body: new FormData(loginForm)
         }).then((response) => {
@@ -155,11 +150,7 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
                     authorise(answer);
                 }
             }
-        })
-        // .catch(() => {
-            
-        // })
-        .finally(() => {
+        }).finally(() => {
             loginForm.reset();
         });
     } else {
@@ -178,30 +169,39 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
     let newUser = {
         name: document.getElementById("name").value,
         phoneNumber: document.getElementById("phone-number").value,
-        mail: document.getElementById("email-reg").value,
+        email: document.getElementById("email-reg").value,
         password: password.value
     };
-	console.log(newUser);
     fetch("php/registration.php", {
         method: "POST",
-        body: JSON.stringify(newUser)
-    }).then(response => {if (response.status == 200 && response.ok) {
-        return response.json();
-    }}).then((response)=>{
-        if (response == "exist"){
-            document.getElementById("bad-input").style.display = "block";
+        body: JSON.stringify(newUser),
+        headers: {
+            'Content-Type': 'application/json'
         }
-        else{
-            
-        }
-    })
-    .catch(()=>{
-        
     });
+    console.log(JSON.stringify(newUser));
+        // .then(response => {
+        //     if (response.status == 200 && response.ok) {
+        //         return response.json();
+        //     }
+        // }).then(response => {
+        //     if (response == ErrorCode.emailExist){
+        //         document.getElementById("bad-input").style.display = "block";
+        //     }
+        //     else{
+        //         if (response == ErrorCode.success){
+    
+        //         }
+        //         else{
+    
+        //         }
+        //     }
+        // });
 });
 document.getElementById("retry").addEventListener("click", ()=> stableConnection());
-Array.prototype.forEach.call(inputs,
-    item => item.addEventListener("change", (event) => checkInputValidity(event.target)));
+for (const item of inputs) {
+    item.addEventListener("change", (event) => checkInputValidity(event.target));
+}
 document.getElementById("registration").addEventListener("click", (event) => {
     event.preventDefault();
     registrationCard.classList.add("active");
@@ -218,31 +218,28 @@ password.addEventListener("paste", (event) => event.preventDefault());
 passwordCheck.addEventListener("paste", (event) => event.preventDefault());
 passwordLog.addEventListener("paste", (event) => event.preventDefault());
 //Timers
-const pictureSwitcher = setInterval(() => {
-    if (registrationCard.classList.contains("active")) {
-        currentPicture = 1 + currentPicture % 7;
-        let opacity = 1;
-        let changed = false;
-        const changer = setInterval(() => {
-            if (changed) {
-                opacity += 0.01;
-                if (opacity >= 1) {
-                    clearInterval(changer);
-                    changed = false;
-                }
-            } else {
-                opacity -= 0.01;
-                if (opacity <= 0) {
-                    changed = true;
-                    opacity = 0;
-                    imageRegForm.src = `img/system/registration/${currentPicture}.svg`;
-                }
-            }
-            imageRegForm.style.opacity = opacity;
-        }, 15);
-    }
-}, 15000);
+        // const pictureSwitcher = setInterval(() => {
+        //     if (registrationCard.classList.contains("active")) {
+        //         currentPicture = 1 + currentPicture % 7;
+        //         let opacity = 1;
+        //         let changed = false;
+        //         const changer = setInterval(() => {
+        //             if (changed) {
+        //                 opacity += 0.01;
+        //                 if (opacity >= 1) {
+        //                     clearInterval(changer);
+        //                     changed = false;
+        //                 }
+        //             } else {
+        //                 opacity -= 0.01;
+        //                 if (opacity <= 0) {
+        //                     changed = true;
+        //                     opacity = 0;
+        //                     imageRegForm.src = `img/system/registration/${currentPicture}.svg`;
+        //                 }
+        //             }
+        //             imageRegForm.style.opacity = opacity;
+        //         }, 15);
+        //     }
+        // }, 15000);
 //Mainflow
-// mail.value = "1@gmail.com";
-// passwordLog.value = "123";
-// checkConnection();
