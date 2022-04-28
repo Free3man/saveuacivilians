@@ -230,31 +230,28 @@ password.addEventListener("paste", (event) => event.preventDefault());
 passwordCheck.addEventListener("paste", (event) => event.preventDefault());
 passwordLog.addEventListener("paste", (event) => event.preventDefault());
 //Timers
-        // const pictureSwitcher = setInterval(() => {
-        //     if (registrationCard.classList.contains("active")) {
-        //         currentPicture = 1 + currentPicture % 7;
-        //         let opacity = 1;
-        //         let changed = false;
-        //         const changer = setInterval(() => {
-        //             if (changed) {
-        //                 opacity += 0.01;
-        //                 if (opacity >= 1) {
-        //                     clearInterval(changer);
-        //                     changed = false;
-        //                 }
-        //             } else {
-        //                 opacity -= 0.01;
-        //                 if (opacity <= 0) {
-        //                     changed = true;
-        //                     opacity = 0;
-        //                     imageRegForm.src = `img/system/registration/${currentPicture}.svg`;
-        //                 }
-        //             }
-        //             imageRegForm.style.opacity = opacity;
-        //         }, 15);
-        //     }
-        // }, 15000);
+const pictureSwitcher = setInterval(() => {
+    if (registrationCard.classList.contains("active")) {
+        currentPicture = 1 + currentPicture % 7;
+        let opacity = 1;
+        let changed = false;
+        const changer = setInterval(() => {
+            if (changed) {
+                opacity += 0.01;
+                if (opacity >= 1) {
+                    clearInterval(changer);
+                    changed = false;
+                }
+            } else {
+                opacity -= 0.01;
+                if (opacity <= 0) {
+                    changed = true;
+                    opacity = 0;
+                    imageRegForm.src = `img/system/registration/${currentPicture}.svg`;
+                }
+            }
+            imageRegForm.style.opacity = opacity;
+        }, 15);
+    }
+}, 15000);
 //Mainflow
-
-registrationCard.classList.add("active");
-loginCard.classList.add("active");
