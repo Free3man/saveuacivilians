@@ -1,12 +1,13 @@
 //"use strict";
 //Enums
-const ErrorCode = 
+const ServerResponses = 
 {
     connettionFailed: "connection failed",
     emailExist: "email exist",
     emailNotFound: "email not found",
     wrongPassword: "wrong password",
-    success: "success"
+    success: "success",
+    failure: "failure"
 };
 //Classes
 
@@ -24,12 +25,11 @@ let currentPicture = 1;
 function checkPassword() {
     if (password.value != passwordCheck.value &&
         password.value != "" &&
-        password.value != "") {
+        passwordCheck.value != "") {
         //TODO rework alert in a modal form
         alert("Паролі не збігаюся");
     }
 }
-
 
 function badPassword(){
     document.getElementById("no-account").classList.remove("active");
@@ -131,11 +131,11 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
                 }
             }
         }).then(answer => {
-            if ((answer.error == ErrorCode.wrongPassword) && answer.hasOwnProperty("error")) 
+            if ((answer.error == ServerResponses.wrongPassword) && answer.hasOwnProperty("error")) 
             {
                 badPassword();
             } else {
-                if ((answer.error == ErrorCode.emailNotFound) && answer.hasOwnProperty("error")) 
+                if ((answer.error == ServerResponses.emailNotFound) && answer.hasOwnProperty("error")) 
                 {
                     noAccount();
                 } 
@@ -159,7 +159,6 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
 // registration
 document.getElementById("sign-up").addEventListener("click", (event) => {
     event.preventDefault();
-    // const registrationForm = document.getElementById("registration-form");
     let newUser = {
         name: document.getElementById("name").value,
         phoneNumber: document.getElementById("phone-number").value,
@@ -172,25 +171,38 @@ document.getElementById("sign-up").addEventListener("click", (event) => {
         headers: {
             'Content-Type': 'application/json'
         }
+    }).then(response => {
+        if (response.status == 200 && response.ok) {
+            return response.json();
+        }
+    }).then(response => {
+        const RegistrationMassage = document.getElementById("registration-failed"),
+            badInput = document.getElementById("bad-input");
+        if ((response.error == ServerResponses.emailExist) && response.hasOwnProperty("error")){
+            RegistrationMassage.style.display = "none";
+            badInput.style.display = "block";
+            badInput.children[0].addEventListener("click", (e)=>{
+                e.preventDefault();
+                badInput.style.display="none";
+                registrationCard.classList.remove("active");
+                loginCard.classList.remove("active");
+                mail.value = document.getElementById("email-reg").value;
+            });
+        }
+        else {
+            badInput.style.display = "none";
+            if ((response.result == ServerResponses.failure) && response.hasOwnProperty("result")){
+                RegistrationMassage.style.display = "block";
+                document.getElementById("ok-registration-failure").addEventListener("click", (e)=>{
+                    e.preventDefault();
+                    RegistrationMassage.style.display = "none";
+                }); 
+            }
+            else{
+                authorise(response);
+            }
+        }
     });
-    console.log(JSON.stringify(newUser));
-        // .then(response => {
-        //     if (response.status == 200 && response.ok) {
-        //         return response.json();
-        //     }
-        // }).then(response => {
-        //     if (response == ErrorCode.emailExist){
-        //         document.getElementById("bad-input").style.display = "block";
-        //     }
-        //     else{
-        //         if (response == ErrorCode.success){
-    
-        //         }
-        //         else{
-    
-        //         }
-        //     }
-        // });
 });
 document.getElementById("retry").addEventListener("click", ()=> stableConnection());
 for (let input of inputs) {
@@ -243,3 +255,6 @@ passwordLog.addEventListener("paste", (event) => event.preventDefault());
         //     }
         // }, 15000);
 //Mainflow
+
+registrationCard.classList.add("active");
+loginCard.classList.add("active");

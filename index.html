@@ -14,7 +14,7 @@
                     </div>
                     <form id="registration-form">
                         <h1>Реєстраційна форма</h1>
-                        <h3 id="bad-input"><button></button></h3>
+                        <h3 id="bad-input"><button>Такий акаунт вже існує <u>Увійти!</u></button></h3>
                         <div>
                             <input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1"
                             value="23">
@@ -72,6 +72,12 @@
                     <div class="message">
                         <h1>Помилка підключення. Перевірте якість Інтернету</h1>
                         <button id="retry">Retry</button>
+                    </div>
+                </div>
+                <div id="registration-failed">
+                    <div class="message">
+                        <h1>Виникла помилка. Будь ласка, спробуйте пізніше</h1>
+                        <button id="ok-registration-failure">OK!</button>
                     </div>
                 </div>
             </section>
