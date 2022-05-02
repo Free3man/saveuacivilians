@@ -1,11 +1,31 @@
 "use strict";
 let mapboxgl;
+/**
+ * Summary. types of Markers
+ * 
+ * Description. enum filled with different types of Markers.
+ * Is created to define a type of a marker not to do it with string literals.
+ * Haw such a values as: 
+ * * basic(will be shown with out any changes)
+ * * transport(/enter what is the difference/)
+ */
+class MarkerType{
+	get basic(){
+		return "basic";
+	}
+	get transport(){
+		return "transport";
+	}
+}
 class Map{
 	constructor(mapSettings){
 		this.container = mapSettings.container;
 		this.style = mapSettings.style;
 		this.center = mapSettings.center;
 		this.zoom = mapSettings.zoom;
+	}
+	get map(){
+		return this.map;
 	}
 	init(){
 		mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
@@ -15,9 +35,6 @@ class Map{
 			center: this.center,
 			zoom: this.zoom
 		});
-	}
-	get map(){
-		return this.map;
 	}
 	static init(mapSettings){
 		mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
