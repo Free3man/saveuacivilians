@@ -1,11 +1,11 @@
 "use strict";
 let mapboxgl;
 class Map{
-	constructor(container, style, center, zoom){
-		this.container = container;
-		this.style = style;
-		this.center = center;
-		this.zoom = zoom;
+	constructor(mapSettings){
+		this.container = mapSettings.container;
+		this.style = mapSettings.style;
+		this.center = mapSettings.center;
+		this.zoom = mapSettings.zoom;
 	}
 	init(){
 		mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
@@ -15,6 +15,9 @@ class Map{
 			center: this.center,
 			zoom: this.zoom
 		});
+	}
+	get map(){
+		return this.map;
 	}
 	static init(mapSettings){
 		mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
@@ -27,6 +30,12 @@ class Map{
 	}
 }
 class Marker{
+	/**
+	 * 
+	 * @param {tag} container 
+	 * @param {} type 
+	 * @param {*} feature 
+	 */
 	constructor(container, type, feature) {
 		this.container = container;
 		this.type = type;
@@ -60,24 +69,8 @@ class Marker{
 			feature: marker.feature
 		};
 	}
-	render(){
-		markers[markers.length] = new mapboxgl.Marker(this.container)
-		.setLngLat(this.feature.geometry.coordinates).addTo(map);
+	render(Map){
+		Map.markers[Map.markers.length] = new mapboxgl.Marker(this.container)
+		.setLngLat(this.feature.geometry.coordinates).addTo(Map.map);
 	}
 }
-function mapInit(){ //returns an object which is a map
-	
-}
-function renderMarkers(markers){
-	markers.forEach(marker =>{
-		marker
-	});
-}
-
-
-let markers = [];
-geojson.features.forEach(feature => {
-    const element = document.createElement("div");
-    element.className = "marker";
-    
-});
