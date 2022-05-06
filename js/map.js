@@ -1,5 +1,5 @@
 "use strict";
-let mapboxgl;
+// let mapboxgl;
 class MarkerType{
 	static get basic(){
 		return "basic";
@@ -175,3 +175,4 @@ class Map{
 	}
 }
 //https://youtu.be/89gnG9ErOaA
+let map = new Map(document.getElementById("map"), {}, [0,0], 1);
