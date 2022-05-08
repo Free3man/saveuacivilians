@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="ukr">
     <head>
-        <link rel="stylesheet" href="/css/style.css">
-		<link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
+        <link rel="stylesheet" href="/css/style.css" media="(min-width: 768px)">
+        <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+        <link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
     <body>
-        <script src="/js/script.js"></script>
+        <main>
+            <section id="sign-up-in-form">
+                <div id="registration-card">
+                    <div class="pic-div">
+                        <img class="registration-img" src="/img/system/registration/1.svg" alt="Picture is not found">
+                    </div>
+                    <form id="registration-form">
+                        <h1>Реєстраційна форма</h1>
+                        <h3 id="bad-input"><button>Такий акаунт вже існує <u>Увійти!</u></button></h3>
+                        <div>
+                            <input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1">
+                            <hr>
+                            <input type="text" name="phoneNumber" id="phone-number" placeholder="Контактний номер"
+                                tabindex="2">
+                            <hr>
+                            <input type="email" name="email" id="email-reg" placeholder="E-mail" tabindex="3">
+                            <hr>
+                            <input type="password" name="password" id="password-reg" placeholder="Пароль (8-16 символів)"
+                                maxlength="16" minlength="8" tabindex="4">
+                            <hr>
+                            <input type="password" name="password" id="password-check" placeholder="Підтвердіть пароль"
+                                maxlength="16" minlength="8" tabindex="5">
+                            <hr>
+                        </div>
+                        <div class="actions">
+                            <button id="sign-up" tabindex="6">Зареєструватися</button>
+                            <button id="login" tabindex="7">Вже є аккаунт? <u>Увійти</u></button>
+                        </div>
+                    </form>
+                </div>
+                <div id="login-card">
+                    <form id="login-form">
+                        <h1>Вхід до акаунту</h1>
+                        <h3 id="bad-password">Невірний логін або пароль</h3>
+                        <div>
+                            <input type="email" name="email" id="email-log" placeholder="E-mail" tabindex="1">
+                            <hr>
+                            <input type="password" name="password" id="password-log" placeholder="Пароль" minlength="8"
+                                maxlength="16" tabindex="2">
+                            <hr>
+                        </div>
+                        <div class="actions">
+                            <button id="sign-in" tabindex="3">Увійти</button>
+                            <button id="registration" tabindex="4"><u>Ще не має акаунту?</u></button>
+                        </div>
+                    </form>
+                    <div class="login-pic-div">
+                        <img class="login-img" src="/img/system/registration/1.svg" alt="Picture is not found">
+                    </div>
+                </div>
+                <div id="no-account">
+                    <div id="warning">
+                        <img src="img/system/notifycations/warning.svg" alt="No image">
+                    </div>
+                    <div id="cross">
+                        <img src="img/system/cross.svg" alt="No image">
+                    </div>
+                    <p>Акаунт не знайдено!</p>
+                    <button id="no-registration">Зареєструватись?</button>
+                </div>
+                <div id="connection-failed">
+                    <div class="message">
+                        <h1>Помилка підключення. Перевірте якість Інтернету</h1>
+                        <button id="retry">Retry</button>
+                    </div>
+                </div>
+                <div id="registration-failed">
+                    <div class="message">
+                        <h1>Виникла помилка. Будь ласка, спробуйте пізніше</h1>
+                        <button id="ok-registration-failure">OK!</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="/js/registrationLogin.js" async></script>
+        <script src="/js/RLBackend.js" async></script>
+        <script src="/js/script.js" async></script>
     </body>
 </html>

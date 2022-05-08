@@ -1,6 +1,6 @@
 {
     "camelcase": true,
-    "maxlen": 80,
+    "maxlen": 120,
     "curly": true,
     "esversion": 8,
     "latedef": true,
@@ -14,5 +14,6 @@
     "trailing": true,
     "devel": true,
     "jquery": true,
-    "node": true
+    "node": true,
+    "loopfunc": true
 }
