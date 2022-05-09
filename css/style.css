@@ -2,3 +2,40 @@ body{
 	margin: 0%;
 	padding: 0%;
 }
+#chat{
+	margin: 0;
+	padding: 0;
+	background-color: #223843d9;
+	width: 100vw;
+	height: 100vh;
+}
+
+#chat-menu{
+	position: absolute;
+	width: 30%;
+	height: 100%;
+	top: 0%;
+	right: -30%;
+	transition: 1.5s;
+	background-color: #D77A61;
+}
+#chat-menu.active{
+	right: 0%;
+}
+#menu{
+	position: absolute;
+	right:0%;
+}
+
+.chat-menu-item{
+
+}
+.chat-menu-item>h2{
+
+}
+.chat-menu-pic{
+
+}
+.chat-menu-pic>img{
+
+}
