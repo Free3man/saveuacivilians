@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,500&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	max-height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+    font-size: calc(10px + 14 * (100vw / 1440));
+}
+
+/* navigation */
+.mobileProfileBar {
+    width: 100vw;
+    height: auto;
+    background-color: #223843;
+}
+.navigationLinks {
+    display: flex;
+    justify-content: space-between;
+}
+.mobileFooter {
+    display: block;
+	width: 100vw;
+    height: auto;
+    background-color: #223843;
+}
+.navigationLinks > .iconLink img, .mobileIconLink img {
+	margin: 10px;
+	position: relative;
+	z-index: 3;
+    width: 6vw;
+    cursor: pointer;
+	user-select: none;
+}
+
+/* form-styles */
+.sectionRequestForm {
+	display: flex;
+	height: 100vh;
+	background: rgba(219, 211, 216, 0.85);
+}
+.modalRequestForm {
+	padding: 30px 20px 0 20px;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+    gap: 10px;
+	width: 100vw;
+	background: #EFF1F3;
+}
+
+.infoFillForm {
+	padding-left: 0;
+	height: -webkit-fill-available;
+    display: inherit;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+/* display:none */
+.hintBlock {
+	display: none;
+}
+.control-box > button {
+	display: none;
+}
+.sideBar {
+    display: none;
+}

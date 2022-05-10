@@ -1,103 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/basic_styles.css">     
+        <link rel="stylesheet" href="css/mobile.css" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" href="css/style.css" media="screen and (min-width: 769px)">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
         <title>SaveUACivilians - соціальна мережа для волонтерів</title>
         <meta name="description" content="Шукаєш на волонтерську допомогу? SaveUACivilians прийде на допомогу!"> 
-        <meta namme="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
+        <meta name="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
     </head>
     <body>
         <!-- navigation -->
-        <nav class="icons-side-bar-pc">
-            <div class="navigation-links">
-                <div class="icon-link"><img src="img/mapLink.svg" alt=""></div> 
-                <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
-                <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
-                <div class="icon-link"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
-                <div class="icon-link profile-link"><img src="img/userLink.svg" alt="Профіль"></div>
-                <div class="circle-navigation">
-            
-                </div>
+        <nav class="sideBar">
+            <div class="navigationLinks">
+                <div class="iconLink"><img src="img/mapLink.svg" alt="" ></div> 
+                <div class="iconLink"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+                <div class="iconLink"><img src="img/donationLink.svg" alt="Пожертвування"></div>
+                <div class="iconLink"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
+                <div class="iconLink profileLink"><img src="img/userLink.svg" alt="Профіль"></div>
+                <div class="circleNavigation"></div>
             </div>
         </nav>
         <!-- navigation mobile -->
-        <nav class="mobile-profile-bar">
-            <div class="navigation-links">
-                <div class="mobile-icon-link"><img src="img/userLink.svg" alt="Профіль"></div>
-                <div class="mobile-icon-link"><img src="img/exitLink.svg" alt="Вийти"></div>
+        <nav class="mobileProfileBar">
+            <div class="navigationLinks">
+                <div class="mobileIconLink"><img src="img/userLink.svg" alt="Профіль"></div>
+                <div class="mobileIconLink"><img src="img/exitLink.svg" alt="Вийти"></div>
             </div> 
         </nav>
         
         <!-- main-section -->
-        <main class="desktop_main">
-            <section class="section_page" >
-                <div class="volunteering-modal">
-                    <!-- mobile -->
-                    <div class="mobile-volunteering-hint">
-                        <div class="icon-panel">
-                            <img src="img/contractForm.svg" alt="">
-                            <img src="img/orderForm.svg" alt="">
-                            <img src="img/adressForm.svg" alt="">
-                            <img src="img/dataForm.svg" alt="">
-                            <img src="img/timerForm.svg" alt="">
-                            <img src="img/acceptForm.svg" alt="">
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
+        <main>
+            <section id="volunteeringPage" class="mainContent"> 
+                <div class="filterBox">
+                    <div class="containerFilter">
+                        <label for="searchBarFilter">Населений пункт</label>
+                        <div class="selectBox">
+                            <input type="text" id="searchBarFilter">
+                            <img src="img/searchIcon.svg" alt="">
                         </div>
                     </div>
-                    <!-- pc -->
-                    <div class="hint-volunteering">
-                        <div class="diagram-info">
-                            <div class="icon-section">
-                                <img style="bottom: 20px;" src="/img/acceptForm.svg" alt="">
-                                <img style="right: 50px;" src="img/timerForm.svg" alt="">
-                                <img style="top: 20px;" src="/img/dataForm.svg" alt="">
+                    <div class="containerFilter">
+                        <label for="oblastSelectFilter">Область</label>
+                        <div class="dropdownMenu">
+                            <div class="selectBox">
+                                <b>Оберіть область</b>
+                                <img src="img/dropdown.svg" alt="">
                             </div>
-                            <div class="circle_box">
-                                <div>
-                                    <svg>
-                                        <circle cx="100" cy="100" r="95"/>
-                                        <circle cx="100" cy="100" r="95" stroke-linecap="round"/>
-                                    </svg>
-                                    <span>80%</span>
-                                </div>	
-                            </div>	
-                            <div class="icon-section">
-                                <img style="bottom: 20px;" src="img/contractForm.svg" alt="">
-                                <img style="left: 50px;" src="img/orderForm.svg" alt="">
-                                <img style="top: 20px;" src="/img/adressForm.svg" alt="">
+                            <div class="activitiesList">
+                                <div class="fieldCheckBoxActivity">
+                                    <div class="activity ">
+                                        <input type="checkbox" name="" id="transit_auto"><label for="transit_auto">Автопревезення</label>
+                                    </div>
+                                    <div class="activity fieldCheckBoxActivity">
+                                        <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична допомога</label>
+                                    </div>
+                                    <div class="activity fieldCheckBoxActivity">
+                                        <input type="checkbox" name="" id="humanitarian_aid"><label for="humanitarian_aid">Гумунітарна допомога</label>
+                                    </div>
+                                </div>
+                                <div class="activity">
+                                    <input type="text" name="" id="add_field_type" placeholder="Інше">
+                                </div>
                             </div>
-                        </div>  
-                        <p class="hint-paragraph"> 
-                            <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
-                        </p>
+                        </div>
                     </div>
-                    <div class="info-volunteering">
-                        <div class="content-box">
-                            <input type="text" name="" placeholder="Заголовок">
-                            <textarea placeholder="Інформаційна"></textarea>
+                    <div class="containerFilter">
+                        <label for="helpSelectFilter">Вид домомоги</label>
+                        <div class="dropdownMenu">
+                            <div class="selectBox">
+                                <b>Оберіть допомогу</b>
+                                <img src="img/dropdown.svg" alt="">
+                            </div>
+                            <div class="activitiesList">
+                                <div class="fieldCheckBoxActivity">
+                                    <div class="activity ">
+                                        <input type="checkbox" name="" id="transit_auto"><label for="transit_auto">Автопревезення</label>
+                                    </div>
+                                    <div class="activity fieldCheckBoxActivity">
+                                        <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична допомога</label>
+                                    </div>
+                                    <div class="activity fieldCheckBoxActivity">
+                                        <input type="checkbox" name="" id="humanitarian_aid"><label for="humanitarian_aid">Гумунітарна допомога</label>
+                                    </div>
+                                </div>
+                                <div class="activity">
+                                    <input type="text" name="" id="add_field_type" placeholder="Інше">
+                                </div>
+                            </div>
                         </div>
-                        <div class="control-box">
-                            <button>Далі</button>
+                    </div>  
+                </div>
+                <div class="listTasksLoader">
+                    <div class="taskWait">
+                        <div class="categoriesHelper">
+                            <img src="img/minibus.svg" alt="">
+                            <img src="img/first-aid-kit.svg" alt="">
+                            <img src="img/volunteering.svg" alt="">
                         </div>
-                        <p class="hint-paragraph">
-                            <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
-                        </p>
-                    </div>                
+                        <div id='map' class="mapHelper"></div>
+                        <div class="informHelper">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus inventore ipsam consectetur explicabo ab beatae adipisci provident accusamus saepe at vitae labore nihil tempora, dolor sed sit ducimus similique a.
+                        </div>
+                    </div>
+                    <div class="taskWait">
+                        
+                    </div>
+                    <div class="taskWait">
+                        
+                    </div>
+                    <div class="taskWait">
+
+                    </div>
                 </div>
             </section>
         </main>
+        <div class="sectionRequestForm" >
+            <section class="formvolunteeringAdd" style="margin: auto;">
+                <div class="modalRequestForm">
+                    <!-- mobile -->
+                    <div class="mobilehintBlock">
+                        <div class="mobilelinksForm">
+                            <div class="mobileIconForm" data-formSection="0">
+                                <svg class="active" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M498.791,161.127c-17.545-17.546-46.094-17.545-63.645,0.004c-5.398,5.403-39.863,39.896-45.128,45.166V87.426c0-12.02-4.681-23.32-13.181-31.819L334.412,13.18C325.913,4.68,314.612,0,302.592,0H45.018c-24.813,0-45,20.187-45,45v422c0,24.813,20.187,45,45,45h300c24.813,0,45-20.187,45-45V333.631L498.79,224.767C516.377,207.181,516.381,178.715,498.791,161.127z M300.019,30c2.834,0,8.295-0.491,13.18,4.393l42.426,42.427c4.76,4.761,4.394,9.978,4.394,13.18h-60V30z M360.018,467c0,8.271-6.728,15-15,15h-300c-8.271,0-15-6.729-15-15V45c0-8.271,6.729-15,15-15h225v75c0,8.284,6.716,15,15,15h75v116.323c0,0-44.254,44.292-44.256,44.293l-21.203,21.204c-1.646,1.646-2.888,3.654-3.624,5.863l-21.214,63.64c-1.797,5.39-0.394,11.333,3.624,15.35c4.023,4.023,9.968,5.419,15.35,3.624l63.64-21.213c2.209-0.736,4.217-1.977,5.863-3.624l1.82-1.82V467z M326.378,312.427l21.213,21.213l-8.103,8.103l-31.819,10.606l10.606-31.82L326.378,312.427z M368.8,312.422l-21.213-21.213c11.296-11.305,61.465-61.517,72.105-72.166l21.213,21.213L368.8,312.422z M477.573,203.558l-15.463,15.476l-21.213-21.213l15.468-15.481c5.852-5.849,15.366-5.848,21.214,0C483.426,188.19,483.457,197.673,477.573,203.558z"/></g></g><g><g><path d="M285.018,150h-210c-8.284,0-15,6.716-15,15s6.716,15,15,15h210c8.284,0,15-6.716,15-15S293.302,150,285.018,150z"/></g></g><g><g><path d="M225.018,210h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,210,225.018,210z"/></g></g><g><g><path d="M225.018,270h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,270,225.018,270z"/></g></g><g><g><path d="M225.018,330h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,330,225.018,330z"/></g></g><g><g><path d="M285.018,422h-90c-8.284,0-15,6.716-15,15s6.716,15,15,15h90c8.284,0,15-6.716,15-15S293.302,422,285.018,422z"/></g></g></svg>
+                            </div>
+                            <div class="mobileIconForm" data-formSection="1">
+                                <svg enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m476.606 215.394c-5.857-5.858-15.355-5.858-21.213 0l-55.606 55.606h-287.574l-55.606-55.606c-5.857-5.858-15.355-5.858-21.213 0s-5.858 15.355 0 21.213l55.606 55.606v204.787c0 8.284 6.716 15 15 15h300c8.284 0 15-6.716 15-15v-204.787l55.606-55.607c5.858-5.857 5.858-15.355 0-21.212zm-235.606 85.606h30v35.729l-30 15zm-120 181v-181h90v75c0 5.199 2.692 10.027 7.114 12.76 4.415 2.729 9.936 2.985 14.594.657l60-30c5.082-2.542 8.292-7.735 8.292-13.417v-45h90v181z"/><path d="m346 422h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/><path d="m214.455 213.044c10.346 7.873 21.044 16.014 32.336 24.796 2.708 2.106 5.958 3.16 9.209 3.16s6.501-1.053 9.209-3.16c11.292-8.782 21.99-16.923 32.336-24.796 58.549-44.554 108.455-80.543 108.455-132.286 0-44.488-34.798-80.758-82.5-80.758-27.851 0-51.075 12.93-67.5 35.559-16.426-22.63-39.65-35.559-67.5-35.559-47.699 0-82.5 36.266-82.5 80.758 0 53.334 54.398 91.151 108.455 132.286zm-78.455-132.286c0-28.937 22.57-50.758 52.5-50.758 39.221 0 52.567 40.055 53.183 41.976 1.957 6.259 7.755 10.524 14.317 10.524 6.581 0 12.393-4.289 14.333-10.577.129-.42 13.396-41.923 53.167-41.923 29.93 0 52.5 21.821 52.5 50.758 0 34.887-38.438 64.137-96.622 108.413-7.567 5.758-15.321 11.659-23.378 17.863-8.057-6.205-15.811-12.105-23.378-17.863-58.184-44.276-96.622-73.526-96.622-108.413z"/></g></svg>
+                            </div>
+                            <div class="mobileIconForm" data-formSection="2" >
+                                <svg height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m24 1a7.0081 7.0081 0 0 0 -7 7c0 6.5214 6.2831 9.7587 6.55 9.8936a1.027 1.027 0 0 0 .8994 0c.2674-.1348 6.5506-3.3721 6.5506-9.8936a7.0081 7.0081 0 0 0 -7-7zm0 14.8467c-1.3071-.81-5-3.4824-5-7.8467a5 5 0 0 1 10 0c0 4.3652-3.6948 7.0381-5 7.8467z"/><path d="m24 5a3 3 0 1 0 3 3 3.0033 3.0033 0 0 0 -3-3zm0 4a1 1 0 1 1 1-1 1.0009 1.0009 0 0 1 -1 1z"/><path d="m26 19.46a1 1 0 0 0 -1 1v4.9218l-6 3v-10.9918a1 1 0 0 0 -2 0v10.8053l-6-3.75v-18.456l2.4531 1.8232a1 1 0 0 0 1.1934-1.6055l-4.05-3.01a1.0213 1.0213 0 0 0 -1.044-.0918l-8 4a1 1 0 0 0 -.5525.8948v22a1.0017 1.0017 0 0 0 .5151.875 1.0132 1.0132 0 0 0 1.0149-.0273l7.47-4.6689s7.47 4.6686 7.4741 4.6718a.9942.9942 0 0 0 .9732.0439l8-4a1 1 0 0 0 .5527-.8945v-5.54a1 1 0 0 0 -1-1zm-23-10.8418 6-3v18.8271l-6 3.75z"/></svg>
+                            </div>
+                            <div class="mobileIconForm" data-formSection="3">
+                                <svg height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m3.2 8.53v4.27a1.07 1.07 0 1 0 2.13 0v-4.27h1.07v.1a1.07 1.07 0 0 0 2.13 0v-2.33a1.07 1.07 0 1 0 -2.13 0v.1h-3.2a1.07 1.07 0 1 0 0 2.13z"/><path d="m3.2 17.07v4.27a1.07 1.07 0 1 0 2.13 0v-4.27h1.07v.1a1.07 1.07 0 1 0 2.13 0v-2.33a1.07 1.07 0 1 0 -2.13 0v.1h-3.2a1.07 1.07 0 0 0 0 2.13z"/><path d="m24.53 0h-16a5.32 5.32 0 0 0 -5.16 4 1.07 1.07 0 0 0 2.07.53 3.19 3.19 0 0 1 3.09-2.4h16a3.2 3.2 0 0 1 3.2 3.2v21.34a3.2 3.2 0 0 1 -3.2 3.2h-16a3.2 3.2 0 0 1 -3.2-3.2v-1.07h1.07v.1a1.07 1.07 0 1 0 2.13 0v-2.33a1.07 1.07 0 0 0 -2.13 0v.1h-3.2a1.07 1.07 0 1 0 0 2.13v1.07a5.34 5.34 0 0 0 5.33 5.33h16a5.34 5.34 0 0 0 5.33-5.33v-21.34a5.34 5.34 0 0 0 -5.33-5.33z"/><path d="m17.07 17.35a4 4 0 1 1 4-4 4 4 0 0 1 -4 4zm0-5.8a1.83 1.83 0 1 0 1.83 1.83 1.83 1.83 0 0 0 -1.83-1.83z"/><path d="m21.33 22.34a1.06 1.06 0 0 1 -.79-.34 4.72 4.72 0 0 0 -7 0 1.07 1.07 0 1 1 -1.54-1.45 6.85 6.85 0 0 1 10.1 0 1.07 1.07 0 0 1 -.79 1.79z"/></svg>
+                            </div>
+                            <div class="mobileIconForm" data-formSection="4">
+                                <svg enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m256 332h60c8.284 0 15-6.716 15-15s-6.716-15-15-15h-45v-45c0-8.284-6.716-15-15-15s-15 6.716-15 15v60c0 8.284 6.716 15 15 15z"/><path d="m256 512c107.523 0 195-87.477 195-195 0-69.391-45.771-129.174-86.153-181.92-32.834-42.886-63.847-83.393-63.847-120.08 0-8.284-6.716-15-15-15-58.604 0-61.198 137-90 137-9.082 0-14.95-26.664-15-45 0-13.779-17.103-20.254-26.232-9.942-47.43 53.582-93.768 147.251-93.768 234.942 0 106.648 86.714 195 195 195zm-99.702-382.302c9.472 32.338 28.768 37.302 39.702 37.302 48.948 0 55.16-88.066 78.215-126.518 9.288 37.701 37.383 74.396 66.812 112.835 39.317 51.355 79.973 104.458 79.973 163.683 0 90.981-74.019 165-165 165-91.65 0-165-74.804-165-165 0-66.233 28.38-133.337 65.298-187.302z"/><path d="m256 452c74.439 0 135-60.561 135-135s-60.561-135-135-135-135 60.561-135 135 60.561 135 135 135zm0-240c57.897 0 105 47.103 105 105s-47.103 105-105 105-105-47.103-105-105 47.103-105 105-105z"/></g></svg>
+                            </div>
+                            <div class="mobileIconForm" data-formSection="5">
+                                <svg viewBox="-11 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="m166.28125 98.636719h-89.523438c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.285157-6.71875-15-15-15zm0 0"/><path d="m166.28125 158.640625h-89.523438c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15s-6.71875-15-15-15zm0 0"/><path d="m166.28125 218.644531h-89.523438c-8.285156 0-15 6.714844-15 15 0 8.285157 6.714844 15 15 15h89.523438c8.28125 0 15-6.714843 15-15 0-8.285156-6.71875-15-15-15zm0 0"/><path d="m166.28125 278.648438h-89.523438c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.285157-6.71875-15-15-15zm0 0"/><path d="m166.28125 339.65625h-89.523438c-8.285156 0-15 6.71875-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.28125-6.71875-15-15-15zm0 0"/><path d="m216.65625 128.636719h89.523438c8.285156 0 15-6.714844 15-15 0-8.285157-6.714844-15-15-15h-89.523438c-8.28125 0-15 6.714843-15 15 0 8.285156 6.71875 15 15 15zm0 0"/><path d="m216.65625 188.640625h89.523438c8.285156 0 15-6.714844 15-15s-6.714844-15-15-15h-89.523438c-8.28125 0-15 6.714844-15 15s6.71875 15 15 15zm0 0"/><path d="m274.773438 233.644531c0-8.285156-6.714844-15-15-15h-43.117188c-8.28125 0-15 6.714844-15 15 0 8.285157 6.71875 15 15 15h43.117188c8.285156 0 15-6.714843 15-15zm0 0"/><path d="m416.871094 345.988281c-6.460938-5.183593-15.898438-4.148437-21.085938 2.3125l-38.632812 48.164063-23.917969-17.328125c-6.707031-4.863281-16.089844-3.363281-20.949219 3.34375-4.859375 6.710937-3.359375 16.089843 3.347656 20.949219l35.480469 25.707031c2.65625 1.921875 5.734375 2.855469 8.792969 2.855469 4.402344 0 8.753906-1.933594 11.707031-5.617188l47.574219-59.300781c5.183594-6.460938 4.148438-15.902344-2.316406-21.085938zm0 0"/><path d="m454.785156 299.941406c-19.539062-19.882812-44.644531-32.414062-71.847656-36.105468v-203.425782c0-33.308594-27.101562-60.410156-60.410156-60.410156h-262.113282c-33.3125 0-60.414062 27.101562-60.414062 60.410156v347.472656c0 33.3125 27.101562 60.414063 60.410156 60.414063h210.816406c23.722657 27.867187 57.832032 43.703125 94.734376 43.703125 68.691406 0 124.574218-55.921875 124.574218-124.660156 0-32.90625-12.695312-63.945313-35.75-87.398438zm-424.785156 107.941406v-347.472656c0-16.765625 13.644531-30.410156 30.414062-30.410156h262.113282c16.769531 0 30.410156 13.644531 30.410156 30.410156v202.949219c-62.59375 6.535156-111.550781 59.640625-111.550781 123.980469 0 17.832031 3.71875 35.074218 10.851562 50.953125h-191.824219c-16.769531 0-30.414062-13.640625-30.414062-30.410157zm335.960938 74.117188c-29.957032 0-57.496094-13.753906-75.5625-37.730469-12.4375-16.511719-19.015626-36.195312-19.015626-56.929687 0-52.195313 42.429688-94.660156 94.578126-94.660156.492187 0 .988281.007812 1.480468.015624l.230469.003907c24.894531.441406 48.234375 10.480469 65.71875 28.269531 17.503906 17.808594 27.144531 41.382812 27.144531 66.371094 0 52.195312-42.425781 94.660156-94.574218 94.660156zm0 0"/></svg>
+                            </div>
+                        </div>
+                        <div class="mobileProgress">
+                            <div class="mobileProgressBar"></div>
+                        </div>
+                    </div>
+                    <!-- pc -->
+                    <div class="hintBlock">
+                        <div class="diagram-info">
+                            <div class="icon-section">
+                                <div class="mobileIconForm" data-formSection="5" style="bottom: 1em;">
+                                    <svg viewBox="-11 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="m166.28125 98.636719h-89.523438c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.285157-6.71875-15-15-15zm0 0"/><path d="m166.28125 158.640625h-89.523438c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15s-6.71875-15-15-15zm0 0"/><path d="m166.28125 218.644531h-89.523438c-8.285156 0-15 6.714844-15 15 0 8.285157 6.714844 15 15 15h89.523438c8.28125 0 15-6.714843 15-15 0-8.285156-6.71875-15-15-15zm0 0"/><path d="m166.28125 278.648438h-89.523438c-8.285156 0-15 6.714843-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.285157-6.71875-15-15-15zm0 0"/><path d="m166.28125 339.65625h-89.523438c-8.285156 0-15 6.71875-15 15 0 8.285156 6.714844 15 15 15h89.523438c8.28125 0 15-6.714844 15-15 0-8.28125-6.71875-15-15-15zm0 0"/><path d="m216.65625 128.636719h89.523438c8.285156 0 15-6.714844 15-15 0-8.285157-6.714844-15-15-15h-89.523438c-8.28125 0-15 6.714843-15 15 0 8.285156 6.71875 15 15 15zm0 0"/><path d="m216.65625 188.640625h89.523438c8.285156 0 15-6.714844 15-15s-6.714844-15-15-15h-89.523438c-8.28125 0-15 6.714844-15 15s6.71875 15 15 15zm0 0"/><path d="m274.773438 233.644531c0-8.285156-6.714844-15-15-15h-43.117188c-8.28125 0-15 6.714844-15 15 0 8.285157 6.71875 15 15 15h43.117188c8.285156 0 15-6.714843 15-15zm0 0"/><path d="m416.871094 345.988281c-6.460938-5.183593-15.898438-4.148437-21.085938 2.3125l-38.632812 48.164063-23.917969-17.328125c-6.707031-4.863281-16.089844-3.363281-20.949219 3.34375-4.859375 6.710937-3.359375 16.089843 3.347656 20.949219l35.480469 25.707031c2.65625 1.921875 5.734375 2.855469 8.792969 2.855469 4.402344 0 8.753906-1.933594 11.707031-5.617188l47.574219-59.300781c5.183594-6.460938 4.148438-15.902344-2.316406-21.085938zm0 0"/><path d="m454.785156 299.941406c-19.539062-19.882812-44.644531-32.414062-71.847656-36.105468v-203.425782c0-33.308594-27.101562-60.410156-60.410156-60.410156h-262.113282c-33.3125 0-60.414062 27.101562-60.414062 60.410156v347.472656c0 33.3125 27.101562 60.414063 60.410156 60.414063h210.816406c23.722657 27.867187 57.832032 43.703125 94.734376 43.703125 68.691406 0 124.574218-55.921875 124.574218-124.660156 0-32.90625-12.695312-63.945313-35.75-87.398438zm-424.785156 107.941406v-347.472656c0-16.765625 13.644531-30.410156 30.414062-30.410156h262.113282c16.769531 0 30.410156 13.644531 30.410156 30.410156v202.949219c-62.59375 6.535156-111.550781 59.640625-111.550781 123.980469 0 17.832031 3.71875 35.074218 10.851562 50.953125h-191.824219c-16.769531 0-30.414062-13.640625-30.414062-30.410157zm335.960938 74.117188c-29.957032 0-57.496094-13.753906-75.5625-37.730469-12.4375-16.511719-19.015626-36.195312-19.015626-56.929687 0-52.195313 42.429688-94.660156 94.578126-94.660156.492187 0 .988281.007812 1.480468.015624l.230469.003907c24.894531.441406 48.234375 10.480469 65.71875 28.269531 17.503906 17.808594 27.144531 41.382812 27.144531 66.371094 0 52.195312-42.425781 94.660156-94.574218 94.660156zm0 0"/></svg>
+                                </div>
+                                <div class="mobileIconForm" data-formSection="4" style="right: 2em;">
+                                    <svg enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m256 332h60c8.284 0 15-6.716 15-15s-6.716-15-15-15h-45v-45c0-8.284-6.716-15-15-15s-15 6.716-15 15v60c0 8.284 6.716 15 15 15z"/><path d="m256 512c107.523 0 195-87.477 195-195 0-69.391-45.771-129.174-86.153-181.92-32.834-42.886-63.847-83.393-63.847-120.08 0-8.284-6.716-15-15-15-58.604 0-61.198 137-90 137-9.082 0-14.95-26.664-15-45 0-13.779-17.103-20.254-26.232-9.942-47.43 53.582-93.768 147.251-93.768 234.942 0 106.648 86.714 195 195 195zm-99.702-382.302c9.472 32.338 28.768 37.302 39.702 37.302 48.948 0 55.16-88.066 78.215-126.518 9.288 37.701 37.383 74.396 66.812 112.835 39.317 51.355 79.973 104.458 79.973 163.683 0 90.981-74.019 165-165 165-91.65 0-165-74.804-165-165 0-66.233 28.38-133.337 65.298-187.302z"/><path d="m256 452c74.439 0 135-60.561 135-135s-60.561-135-135-135-135 60.561-135 135 60.561 135 135 135zm0-240c57.897 0 105 47.103 105 105s-47.103 105-105 105-105-47.103-105-105 47.103-105 105-105z"/></g></svg>
+                                </div>
+                                <div class="mobileIconForm" data-formSection="3" style="top: 1em;">
+                                    <svg height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m3.2 8.53v4.27a1.07 1.07 0 1 0 2.13 0v-4.27h1.07v.1a1.07 1.07 0 0 0 2.13 0v-2.33a1.07 1.07 0 1 0 -2.13 0v.1h-3.2a1.07 1.07 0 1 0 0 2.13z"/><path d="m3.2 17.07v4.27a1.07 1.07 0 1 0 2.13 0v-4.27h1.07v.1a1.07 1.07 0 1 0 2.13 0v-2.33a1.07 1.07 0 1 0 -2.13 0v.1h-3.2a1.07 1.07 0 0 0 0 2.13z"/><path d="m24.53 0h-16a5.32 5.32 0 0 0 -5.16 4 1.07 1.07 0 0 0 2.07.53 3.19 3.19 0 0 1 3.09-2.4h16a3.2 3.2 0 0 1 3.2 3.2v21.34a3.2 3.2 0 0 1 -3.2 3.2h-16a3.2 3.2 0 0 1 -3.2-3.2v-1.07h1.07v.1a1.07 1.07 0 1 0 2.13 0v-2.33a1.07 1.07 0 0 0 -2.13 0v.1h-3.2a1.07 1.07 0 1 0 0 2.13v1.07a5.34 5.34 0 0 0 5.33 5.33h16a5.34 5.34 0 0 0 5.33-5.33v-21.34a5.34 5.34 0 0 0 -5.33-5.33z"/><path d="m17.07 17.35a4 4 0 1 1 4-4 4 4 0 0 1 -4 4zm0-5.8a1.83 1.83 0 1 0 1.83 1.83 1.83 1.83 0 0 0 -1.83-1.83z"/><path d="m21.33 22.34a1.06 1.06 0 0 1 -.79-.34 4.72 4.72 0 0 0 -7 0 1.07 1.07 0 1 1 -1.54-1.45 6.85 6.85 0 0 1 10.1 0 1.07 1.07 0 0 1 -.79 1.79z"/></svg>
+                                </div>
+                            </div>
+                            <div class="single-chart">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                  <path class="circle-bg"
+                                    d="M18 2.0845
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                  <path class="circle"
+                                    stroke-dasharray="30, 100"
+                                    d="M18 2.0845
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                  <text x="18" y="20.35" class="percentage">30%</text>
+                                  </svg>
+                            </div>  
+                            <div class="icon-section">
+                                <div class="mobileIconForm" data-formSection="0" style="bottom: 1em;">
+                                    <svg  class="active" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M498.791,161.127c-17.545-17.546-46.094-17.545-63.645,0.004c-5.398,5.403-39.863,39.896-45.128,45.166V87.426c0-12.02-4.681-23.32-13.181-31.819L334.412,13.18C325.913,4.68,314.612,0,302.592,0H45.018c-24.813,0-45,20.187-45,45v422c0,24.813,20.187,45,45,45h300c24.813,0,45-20.187,45-45V333.631L498.79,224.767C516.377,207.181,516.381,178.715,498.791,161.127z M300.019,30c2.834,0,8.295-0.491,13.18,4.393l42.426,42.427c4.76,4.761,4.394,9.978,4.394,13.18h-60V30z M360.018,467c0,8.271-6.728,15-15,15h-300c-8.271,0-15-6.729-15-15V45c0-8.271,6.729-15,15-15h225v75c0,8.284,6.716,15,15,15h75v116.323c0,0-44.254,44.292-44.256,44.293l-21.203,21.204c-1.646,1.646-2.888,3.654-3.624,5.863l-21.214,63.64c-1.797,5.39-0.394,11.333,3.624,15.35c4.023,4.023,9.968,5.419,15.35,3.624l63.64-21.213c2.209-0.736,4.217-1.977,5.863-3.624l1.82-1.82V467z M326.378,312.427l21.213,21.213l-8.103,8.103l-31.819,10.606l10.606-31.82L326.378,312.427z M368.8,312.422l-21.213-21.213c11.296-11.305,61.465-61.517,72.105-72.166l21.213,21.213L368.8,312.422z M477.573,203.558l-15.463,15.476l-21.213-21.213l15.468-15.481c5.852-5.849,15.366-5.848,21.214,0C483.426,188.19,483.457,197.673,477.573,203.558z"/></g></g><g><g><path d="M285.018,150h-210c-8.284,0-15,6.716-15,15s6.716,15,15,15h210c8.284,0,15-6.716,15-15S293.302,150,285.018,150z"/></g></g><g><g><path d="M225.018,210h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,210,225.018,210z"/></g></g><g><g><path d="M225.018,270h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,270,225.018,270z"/></g></g><g><g><path d="M225.018,330h-150c-8.284,0-15,6.716-15,15s6.716,15,15,15h150c8.284,0,15-6.716,15-15S233.302,330,225.018,330z"/></g></g><g><g><path d="M285.018,422h-90c-8.284,0-15,6.716-15,15s6.716,15,15,15h90c8.284,0,15-6.716,15-15S293.302,422,285.018,422z"/></g></g></svg>
+                                </div>
+                                <div class="mobileIconForm" data-formSection="1" style="left: 2em;">
+                                    <svg enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m476.606 215.394c-5.857-5.858-15.355-5.858-21.213 0l-55.606 55.606h-287.574l-55.606-55.606c-5.857-5.858-15.355-5.858-21.213 0s-5.858 15.355 0 21.213l55.606 55.606v204.787c0 8.284 6.716 15 15 15h300c8.284 0 15-6.716 15-15v-204.787l55.606-55.607c5.858-5.857 5.858-15.355 0-21.212zm-235.606 85.606h30v35.729l-30 15zm-120 181v-181h90v75c0 5.199 2.692 10.027 7.114 12.76 4.415 2.729 9.936 2.985 14.594.657l60-30c5.082-2.542 8.292-7.735 8.292-13.417v-45h90v181z"/><path d="m346 422h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/><path d="m214.455 213.044c10.346 7.873 21.044 16.014 32.336 24.796 2.708 2.106 5.958 3.16 9.209 3.16s6.501-1.053 9.209-3.16c11.292-8.782 21.99-16.923 32.336-24.796 58.549-44.554 108.455-80.543 108.455-132.286 0-44.488-34.798-80.758-82.5-80.758-27.851 0-51.075 12.93-67.5 35.559-16.426-22.63-39.65-35.559-67.5-35.559-47.699 0-82.5 36.266-82.5 80.758 0 53.334 54.398 91.151 108.455 132.286zm-78.455-132.286c0-28.937 22.57-50.758 52.5-50.758 39.221 0 52.567 40.055 53.183 41.976 1.957 6.259 7.755 10.524 14.317 10.524 6.581 0 12.393-4.289 14.333-10.577.129-.42 13.396-41.923 53.167-41.923 29.93 0 52.5 21.821 52.5 50.758 0 34.887-38.438 64.137-96.622 108.413-7.567 5.758-15.321 11.659-23.378 17.863-8.057-6.205-15.811-12.105-23.378-17.863-58.184-44.276-96.622-73.526-96.622-108.413z"/></g></svg>
+                                </div>
+                                <div class="mobileIconForm" data-formSection="2" style="top: 1em;">
+                                    <svg height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m24 1a7.0081 7.0081 0 0 0 -7 7c0 6.5214 6.2831 9.7587 6.55 9.8936a1.027 1.027 0 0 0 .8994 0c.2674-.1348 6.5506-3.3721 6.5506-9.8936a7.0081 7.0081 0 0 0 -7-7zm0 14.8467c-1.3071-.81-5-3.4824-5-7.8467a5 5 0 0 1 10 0c0 4.3652-3.6948 7.0381-5 7.8467z"/><path d="m24 5a3 3 0 1 0 3 3 3.0033 3.0033 0 0 0 -3-3zm0 4a1 1 0 1 1 1-1 1.0009 1.0009 0 0 1 -1 1z"/><path d="m26 19.46a1 1 0 0 0 -1 1v4.9218l-6 3v-10.9918a1 1 0 0 0 -2 0v10.8053l-6-3.75v-18.456l2.4531 1.8232a1 1 0 0 0 1.1934-1.6055l-4.05-3.01a1.0213 1.0213 0 0 0 -1.044-.0918l-8 4a1 1 0 0 0 -.5525.8948v22a1.0017 1.0017 0 0 0 .5151.875 1.0132 1.0132 0 0 0 1.0149-.0273l7.47-4.6689s7.47 4.6686 7.4741 4.6718a.9942.9942 0 0 0 .9732.0439l8-4a1 1 0 0 0 .5527-.8945v-5.54a1 1 0 0 0 -1-1zm-23-10.8418 6-3v18.8271l-6 3.75z"/></svg>
+                                </div>
+                            </div>
+                        </div>  
+                        <p class="hintParagraph animate__animated"> 
+                            <b style="font-weight: 600;">Підказка:</b> Вка&shy;жіть за&shy;го&shy;ло&shy;вок для за&shy;лу&shy;чен&shy;ня ува&shy;ги во&shy;лон&shy;терів та де&shy;таль&shy;но опи&shy;шіть вид не&shy;об&shy;хід&shy;ної до&shy;по&shy;мо&shy;ги.
+                        </p>
+                    </div>
+                    <div class="infoFillForm">
+                        <div class="contentBox animate__animated">
+                            <!-- main-info-form -->
+                            <div id="main_form" class="contentFields" style="display: flex;">
+                                <input type="text" name="title_box_form" id="title_box_form" placeholder="Заголовок">
+                                <textarea name="main_info_box_form" id="main_info_box_form"  placeholder="Впишіть інформацію..."></textarea>
+                            </div>
+                            <!-- stuff-form -->
+                            <div id="stuff_form" class="contentFields" style="display: none;">
+                                <div class="dropdownMenu">
+                                    <div class="taskTitleBox">
+                                        <b>Оберіть вид діяльності</b>
+                                        <img src="img/dropdown.svg" alt="">
+                                    </div>
+                                    <div class="activitiesList">
+                                        <div class="fieldCheckBoxActivity">
+                                            <div class="activity ">
+                                                <input type="checkbox" name="" id="transit_auto"><label for="transit_auto">Автопревезення</label>
+                                            </div>
+                                            <div class="activity fieldCheckBoxActivity">
+                                                <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична допомога</label>
+                                            </div>
+                                            <div class="activity fieldCheckBoxActivity">
+                                                <input type="checkbox" name="" id="humanitarian_aid"><label for="humanitarian_aid">Гумунітарна допомога</label>
+                                            </div>
+                                        </div>
+                                        <div class="activity">
+                                            <input type="text" name="" id="add_field_type" placeholder="Інше">
+                                        </div>
+                                    </div>
+                                </div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Гум. товари</th>
+                                            <th scope="col">Кількість</th>
+                                            <th scope="col">Один. вимір.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="data_form_staff">
+                                    </tbody>
+                                    <tbody class="add-new-field">
+                                        <tr class="form_table">
+                                            <td data-label="Гум. товари"><input class="input-table  add-next-field-input" type="text" name="" id="" required></td>
+                                            <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
+                                            <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="accept-table-on">
+                                    <input type="checkbox" name="" id="turn_on_table"><label for="turn_on_table">Таблиця (гумунітарна та медичні допомоги)</label>
+                                </div>
+                            </div>
+                            <!-- adress-form -->
+                            <div id="adress_form" class="contentFields" style="display: none;">
+                                <input type="text" name="" placeholder="Адреса">
+                                <div id='map' style='width: 400px; height: 300px;'></div>
+                            </div>
+                            <!-- contact-form -->
+                            <div id="contact_form" class="contentFields" style="display: none;">
+                                <textarea name="extra_info" id=""  placeholder="Додаткова інформація..."></textarea>
+                            </div>
+                            <!-- timer-form -->
+                            <div id="timer_form" class="contentFields" style="display: none;">
+                                <div class="inceptionContainer">
+                                    <div class="timerContainer">
+                                        <img src="/img/btnUpDown.svg" alt="">
+                                        <input type="number" name="" id="" value="00" disabled>
+                                        <img src="/img/btnUpDown.svg" alt="">
+                                    </div>
+                                    <div class="timerContainer">
+                                        <img src="/img/btnUpDown.svg" alt="">
+                                        <input type="number" name="" id="" value="00" disabled>
+                                        <img src="/img/btnUpDown.svg" alt="">
+                                    </div>
+                                    <div class="timerContainer">
+                                        <input type="date" id="date_type">
+                                        <label for="date_type">
+                                            <p>П'ятниця</p>
+                                            <p>15</p>
+                                            <p>Квітень 2022</p>
+                                        </label>
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <!-- accept-form -->
+                            <div id="accept_form" class="contentFields" style="display: none;">
+                                <input type="checkbox" name="" id="policy_accept"><label for="policy_accept">Натиснувши , ви погоджуєтеся з правилами розміщення об’яв на платформі та даєте згоду на обробку вашої інформації.</label>
+                                <input type="checkbox" name="" id="complete_accept"><label for="complete_accept">Я перевірив усю інформацію та готовий публікувати на платформу “SaveUACivilians”.</label>
+                            </div>
+                        </div>
+                        <p class="hintParagraph animate__animated">
+                            <b style="font-weight: 600;">Підказка:</b> Вка&shy;жіть за&shy;го&shy;ло&shy;вок для за&shy;лу&shy;чен&shy;ня ува&shy;ги во&shy;лон&shy;терів та де&shy;таль&shy;но опи&shy;шіть вид не&shy;об&shy;хід&shy;ної до&shy;по&shy;мо&shy;ги.
+                        </p>
+                        <div class="control-box">
+                            <button class="animate__animated">Далі</button>
+                        </div>
+                    </div>                
+                </div>
+            </section>
+        </div>
         <!-- navigation mobile -->
-        <footer class="footer-side-bar-mobile">
-            <div class="navigation-links">
-                <div class="icon-link"><img src="img/mapLink.svg" alt=""></div> 
-                <div class="icon-link"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
-                <div class="icon-link"><img src="img/donationLink.svg" alt="Пожертвування"></div>
-                <div class="icon-link"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
+        <footer class="mobileFooter">
+            <div class="navigationLinks">
+                <div class="iconLink"><img src="img/mapLink.svg" alt=""></div> 
+                <div class="iconLink"><img src="img/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+                <div class="iconLink"><img src="img/donationLink.svg" alt="Пожертвування"></div>
+                <div class="iconLink"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
             </div>
         </footer>
         <script src="js/script.js"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
+            });
+        </script>
     </body>
 </html>
