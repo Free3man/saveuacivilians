@@ -475,3 +475,56 @@ table td > input{
 		max-width: 100%;
 	} 
 }
+.project-section {
+	display: flex;
+    flex-direction: column;
+    gap: 50px;
+	margin: 50px 0;
+}
+.project-section > .about-us-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.about-us-block > .info-project {
+	flex: 0 1 50%;
+}
+.about-us-block > .info-img-div {
+	flex: 0 1 40%;
+}
+.about-us-block > .info-img-div img {
+	width: 100%;
+	border-radius: 20px;
+}
+footer {
+	display: flex;
+	justify-content: space-between;
+	background: #D77A61;
+	color:#EFF1F3;
+	padding: 60px 70px;
+}
+footer > .linkList {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+footer > .linkList a {
+	font: inherit;
+	padding: 10px;
+	color:#EFF1F3;
+	cursor: pointer;
+	text-decoration: none;
+}
+footer > .socialMediaIcons {
+	display: flex;
+	justify-content: space-between;
+}
+footer > .socialMedia {
+	display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.socialMedia > .socialMediaIcons {
+	display: flex;
+	justify-content: space-between;
+}
