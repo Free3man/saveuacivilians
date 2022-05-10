@@ -37,7 +37,6 @@ const formData = {
     mainInfo: "",
     typeOfWork: [],
     table: {
-
     },
     adressLine: "",
     timer: "",
@@ -109,7 +108,6 @@ hintParagraph.forEach(hint => {hint.addEventListener('animationend', () => {hint
 contentForm.addEventListener('animationend', () => {contentForm.classList.remove("animate__fadeIn");});
 buttonSwitch.addEventListener("click", () => {buttonSwitch.classList.add("animate__jello");});
 buttonSwitch.addEventListener("animationend", () => {buttonSwitch.classList.remove("animate__jello");});
-
 
 
 
