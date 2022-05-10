@@ -2,6 +2,12 @@
 	font-family: Montserrat;
 	src: url(../font/Montserrat-VariableFont_wght.ttf);
 }
+body{
+	margin: 0;
+	padding: 0;
+	max-width: 100vw;
+	max-height: 100vh;
+}
 p, h1, h2, h3, h4, h5, h6{
 	margin-block: 0%;
 	margin-inline: 0%;
@@ -14,7 +20,7 @@ main, section{
     height: 100%;
 }
 
-#sign-up-in-form, #donation-page{
+#sign-up-in-form, #donation-page, .mainContent, .formvolunteeringAdd{
 	width: 100vw;
 	height: 100vh;
 	display: none;

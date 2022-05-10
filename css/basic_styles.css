@@ -274,9 +274,6 @@ table td > input{
 	table{
 		border: 0;
 	}
-	table caption{
-		/* font-size: 1.3em; */
-	}
 	table thead{
 		border: none;
 		clip: rect(0 0 0 0);
