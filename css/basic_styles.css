@@ -1,26 +1,25 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+}
 main {
 	background-color:  #EFF1F3;
 	overflow: auto;
 }
-.contentBox
-{
+.contentBox{
 	width: 100%;
 	display: inherit;
 	flex-direction: column;
 	flex-grow: 1;
 }
-.contentFields
-{
+.contentFields{
 	height: 100%;
 	flex-direction: column;
 }
-.contentFields > input[type=text]
-{
+.contentFields > input[type=text]{
 	padding: 0.5em 0;
 	width: 100%;
     font-size: 1em;
-    font-family: 'Montserrat', sans-serif;
-	font-style: normal;
 	outline: none;
     border: none;
 	box-sizing: border-box;
@@ -71,24 +70,20 @@ main {
 .timerContainer > img:nth-child(1) {
 	transform: rotate(180deg);
 }
-.contentFields > textarea
-{
+.contentFields > textarea{
 	padding: .625em;
 	margin: 1em 0;
 	width: 100%;
 	flex-grow: 1;
 	background-color: transparent;;
     font-size: 1em;
-    font-family: 'Montserrat', sans-serif;
-	font-style: normal;
 	box-sizing: border-box;
 	outline: none;
     border: 1px solid rgba(0, 0, 0, 0.5);
 	border-radius: 8px;
 	resize: none;
 }
-.contentFields > iframe
-{
+.contentFields > iframe{
 	margin: 20px 0;
 	width: 100%;
 	height: 100%;
@@ -103,15 +98,12 @@ main {
 .contentFields > input[type=checkbox] + label::before {
 	margin-top: 5px;
 }
-.control-box > button
-{
+.control-box > button{
 	padding: 1vh 2vw;
 	float: right;
 	color: #EFF1F3;
 	background: #223843;
 	font-size: 1em;
-	font-family: 'Montserrat';
-	font-style: normal;
 	font-weight: 600;
 	letter-spacing: 0.055em;
 	outline: none;
@@ -164,21 +156,18 @@ input[type=checkbox]:focus:not(:checked)+label::before{
 input[type=checkbox]:disabled+label::before{
 	background-color: #e9ecef;
 }
-.dropdownMenu
-{
+.dropdownMenu{
 	position: relative;
 	height: fit-content;
 }
-.taskTitleBox
-{
+.taskTitleBox{
 	padding: 10px 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
-.dropdownMenu input
-{
+.dropdownMenu input{
 	padding-bottom: 5px;
 	width: fit-content;
 	display: flex;
@@ -186,27 +175,23 @@ input[type=checkbox]:disabled+label::before{
 	align-items: center;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
-.taskTitleBox img
-{
+.taskTitleBox img{
 	width: 20px;
     transform:  scaleY(1);
     transition: transform 0.4s linear;	
 	transform-origin: center;
 }
-.taskTitleBox img.active
-{
+.taskTitleBox img.active{
 	transform: scaleY(-1);
     transition: transform 0.4s linear;
 	transform-origin: center;
 }
-.activitiesList .activity
-{
+.activitiesList .activity{
 	padding: 10px;
     display: flex;
     justify-content: space-between;
 }
-.activitiesList .activity > img
-{
+.activitiesList .activity > img{
     width: 1em;
 }
 .activitiesList{
@@ -225,14 +210,12 @@ input[type=checkbox]:disabled+label::before{
     max-height:300px;
 	box-shadow: 0px 5px 5px 1px rgb(0 0 0 / 55%);
 }
-.invalidInputSelect
-{
+.invalidInputSelect{
 	border-color: red !important;
     animation: shakeX;
     animation-duration: 1s;
 }
-.activitiesList > .activity input 
-{
+.activitiesList > .activity input {
 	width: 100%;
 	background-color: transparent;;
 	font-family: 'Montserrat';
@@ -255,8 +238,7 @@ table tr{
 	padding: .35em;
 	background-color: #f8f8f8;
 }
-table th,
-table td {
+table th, table td {
 	text-align: center;
 	border: 1px solid #ddd;
 }
@@ -292,7 +274,6 @@ table td > input{
 	table td{
 		border-bottom: 1px solid #ddd;
 		display: block;
-		/* font-size: .8em; */
 		text-align: right;
 	}
 	table td::before {
@@ -314,14 +295,12 @@ table td > input{
 	display: flex;
 	justify-content:space-between;
 }
-.mobileIconForm > svg
-{
+.mobileIconForm > svg{
     width: 6vw;
     height: auto;
 	transform: rotate(0deg);
 }
-.mobileIconForm > svg.active
-{
+.mobileIconForm > svg.active{
 	transition: 1s ease-in-out;
 	fill:#D77A61;
 	animation: bounce;
@@ -346,12 +325,10 @@ table td > input{
 	margin: 0;
 	padding: 30px 0;
 }
-.hintParagraph
-{
+.hintParagraph{
 	text-align: justify;
 	margin: 0;
 }
-
 /* volunteering-page */
 .filterBox {
 	display: flex;
@@ -412,7 +389,6 @@ table td > input{
 	border-radius: 8px;
 	flex-grow: 1;
 }
-
 .selectBox {
 	padding: .625em .7em;
     display: flex;
@@ -447,13 +423,11 @@ table td > input{
 	  padding: 0 calc(50% - 360px);
 	}
 }
-  
 @media (min-width: 1240px) {
 	.mainContent {
 	  padding: 0 calc(50% - 580px);
 	}
 }
-  
 @media (min-width: 1475px){
 	.mainContent {
 	  padding: 0 calc(50% - 690px);
@@ -462,7 +436,6 @@ table td > input{
 		font-size: 26px;
 	}
 }
-
 @media (max-width: 1240px) {
 	.listTasksLoader {
 		flex-direction: column;
