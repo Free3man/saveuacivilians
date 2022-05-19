@@ -1,9 +1,10 @@
-/* #donation-page {
+#donation-page {
+	display: block;
+	display: none;
+}
+/* #sign-up-in-form{
 	display: block;
 } */
-#sign-up-in-form{
-	display: block;
-}
 /* nav{
 	display: none;
 }*/
