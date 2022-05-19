@@ -1,0 +1,20 @@
+#registration-form, #login-form{
+	width: 85%;
+}
+#login-form>h1,#registration-form>h1{
+	text-align: center;
+}
+.login-pic-div, .pic-div{
+	display: none;
+}
+.actions{
+	width: 90%;
+}
+#no-account{
+	width: 40%;
+}
+#retry, #ok-registration-failure{
+	position: absolute;
+	bottom: 10%;
+	left: 25%;
+}

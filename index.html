@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="ukr">
     <head>
-        <link rel="stylesheet" href="/css/style.css" media="(min-width: 768px)">
-        <link rel="stylesheet" href="css/mobile.css" media="(max-width: 769px)">
+        <title>SaveUACivilians - соціальна мережа для волонтерів</title>
+        <!-- cssLinks -->
+        <link rel="stylesheet" href="css/mainStyles.css">
+        <!-- <link rel="stylesheet" href="/css/style.css" media="(min-width: 768px)"> -->
+        <!-- <link rel="stylesheet" href="css/mobile.css" media="(max-width: 769px)"> -->
+        <link rel="stylesheet" href="css/RLForm.css">
+        <link rel="stylesheet" href="css/RLFormMobile.css" media="(max-width: 769px)">
+        <!-- <link rel="stylesheet" href="css/RLFormPC.css" media="(min-width: 769px)"> -->
+        <link rel="stylesheet" href="css/temp.css">
+
+        
         <link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
         <meta http-equiv="Content-Type" content="text/html">
-        <link rel="stylesheet" href="css/basic_styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
-        <title>SaveUACivilians - соціальна мережа для волонтерів</title>
+        <!-- metas -->
         <meta name="description" content="Шукаєш на волонтерську допомогу? SaveUACivilians прийде на допомогу!">
-        <meta name="keywords"
-            content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
+        <meta name="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media,
+            assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
     </head>
     <body>
         <nav class="sideBar">
@@ -38,8 +46,12 @@
                     </div>
                     <form id="registration-form">
                         <h1>Реєстраційна форма</h1>
-                        <h3 id="bad-input"><button>Такий акаунт вже існує <u>Увійти!</u></button></h3>
-                        <div>
+                        <h3 id="bad-input">
+                            <button>
+                                Такий акаунт вже існує <u>Увійти!</u>
+                            </button>
+                        </h3>
+                        <div class="input-group">
                             <input type="text" name="name" id="name" placeholder="ПІБ або організація" tabindex="1">
                             <hr>
                             <input type="text" name="phoneNumber" id="phone-number" placeholder="Контактний номер"
