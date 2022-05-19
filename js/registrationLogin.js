@@ -1,7 +1,6 @@
 "use strict";
 //Enums
-const ServerResponses = 
-{
+const ServerResponses = {
     connettionFailed: "connection failed",
     emailExist: "email exist",
     emailNotFound: "email not found",
@@ -70,7 +69,6 @@ function authorise(user) {
     console.log(user.name);
     console.log(user.phoneNumber);
 }
-
 function stableConnection(){
     function checkConnection(){
         const data = {zero: "0"};
@@ -133,49 +131,63 @@ document.getElementById("sign-in").addEventListener("click", async (event) => {
     }
 });
 document.getElementById("sign-up").addEventListener("click", (event) => {
+    function checkpass() {
+        const passCheck = document.getElementById("password-check");
+        if (password.value != passCheck.value &&
+            password.value != "" &&
+            passCheck.value != "") {
+            return false;
+        }
+        return true;
+    }
     event.preventDefault();
-    let newUser = {
-        name: document.getElementById("name").value,
-        phoneNumber: document.getElementById("phone-number").value,
-        email: document.getElementById("email-reg").value,
-        password: password.value
-    };
-    fetch("php/registration.php", {
-        method: "POST",
-        body: JSON.stringify(newUser),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-        if (response.status == 200 && response.ok) {
-            return response.json();
-        }
-    }).then(response => {
-        const RegistrationMassage = document.getElementById("registration-failed"),
-            badInput = document.getElementById("bad-input");
-        if ((response.error == ServerResponses.emailExist) && response.hasOwnProperty("error")){
-            RegistrationMassage.style.display = "none";
-            badInput.style.display = "block";
-            badInput.children[0].addEventListener("click", (e)=>{
-                e.preventDefault();
-                badInput.style.display="none";
-                registrationCard.classList.remove("active");
-                loginCard.classList.remove("active");
-                mail.value = document.getElementById("email-reg").value;
-            });
-        }
-        else {
-            badInput.style.display = "none";
-            if ((response.result == ServerResponses.failure) && response.hasOwnProperty("result")){
-                RegistrationMassage.style.display = "block";
-                document.getElementById("ok-registration-failure").addEventListener("click", (e)=>{
+    if(checkpass()){
+        fetch("php/registration.php", {
+            method: "POST",
+            body: JSON.stringify({
+                name: document.getElementById("name").value,
+                phoneNumber: document.getElementById("phone-number").value,
+                email: document.getElementById("email-reg").value,
+                password: password.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.status == 200 && response.ok) {
+                return response.json();
+            }
+        }).then(response => {
+            const RegistrationMassage = document.getElementById("registration-failed"),
+                badInput = document.getElementById("bad-input");
+            if ((response.error == ServerResponses.emailExist) && response.hasOwnProperty("error")){
+                RegistrationMassage.style.display = "none";
+                badInput.style.display = "block";
+                badInput.children[0].addEventListener("click", (e)=>{
                     e.preventDefault();
-                    RegistrationMassage.style.display = "none";
-                }); 
+                    badInput.style.display="none";
+                    registrationCard.classList.remove("active");
+                    loginCard.classList.remove("active");
+                    mail.value = document.getElementById("email-reg").value;
+                });
             }
-            else{
-                authorise(response);
+            else {
+                badInput.style.display = "none";
+                if ((response.result == ServerResponses.failure) && response.hasOwnProperty("result")){
+                    RegistrationMassage.style.display = "block";
+                    document.getElementById("ok-registration-failure").addEventListener("click", (e)=>{
+                        e.preventDefault();
+                        RegistrationMassage.style.display = "none";
+                    }); 
+                }
+                else{
+                    authorise(response);
+                }
             }
-        }
-    });
+        });
+    }
+    else{
+        alert("Паролі не збігаюся");
+        //TODO rework alert in a modal form
+    }
 });

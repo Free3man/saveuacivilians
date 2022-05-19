@@ -6,12 +6,17 @@
         <link rel="stylesheet" href="css/mainStyles.css">
         <!-- <link rel="stylesheet" href="/css/style.css" media="(min-width: 768px)"> -->
         <!-- <link rel="stylesheet" href="css/mobile.css" media="(max-width: 769px)"> -->
+        <!-- registration and login -->
         <link rel="stylesheet" href="css/RLForm.css">
         <link rel="stylesheet" href="css/RLFormMobile.css" media="(max-width: 769px)">
-        <!-- <link rel="stylesheet" href="css/RLFormPC.css" media="(min-width: 769px)"> -->
+        <link rel="stylesheet" href="css/donation.css">
+        <link rel="stylesheet" href="css/donationMobile.css" media="(max-width: 769px)">
+        <link rel="stylesheet" href="css/sideBar.css">
+        
+
         <link rel="stylesheet" href="css/temp.css">
 
-        
+
         <link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
         <meta http-equiv="Content-Type" content="text/html">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -23,14 +28,12 @@
     </head>
     <body>
         <nav class="sideBar">
-            <div class="navigationLinks">
-                <div class="iconLink"><img src="img/system/navBar/mapLink.svg" alt=""></div>
-                <div class="iconLink"><img src="img/system/navBar/volunteeringLink.svg" alt="Волонтерські заявки"></div>
-                <div class="iconLink"><img src="img/system/navBar/donationLink.svg" alt="Пожертвування"></div>
-                <div class="iconLink"><img src="img/system/navBar/infoLink.svg" alt="Інформаційна сторінка"></div>
-                <div class="iconLink profileLink"><img src="img/system/navBar/profileLink.svg" alt="Профіль"></div>
-                <div class="circleNavigation"></div>
-            </div>
+            <div class="iconLink"><img src="img/system/navBar/mapLink.svg" alt="Карта"></div>
+            <div class="iconLink"><img src="img/system/navBar/volunteeringLink.svg" alt="Волонтерські заявки"></div>
+            <div class="iconLink"><img src="img/system/navBar/donationLink.svg" alt="Пожертвування"></div>
+            <div class="iconLink"><img src="img/system/navBar/infoLink.svg" alt="Інформаційна сторінка"></div>
+            <div class="iconLink profileLink"><img src="img/system/navBar/profileLink.svg" alt="Профіль"></div>
+            <div class="circleNavigation"></div>
         </nav>
         <nav class="mobileProfileBar">
             <div class="navigationLinks">
@@ -76,7 +79,7 @@
                     <form id="login-form">
                         <h1>Вхід до акаунту</h1>
                         <h3 id="bad-password">Невірний логін або пароль</h3>
-                        <div>
+                        <div class="input-group">
                             <input type="email" name="email" id="email-log" placeholder="E-mail" tabindex="1">
                             <hr>
                             <input type="password" name="password" id="password-log" placeholder="Пароль" minlength="8"

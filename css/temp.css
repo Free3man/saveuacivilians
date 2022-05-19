@@ -1,9 +1,12 @@
-#sign-up-in-form {
+/* #donation-page {
+	display: block;
+} */
+#sign-up-in-form{
 	display: block;
 }
-nav{
+/* nav{
 	display: none;
-}
+}*/
 footer{
 	display: none;
 }
