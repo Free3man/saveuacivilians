@@ -9,6 +9,7 @@
 }
 
 .iconLink{
+    /* position: absolute; */
     width: 60%;
     margin: auto;
     margin-top: 50%;
@@ -27,10 +28,10 @@
 	bottom: 1%;
 }
 .circleNavigation {
-    width: 70%;
-    height: calc(5vw * 0.7);
+    width: 80%;
+    height: calc(5vw * 0.8);
     position: absolute;
-    left: 15%;
+    left: 10%;
     z-index: 1;
     border-radius: 50%;
     background-color: #D77A61;
@@ -38,17 +39,17 @@
 }
 
 .iconLink:nth-child(1).active ~ .circleNavigation {
-    top: calc((0 * (10% - 3px)) + 4%);
+    top: calc((0 * (10% - 5px)) + 4%);
 }
 .iconLink:nth-child(2).active ~ .circleNavigation {
-    top: calc((1 * (10% - 3px)) + 4%);
+    top: calc((1 * (10% - 5px)) + 4%);
 }
 .iconLink:nth-child(3).active ~ .circleNavigation {
-    top: calc((2 * 10%) + 4%);
+    top: calc((2 * (10% - 5px)) + 4%);
 }
 .iconLink:nth-child(4).active ~ .circleNavigation {
-    top: calc((0 * 10%) + 4%);
+    top: calc((3 * (10% - 5px)) + 4%);
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
-    transform: translateY(calc(100vh - 130px));
+    bottom: 1%;
 }
