@@ -1,13 +1,13 @@
 #donation-page {
 	display: block;
+	/* display: none; */
+}
+#volunteeringPage{
+	/* display: block; */
 	display: none;
 }
-/* #sign-up-in-form{
-	display: block;
-} */
-/* nav{
-	display: none;
-}*/
+
+
 footer{
 	display: none;
 }
