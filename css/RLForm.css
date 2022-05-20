@@ -3,8 +3,8 @@
 }
 
 #registration-card, #login-card{
-	width: 80%;
-	height: 80%;
+	width: 70%;
+	height: 70%;
 
 	border-radius: 20px;
 
@@ -17,18 +17,18 @@
 	box-shadow: 9px 9px 21px rgba(214, 211, 216, 0.55);
 }
 #registration-card {
-	top: -90%;
-	left: 10%;
+	top: -85%;
+	left: 15%;
 }
 #registration-card.active {
-	top: 10%;
+	top: 15%;
 }
 #login-card {
-	top: 10%;
-	left: 10%;
+	top: 15%;
+	left: 15%;
 }
 #login-card.active {
-	top: -90%;
+	top: -85%;
 }
 
 #registration-form, #login-form {
