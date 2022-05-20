@@ -1,28 +1,8 @@
 
 /* navigation */
-.mobileProfileBar {
-    width: 100vw;
-    height: auto;
-    background-color: #223843;
-}
-.navigationLinks {
-    display: flex;
-    justify-content: space-between;
-}
-.mobileFooter {
-    display: block;
-	width: 100vw;
-    height: auto;
-    background-color: #223843;
-}
-.navigationLinks > .iconLink img, .mobileIconLink img {
-	margin: 10px;
-	position: relative;
-	z-index: 3;
-    width: 6vw;
-    cursor: pointer;
-	user-select: none;
-}
+
+
+
 
 /* form-styles */
 .sectionRequestForm {

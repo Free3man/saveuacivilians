@@ -509,7 +509,7 @@ table td > input{
 	width: 100%;
 	border-radius: 20px;
 }
-footer {
+/* footer {
 	display: flex;
 	justify-content: space-between;
 	background: #D77A61;
@@ -536,7 +536,7 @@ footer > .socialMedia {
 	display: flex;
     justify-content: space-around;
     flex-direction: column;
-}
+} */
 .socialMedia > .socialMediaIcons {
 	display: flex;
 	justify-content: space-between;
