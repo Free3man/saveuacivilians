@@ -16,7 +16,7 @@
     cursor: pointer;
     z-index: 3;
 }
-.iconLink>img {
+.iconLink > img {
     width: 100%;
     height: 100%;
 }
