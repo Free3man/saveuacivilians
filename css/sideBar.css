@@ -9,11 +9,10 @@
 }
 
 .iconLink{
-    /* position: absolute; */
+    position: relative;
     width: 60%;
     margin: auto;
     margin-top: 50%;
-    user-select: none;
     cursor: pointer;
     z-index: 3;
 }
@@ -39,17 +38,17 @@
 }
 
 .iconLink:nth-child(1).active ~ .circleNavigation {
-    top: calc((0 * (10% - 5px)) + 4%);
+    top: 4%;
 }
 .iconLink:nth-child(2).active ~ .circleNavigation {
-    top: calc((1 * (10% - 5px)) + 4%);
+    top: 16%;
 }
 .iconLink:nth-child(3).active ~ .circleNavigation {
-    top: calc((2 * (10% - 5px)) + 4%);
+    top: 28.5%;
 }
 .iconLink:nth-child(4).active ~ .circleNavigation {
-    top: calc((3 * (10% - 5px)) + 4%);
+    top: 40%;
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
-    bottom: 1%;
+    top: 91%;
 }
