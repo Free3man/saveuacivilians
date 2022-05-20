@@ -4,7 +4,7 @@
     position: absolute;
     background-color: #223843;
 }
-.mobileProfileBar{
+.mobileProfileBar, .mobileFooter{
     display: none;
 }
 
