@@ -48,7 +48,7 @@
     top: 14vw;
 }
 .iconLink:nth-child(4).active ~ .circleNavigation {
-    top: calc(3 * (6vw) + 1.5vw + 1px);
+    top: calc(3 * (6vw) + 1.8vw);
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
     top: 44.5vw;
