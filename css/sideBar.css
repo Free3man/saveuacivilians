@@ -30,7 +30,7 @@
     width: 80%;
     height: calc(5vw * 0.8);
     position: absolute;
-    top: 3.25%;
+    top: 2vw;
     left: 10%;
     z-index: 1;
     border-radius: 50%;
@@ -39,17 +39,17 @@
 }
 
 .iconLink:nth-child(1).active ~ .circleNavigation {
-    top: 3.25%;
+    top: 2vw;
 }
 .iconLink:nth-child(2).active ~ .circleNavigation {
-    top: 16%;
+    top: calc(1 * (6vw - 1px) + 2vw);
 }
 .iconLink:nth-child(3).active ~ .circleNavigation {
-    top: 28.5%;
+    top: 14vw;
 }
 .iconLink:nth-child(4).active ~ .circleNavigation {
-    top: 40%;
+    top: calc(3 * (6vw) + 1.5vw + 1px);
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
-    top: 91%;
+    top: 44.5vw;
 }
