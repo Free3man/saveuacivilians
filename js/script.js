@@ -15,8 +15,7 @@ const formData = {
     }
 };
 //Variables
-const iconLinks = document.querySelectorAll(".iconLink"),
-      contentForm = document.querySelector(".contentBox"),
+const contentForm = document.querySelector(".contentBox"),
       iconLinkFormSet = document.querySelectorAll(".mobileIconForm"),
       hintParagraph = document.querySelectorAll(".hintParagraph"),
       inputAddBlock = document.querySelector("#add_field_type"),
@@ -29,33 +28,12 @@ const iconLinks = document.querySelectorAll(".iconLink"),
                                                                                     "організацію (необов’язково).",
         "Оберіть дату та час завершення заявки."];
 //Functions
-iconLinks.forEach(iconLink => {
-    iconLink.addEventListener("click", function() {
-        iconLinks.forEach(linkRemove => linkRemove.classList.remove("active"));
-        this.classList.add("active");
-    });
-});
-function insertForm(idSection)
-{
-    contentForm.classList.remove("animate__fadeIn");
-    for(let formSection of contentForm.children)
+function checkBlank(element) {
+    if(element.value == "")
     {
-        formSection.style.display="none";
+        element.parentElement.parentElement.remove();
     }
-    contentForm.children[idSection].style.display="flex";
-    contentForm.classList.add("animate__fadeIn");
 }
-// function checkBlank(){
-//     if(this.value == "")
-//     {
-//         this.parentElement.parentElement.remove();
-//     }
-// }
-// for (let fieldForm of document.getElementsByClassName("contentFields")) {
-//     for(let childrenField of fieldForm.children){
-//         console.log(fieldForm.children);
-//     }
-// }
 //EventListners
 window.addEventListener("load", () =>
 {
@@ -65,7 +43,17 @@ window.addEventListener("load", () =>
                                                     document.querySelector(".mobileFooter").clientHeight)}px)`;
 });
 iconLinkFormSet.forEach(iconLink => {
-    iconLink.addEventListener("click", function() {
+    function insertForm(idSection)
+    {
+        contentForm.classList.remove("animate__fadeIn");
+        for(let formSection of contentForm.children)
+        {
+            formSection.style.display="none";
+        }
+        contentForm.children[idSection].style.display="flex";
+        contentForm.classList.add("animate__fadeIn");
+    }
+    iconLink.addEventListener("click", () => {
         iconLinkFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.children[0].classList.remove("active"));
         this.children[0].classList.add("active");
         let numSection = parseInt(this.getAttribute('data-formSection')),
@@ -91,7 +79,7 @@ iconLinkFormSet.forEach(iconLink => {
         insertForm(numSection);
     });
 });
-inputAddBlock.addEventListener("change", function(){
+inputAddBlock.addEventListener("change", () => {
     selectCheckbox.innerHTML += `
     <div class = "activity">
         <input type = "checkbox" id = "transit_auto">
@@ -124,20 +112,19 @@ document.querySelector(".taskTitleBox").addEventListener("click", () => {
     document.querySelector(".taskTitleBox img").classList.toggle("active");
     document.querySelector(".activitiesList").classList.toggle("active");
 });
-document.querySelector(".add-next-field-input").addEventListener("change", function () {
-    if(this.value != "")
+document.querySelector(".add-next-field-input").addEventListener("change", (event) => {
+    if(event.value != "")
     {
-        let clonetableRow = this.parentElement.parentElement.cloneNode(true),
+        let clonetableRow = event.target.parentElement.parentElement.cloneNode(true),
             newRow = clonetableRow.firstElementChild.firstElementChild,
-            rowElements = this.parentElement.parentElement.children;
-        newRow.value = this.value;
+            rowElements = event.target.parentElement.parentElement.children;
+        newRow.value = event.target.value;
         newRow.classList.remove("add-next-field-input");
-        //newRow.addEventListener("change", checkBlank);
         for (let rowElement of rowElements)
         {
-            this.parentElement.parentElement.children[0].firstElementChild.value = "";
-            this.parentElement.parentElement.children[1].firstElementChild.value = "";
-            this.parentElement.parentElement.children[2].firstElementChild.value = "";
+            event.target.parentElement.parentElement.children[0].firstElementChild.value = "";
+            event.target.parentElement.parentElement.children[1].firstElementChild.value = "";
+            event.target.parentElement.parentElement.children[2].firstElementChild.value = "";
         }
         document.querySelector(".data_form_staff").appendChild(clonetableRow);
     }
