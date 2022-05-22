@@ -200,26 +200,6 @@
 	position: absolute;
 	bottom: 0;
 }
-.icon-link:nth-child(1).active ~ .circle-navigation {
-	transform: translateY(calc(130px*0));
-	transition: 1s;
-}
-.icon-link:nth-child(2).active ~ .circle-navigation {
-	transform: translateY(calc(130px * 1));
-	transition: 1s;
-}
-.icon-link:nth-child(3).active ~ .circle-navigation {
-	transform: translateY(calc(130px * 2 + 3px));
-	transition: 1s;
-}
-.icon-link:nth-child(4).active ~ .circle-navigation {
-	transform: translateY(calc(130px * 3));
-	transition: 1s;
-}
-.icon-link:nth-child(5).active ~ .circle-navigation {
-	transform: translateY(calc(100vh - 130px));
-	transition: 1s;
-}
 /* fix-style */
 .navigation-links {
 	font-size: 0;
@@ -465,42 +445,5 @@ circle:nth-child(2) {
 
 	.mobilehintBlock {
 		display: block;
-	}
-}
-@media (min-width: 830px) {
-	.formvolunteeringAdd, .mainContent {
-		padding: 0 calc(50% - 360px);
-	}
-}
-@media (min-width: 1240px) {
-	.formvolunteeringAdd, .mainContent {
-		padding: 0 calc(50% - 580px);
-	}
-}
-@media (min-width: 1475px) {
-
-	.formvolunteeringAdd,
-	.mainContent {
-		padding: 0 calc(50% - 690px);
-	}
-	body {
-		font-size: 26px;
-	}
-}
-@media screen and (min-device-width: 769px) {
-	.mobile-profile-bar {
-		display: none;
-	}
-
-	.footer-side-bar-mobile {
-		display: none;
-	}
-}
-@media screen and (max-device-width: 768px) {
-	body,
-	input,
-	textarea {
-		font-size: calc(25px + 4 * (100vw / 1340));
-		font-family: 'Montserrat', sans-serif;
 	}
 }
