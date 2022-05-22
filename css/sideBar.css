@@ -49,7 +49,7 @@
     top: 14vw;
 }
 .iconLink:nth-child(4).active ~ .circleNavigation {
-    top: calc(3 * (6vw) + 1.8vw - 4px);
+    top: calc(3 * (6vw) + 1.7vw);
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
     top: 94vh;

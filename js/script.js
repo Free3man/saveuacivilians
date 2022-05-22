@@ -18,7 +18,7 @@ const formData = {
 const contentForm = document.querySelector(".contentBox"),
       iconLinkFormSet = document.querySelectorAll(".mobileIconForm"),
       hintParagraph = document.querySelectorAll(".hintParagraph"),
-      inputAddBlock = document.querySelector("#add_field_type"),
+      inputAddBlock = document.querySelectorAll(".add_field_type"),
       selectCheckbox = document.querySelector(".fieldCheckBoxActivity"),
       rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.",
         "Якщо характер допомоги є гумунітарним, то задля відстежування прогресу збору вкажіть усі необхідні " +
@@ -29,19 +29,19 @@ const contentForm = document.querySelector(".contentBox"),
         "Оберіть дату та час завершення заявки."];
 //Functions
 function checkBlank(element) {
-    if(element.value == "")
+    if(element.value)
     {
         element.parentElement.parentElement.remove();
     }
 }
 //EventListners
-window.addEventListener("load", () =>
-{
-    const sectionPage = document.querySelector(".sectionRequestForm");
-    sectionPage.style.width = `calc(100vw - ${document.querySelector(".sideBar").offsetWidth}px)`;
-    sectionPage.style.height = `calc(100vh - ${(document.querySelector(".mobileProfileBar").clientHeight + 
-                                                    document.querySelector(".mobileFooter").clientHeight)}px)`;
-});
+// window.addEventListener("load", () =>
+// {
+//     const sectionPage = document.querySelector(".sectionRequestForm");
+//     sectionPage.style.width = `calc(100vw - ${document.querySelector(".sideBar").offsetWidth}px)`;
+//     sectionPage.style.height = `calc(100vh - ${(document.querySelector(".mobileProfileBar").clientHeight + 
+//                                                     document.querySelector(".mobileFooter").clientHeight)}px)`;
+// });
 iconLinkFormSet.forEach(iconLink => {
     function insertForm(idSection)
     {
@@ -79,7 +79,7 @@ iconLinkFormSet.forEach(iconLink => {
         insertForm(numSection);
     });
 });
-inputAddBlock.addEventListener("change", () => {
+inputAddBlock[0].addEventListener("change", () => {
     selectCheckbox.innerHTML += `
     <div class = "activity">
         <input type = "checkbox" id = "transit_auto">
