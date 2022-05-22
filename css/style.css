@@ -41,7 +41,7 @@ main {
 	height: 100vh;
 	background-color: #223843;
 }
-.navigationLinks > .iconLink img {
+.navigationLinks > .iconLink img {	
 	cursor: pointer;
 	width: 50px;
 	padding: 40px 25px;
@@ -87,12 +87,12 @@ main {
 
 /* icon-selection */
 .sectionRequestForm {
-	position: fixed;
-	z-index: 2;
-	right: 0;
-	display: flex;
-	height: 100vh;
-	background: rgba(219, 211, 216, 0.85);
+    position: sticky;
+    z-index: 2;
+    bottom: 0;
+    display: flex;
+    height: 100vh;
+    background: rgba(219, 211, 216, 0.85);
 }
 .modalRequestForm {
 	padding: 3em;
@@ -137,7 +137,6 @@ main {
 }
 .mobileIconForm > svg.active
 {
-	transition: 1s ease-in-out;
 	fill:#D77A61;
 	animation: bounce;
   	animation-duration: 1s;
@@ -154,47 +153,39 @@ main {
 }
 
 /* svg file */
-  
-  .single-chart {
-	width: 14rem;
-	justify-content: space-around ;
-  }
-  
-  .circular-chart {
-	display: block;
-	margin: 10px auto;
-  }
-  
-  .circle-bg {
-	fill: none;
-	stroke: #DBD3D8;
-	stroke-width: 3.8;
-  }
-  
-  .circle {
-	fill: none;
-	stroke-width: 2.8;
-	stroke-linecap: round;
-	animation: progress 1s ease-out forwards;
-  }
-  
-  @keyframes progress {
-	0% {
-	  stroke-dasharray: 0 100;
-	}
-  }
-  
-  .circular-chart .circle {
-	stroke: #D77A61;
-  }
-  
-  .percentage {
+.percentage {
 	fill: #666;
 	font-family: sans-serif;
 	font-size: 0.5rem;
 	text-anchor: middle;
-  }
-
+}
+.single-chart {
+	width: 14rem;
+	justify-content: space-around ;
+}
+  
+.circular-chart {
+	display: block;
+	margin: 10px auto;
+}
+  
+.circle-bg {
+	fill: none;
+	stroke: #DBD3D8;
+	stroke-width: 3.8;
+}
+  
+.circle {
+	fill: none;
+	stroke-width: 2.8;
+	stroke-linecap: round;
+	--value: 0;
+	stroke-dasharray: var(--value) 100;
+	transition: 1s linear;
+}
+.circular-chart .circle {
+	stroke: #D77A61;
+}
 /* svg file end */
 
 .dropdownMenu
@@ -230,7 +221,7 @@ main {
     transition: transform 0.4s linear;
 	width: 20px;	
 }
-.taskTitleBox img.active
+.labelTrigerMenu img.active
 {
 	transform-origin: center;
 	transform: scaleY(-1);
@@ -250,10 +241,11 @@ main {
 {
 	padding-bottom: 20px;
 }
-.activitiesList{
+.activitiesList {
 	background-color: #EFF1F3;
 	width: 100%;
 	position: absolute;
+	z-index: 5;
     max-height: 0px;
     overflow:hidden;
     -webkit-transition:max-height 0.4s linear, box-shadow 0.4s ease-in-out;
@@ -278,7 +270,7 @@ main {
 	background-color: transparent;;
 	font-family: 'Montserrat';
 	font-style: normal;
-	/* font-size: 15px; */
+	font-size: 1em;
 	box-sizing: border-box;
 }
 
@@ -294,7 +286,9 @@ main {
 .infoFillForm > .hintParagraph {
 	display: none;
 }
-
+.mainContent {
+	height: 100%;
+}
 .formvolunteeringAdd{
 	padding: 0 15px;
 	margin: auto 0;

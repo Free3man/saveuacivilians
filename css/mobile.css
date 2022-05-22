@@ -37,6 +37,9 @@ body{
 
 /* form-styles */
 .sectionRequestForm {
+	position: sticky;
+    z-index: 2;
+    bottom: 0;
 	display: flex;
 	height: 100vh;
 	background: rgba(219, 211, 216, 0.85);
