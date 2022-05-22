@@ -23,13 +23,7 @@ p, h1, h2, h3, h4, h5, h6{
 	margin-inline: 0%;
 }
 
-#sign-up-in-form, #donation-page, #volunteering-page{
-	display: none;
-}
-
-
-.form-volunteering-add, #info-page{
-	background: rgba(215, 122, 97, 0.85);
+#sign-up-in-form, #donation-page, #volunteering-page, #info-page, .form-volunteering-add{
 	display: none;
 }
 
@@ -45,31 +39,9 @@ p, h1, h2, h3, h4, h5, h6{
 
 
 
-/* .project-section {
-	display: flex;
-    flex-direction: column;
-    gap: 50px;
-	margin: 50px 0;
-}
-.project-section > .about-us-block {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.about-us-block > .info-project {
-	flex: 0 1 50%;
-}
-.about-us-block > .info-img-div {
-	flex: 0 1 40%;
-}
-.about-us-block > .info-img-div img {
-	width: 100%;
-	border-radius: 20px;
-}
-.socialMedia > .socialMediaIcons {
-	display: flex;
-	justify-content: space-between;
-} */
+
+
+
 
 
 
