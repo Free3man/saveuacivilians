@@ -1,7 +1,6 @@
 let currentDonationPhoto = 0,
-donationContent = document.getElementsByClassName("donation-content"),
-currentX = 0,
-dots = document.getElementsByClassName("dot");
+    donationContent = document.getElementsByClassName("donation-content"),
+    dots = document.getElementsByClassName("dot");
 function changeContent(){
     for (const item of donationContent) {
         item.classList.add("hidden");
@@ -13,14 +12,14 @@ function changeContent(){
     dots[currentDonationPhoto].classList.add("selection");
 }
 document.querySelector("#left-arrow").addEventListener("click", ()=>{
-    currentDonationPhoto = (currentDonationPhoto+donationContent.length-1)%3;
+    currentDonationPhoto = (currentDonationPhoto + donationContent.length - 1) % donationContent.length;
     changeContent();
 });
 document.querySelector("#right-arrow").addEventListener("click", ()=>{
-    currentDonationPhoto = (currentDonationPhoto+1)%3;
+    currentDonationPhoto = (currentDonationPhoto + 1) % donationContent.length;
     changeContent();
 });
 setInterval(()=>{
-    currentDonationPhoto = (currentDonationPhoto+1)%3;
+    currentDonationPhoto = (currentDonationPhoto + 1) % donationContent.length;
     changeContent();
 }, 7500);

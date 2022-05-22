@@ -1,3 +1,7 @@
+#donation-page {
+	background-color: #EFF1F3;
+}
+
 .donation-card{
 	width: 70%;
 	height: 65%;
@@ -13,11 +17,8 @@
 	transition: 1.5s;
 	background: #EFF1F3;
 	box-shadow: 12px 12px 5px rgba(0, 0, 0, 0.28);
+}
 
-}
-#donation-page {
-	background-color: #EFF1F3;
-}
 .donation-content, .donation-pic-div {
 	width: 100%;
 	height: 100%;
@@ -27,28 +28,40 @@
 }
 .donation-pic {
 	border-radius: 20px;
-	object-fit: none;
 }
 .donation-text {
-	position: absolute;
 	width: 80%;
+
+	position: absolute;
 	top: 10%;
 	left: 10%;
+
 	text-align: center;
 	color: #EFF1F3;
+
 	letter-spacing: normal;
 	font-size: 200%;
 }
+
 .donate {
 	width: 30%;
 	height: 10%;
-	background-color: rgba(215, 122, 97);
+
 	position: absolute;
 	bottom: 25%;
 	left: 35%;
+
 	border-radius: 50px;
+
+	border: none;
+	background-color: rgba(215, 122, 97);
 	color: #EFF1F3;
+
+	font-weight: 400;
+	font-size: 100%;
+	line-height: 110%;
 }
+
 .dots {
 	width: 20%;
 	height: 10%;
@@ -67,13 +80,14 @@
 .dot.selection {
 	background-color: rgba(215, 122, 97);
 }
+
 .arrow {
 	width: 7.5%;
 	height: 20%;
 	position: absolute;
 	transition: 1s;
 }
-.arrow>img {
+.arrow > img {
 	transition: 1s;
 	opacity: 0;
 }
@@ -88,10 +102,13 @@
 	top: 40%;
 	right: 5%;
 }
+
 .donation-link {
 	width: 60%;
+
 	position: absolute;
 	left: 20%;
 	bottom: 10%;
+	
 	text-align: center;
 }
