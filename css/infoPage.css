@@ -1,0 +1,8 @@
+.info-section{
+    width: 80%;
+    margin: auto;
+}
+.info{
+    display: flex;
+    width: 100%;
+}
