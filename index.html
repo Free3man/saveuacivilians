@@ -8,14 +8,16 @@
         <!-- <link rel="stylesheet" href="css/mobile.css" media="(max-width: 769px)"> -->
         <!-- registration and login -->
         <link rel="stylesheet" href="css/RLForm.css">
-        <link rel="stylesheet" href="css/RLFormMobile.css" media="(max-width: 768px)">
+        <link rel="stylesheet" href="css/RLFormMobile.css" media="(max-width: 769px)">
         <!-- donation -->
         <link rel="stylesheet" href="css/donation.css">
-        <link rel="stylesheet" href="css/donationMobile.css" media="(max-width: 768px)">
+        <link rel="stylesheet" href="css/donationMobile.css" media="(max-width: 769px)">
         <!-- navigation in application -->
         <link rel="stylesheet" href="css/sideBar.css" media="(min-width: 769px)">
         <link rel="stylesheet" href="css/mobileProfileBar.css" media="(max-width: 769px)">
-        
+        <!-- volunteering-page -->
+        <link rel="stylesheet" href="css/volunteeringPage.css">
+        <link rel="stylesheet" href="css/volunteeringPageMoblie.css" media="(max-width: 769px)">
 
 
 
@@ -24,11 +26,6 @@
 
 
         <link rel="stylesheet" href="css/temp.css">
-
-
-
-
-
 
 
 
@@ -181,66 +178,64 @@
                     Ви можете ознайомитись з інформацією про реалізацію пожертвувань.
                 </h4>
             </section>
-            <section id="volunteeringPage" class="mainContent">
-                <div class="filterBox">
-                    <div class="containerFilter">
-                        <label for="searchBarFilter">Населений пункт</label>
-                        <div class="selectBox">
-                            <input type="text" id="searchBarFilter">
-                            <img src="img/system/volunteering/searchIcon.svg" alt="">
-                            <div class="containerFilter">
-                                <label for="oblastSelectFilter">Область</label>
-                                <div class="dropdownMenu">
-                                    <div class="selectBox">
-                                        <b>Оберіть область</b>
-                                        <img src="img/system/volunteering/dropdown.svg" alt="">
+            <section id="volunteering-page">
+                <div class="filter-box">
+                    <label for="search-bar-filter">Населений пункт</label>
+                    <div class="selectBox">
+                        <input type="text" id="searchBarFilter">
+                        <img src="img/system/volunteering/searchIcon.svg" alt="">
+                        <div class="containerFilter">
+                            <label for="oblastSelectFilter">Область</label>
+                            <div class="dropdownMenu">
+                                <div class="selectBox">
+                                    <b>Оберіть область</b>
+                                    <img src="img/system/volunteering/dropdown.svg" alt="">
+                                </div>
+                                <div class="activitiesList">
+                                    <div class="fieldCheckBoxActivity">
+                                        <div class="activity ">
+                                            <input type="checkbox" name="" id="transit_auto">
+                                            <label for="transit_auto">Автопревезення</label>
+                                        </div>
+                                        <div class="activity fieldCheckBoxActivity">
+                                            <input type="checkbox" name="" id="first_aid">
+                                            <label for="first_aid">Медична допомога</label>
+                                        </div>
+                                        <div class="activity fieldCheckBoxActivity">
+                                            <input type="checkbox" name="" id="humanitarian_aid">
+                                            <label for="humanitarian_aid">Гумунітарна допомога</label>
+                                        </div>
                                     </div>
-                                    <div class="activitiesList">
-                                        <div class="fieldCheckBoxActivity">
-                                            <div class="activity ">
-                                                <input type="checkbox" name="" id="transit_auto">
-                                                <label for="transit_auto">Автопревезення</label>
-                                            </div>
-                                            <div class="activity fieldCheckBoxActivity">
-                                                <input type="checkbox" name="" id="first_aid">
-                                                <label for="first_aid">Медична допомога</label>
-                                            </div>
-                                            <div class="activity fieldCheckBoxActivity">
-                                                <input type="checkbox" name="" id="humanitarian_aid">
-                                                <label for="humanitarian_aid">Гумунітарна допомога</label>
-                                            </div>
-                                        </div>
-                                        <div class="activity">
-                                            <input type="text" name="" id="add_field_type" placeholder="Інше">
-                                        </div>
+                                    <div class="activity">
+                                        <input type="text" name="" id="add_field_type" placeholder="Інше">
                                     </div>
                                 </div>
                             </div>
-                            <div class="containerFilter">
-                                <label for="helpSelectFilter">Вид домомоги</label>
-                                <div class="dropdownMenu">
-                                    <div class="selectBox">
-                                        <b>Оберіть допомогу</b>
-                                        <img src="img/system/volunteering/dropdown.svg" alt="">
+                        </div>
+                        <div class="containerFilter">
+                            <label for="helpSelectFilter">Вид домомоги</label>
+                            <div class="dropdownMenu">
+                                <div class="selectBox">
+                                    <b>Оберіть допомогу</b>
+                                    <img src="img/system/volunteering/dropdown.svg" alt="">
+                                </div>
+                                <div class="activitiesList">
+                                    <div class="fieldCheckBoxActivity">
+                                        <div class="activity ">
+                                            <input type="checkbox" name="" id="transit_auto"><label
+                                                for="transit_auto">Автопревезення</label>
+                                        </div>
+                                        <div class="activity fieldCheckBoxActivity">
+                                            <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична
+                                                допомога</label>
+                                        </div>
+                                        <div class="activity fieldCheckBoxActivity">
+                                            <input type="checkbox" name="" id="humanitarian_aid"><label
+                                                for="humanitarian_aid">Гумунітарна допомога</label>
+                                        </div>
                                     </div>
-                                    <div class="activitiesList">
-                                        <div class="fieldCheckBoxActivity">
-                                            <div class="activity ">
-                                                <input type="checkbox" name="" id="transit_auto"><label
-                                                    for="transit_auto">Автопревезення</label>
-                                            </div>
-                                            <div class="activity fieldCheckBoxActivity">
-                                                <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична
-                                                    допомога</label>
-                                            </div>
-                                            <div class="activity fieldCheckBoxActivity">
-                                                <input type="checkbox" name="" id="humanitarian_aid"><label
-                                                    for="humanitarian_aid">Гумунітарна допомога</label>
-                                            </div>
-                                        </div>
-                                        <div class="activity">
-                                            <input type="text" name="" id="add_field_type" placeholder="Інше">
-                                        </div>
+                                    <div class="activity">
+                                        <input type="text" name="" id="add_field_type" placeholder="Інше">
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +261,7 @@
                     <div class="taskWait"></div>
                 </div>
             </section>
-            <section class="formvolunteeringAdd">
+            <section class="form-volunteering-add">
                 <div class="modalRequestForm">
                     <!-- mobile -->
                     <div class="mobilehintBlock">
@@ -671,7 +666,7 @@
                     <button class="animate__animated">Далі</button>
                 </div>
             </section>
-            <section id="info-page" class="mainContent">
+            <section id="info-page">
                 <div class="project-section">
                     <div class="about-us-block">
                         <div class="info-project">

@@ -55,7 +55,7 @@
 	right: 0%;
 }
 
-.registration-img, .login-img, .donation-pic, .arrow>img {
+.registration-img, .login-img{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;

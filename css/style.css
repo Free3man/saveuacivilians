@@ -1,5 +1,5 @@
 
-.formvolunteeringAdd {
+.form-volunteering-add {
 	padding: 0 15px;
 	margin: auto 0;
 	width: 100%;
@@ -8,12 +8,6 @@
 
 
 /* pc-version */
-
-
-
-
-
-
 .sectionRequestForm {
 	position: fixed;
 	z-index: 2;

@@ -27,6 +27,9 @@
 	display: none;
 }
 .donation-pic {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
 	border-radius: 20px;
 }
 .donation-text {
@@ -88,6 +91,9 @@
 	transition: 1s;
 }
 .arrow > img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
 	transition: 1s;
 	opacity: 0;
 }
