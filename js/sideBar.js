@@ -1,27 +1,18 @@
 const iconLinks = document.querySelectorAll(".iconLink"),
     pages = ["map", "volunteering-page", "donation-page", "info-page"];
 iconLinks.forEach(iconLink => {
-    function findIndex(element, array){
-        let currentIndex = 0;
-        array.forEach(item => {
-            currentIndex++;
-            if (item === element.parentElement) {
-                return currentIndex;
+    iconLink.addEventListener("click", function() {
+        function findIndex(element, array){
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == element){
+                    return i;
+                }
             }
-        });
-        return 0;
-    }
-    iconLink.addEventListener("click", (e) => {
-        let current = findIndex(e.target, iconLinks);
-        console.log(e.target);
-        console.log(current);
-        iconLinks.forEach(item => {
-            item.classList.remove("active");
-            pages.forEach(item => document.getElementById(item).style.display = "none");
-            if (!current){
-                document.getElementById(pages[current]).style.display = "block";
-            }
-        });
-        iconLinks[current].classList.add("active");
+            return 0;
+        }
+        pages.forEach(item => document.getElementById(item).style.display = "none");
+        document.getElementById(pages[findIndex(this, iconLinks)]).style.display = 'block';
+        iconLinks.forEach(item => item.classList.remove("active"));
+        this.classList.add("active");
     });
 });
