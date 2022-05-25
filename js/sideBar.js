@@ -1,5 +1,7 @@
 const iconLinks = document.querySelectorAll(".iconLink"),
-    pages = ["map", "volunteering-page", "donation-page", "info-page"];
+    pages = ["mapSection", "volunteering-page", "donation-page", "info-page"];
+let currentPage = document.getElementById(pages[0]);
+console.log(currentPage);
 iconLinks.forEach(iconLink => {
     iconLink.addEventListener("click", function() {
         function findIndex(element, array){
@@ -10,8 +12,30 @@ iconLinks.forEach(iconLink => {
             }
             return 0;
         }
-        pages.forEach(item => document.getElementById(item).style.display = "none");
-        document.getElementById(pages[findIndex(this, iconLinks)]).style.display = 'block';
+        let fadeOut = true,
+            step = 50,
+            counter = step;
+        let fadeing = setInterval(() => {
+            currentPage.style.opacity = (counter/step);
+            console.log(counter);
+            if (fadeOut){
+                counter--;
+            }
+            else{
+                counter++;
+            }
+            if (!counter){
+                fadeOut = false;
+                currentPage.style.display = "none";
+                currentPage.style.opacity = 1;
+                currentPage = document.getElementById(pages[findIndex(this, iconLinks)]);
+                currentPage.style.opacity = 0;
+                currentPage.style.display = "block";
+            }
+            if (counter >= step && !fadeOut){
+                clearInterval(fadeing);
+            }
+        }, 1);
         iconLinks.forEach(item => item.classList.remove("active"));
         this.classList.add("active");
     });

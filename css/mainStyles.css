@@ -12,9 +12,10 @@ body{
 	font-size: calc(10px + 14 * (100vw / 1440));
 }
 main, section {
-	width: 100%;
+	width: calc(100% - 5vw);
 	height: 100vh;
 	flex-grow: 1;
+	margin-left: 5vw;
 	background-color:  #EFF1F3;
 	overflow: auto;
 }
@@ -25,4 +26,7 @@ p, h1, h2, h3, h4, h5, h6{
 
 #sign-up-in-form, #donation-page, #volunteering-page, #info-page, #form-volunteering-add{
 	display: none;
+}
+#mapSection{
+	display: block;
 }

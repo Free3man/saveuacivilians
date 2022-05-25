@@ -3,6 +3,7 @@
     height: 100vh;
     position: absolute;
     background-color: #223843;
+    z-index: 100;
 }
 .mobileProfileBar, .mobileFooter{
     display: none;
