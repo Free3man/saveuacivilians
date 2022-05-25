@@ -1,6 +1,5 @@
 "use strict";
 let menuBar = document.getElementById("chat-menu");
-// menuBar.style.display = "none";
 document.getElementById("menu").addEventListener("click", ()=>{
     menuBar.classList.add("active");
 });

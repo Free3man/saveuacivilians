@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css/style.css"  media="(min-width: 768px)">
-        <link rel="stylesheet" href="css/mobile.css"  media="(max-width: 767px)">
+        <!-- chat -->
+        <link rel="stylesheet" href="css/chat.css">
+        <link rel="stylesheet" href="css/chatMobile.css"  media="(max-width: 767px)">
 		<link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
     </head>
     <body>
-        <section id="chat">
-            <button id="menu">menu-icon</button>
-            <div id="chat-menu">
-                <div id="cross">
-                    <img src="img/system/Cross.svg" alt="Image not found">
-                </div>
-                <div class="chat-menu-item">
-                    <h2>Запити на підтвердження</h2>
-                    <div class="chat-menu-pic">
-                        <img src="img/system/chatMenuIcons/Requests.svg" alt="image not found">
+        <main>
+            <section id="chat">
+                <button id="menu">menu-icon</button>
+                <div id="chat-menu">
+                    <div id="cross">
+                        <img src="img/system/Cross.svg" alt="Image not found">
+                    </div>
+                    <div class="chat-menu-item">
+                        <p>Запити на підтвердження</p>
+                        <div class="chat-menu-pic">
+                            <img src="img/system/chatMenuIcons/Requests.svg" alt="image not found">
+                        </div>
+                    </div>
+                    <div class="chat-menu-item">
+                        <p>Прогрес волонтерства</p>
+                        <div class="chat-menu-pic">
+                            <img src="img/system/chatMenuIcons/VolunteeringProgrees.svg" alt="image not found">
+                        </div>
+                    </div>
+                    <div class="chat-menu-item">
+                        <p>Список волонтерів</p>
+                        <div class="chat-menu-pic">
+                            <img src="img/system/chatMenuIcons/VolunteerList.svg" alt="image not found">
+                        </div>
+                    </div>
+                    <div class="chat-menu-item">
+                        <p>Сторінка адмінстратора</p>
+                        <div class="chat-menu-pic">
+                            <img src="img/system/chatMenuIcons/AdminsPage.svg" alt="image not found">
+                        </div>
+                    </div>
+                    <div class="chat-menu-item">
+                        <p>Зв’язатися з підтримкою</p>
+                        <div class="chat-menu-pic">
+                            <img src="img/system/chatMenuIcons/AskForHelp.svg" alt="image not found">
+                        </div>
                     </div>
                 </div>
-                <div class="chat-menu-item">
-                    <h2>Прогрес волонтерства</h2>
-                    <div class="chat-menu-pic">
-                        <img src="img/system/chatMenuIcons/VolunteeringProgrees.svg" alt="image not found">
-                    </div>
-                </div>
-                <div class="chat-menu-item">
-                    <h2>Список волонтерів</h2>
-                    <div class="chat-menu-pic">
-                        <img src="img/system/chatMenuIcons/VolunteerList.svg" alt="image not found">
-                    </div>
-                </div>
-                <div class="chat-menu-item">
-                    <h2>Сторінка адмінстратора</h2>
-                    <div class="chat-menu-pic">
-                        <img src="img/system/chatMenuIcons/AdminsPage.svg" alt="image not found">
-                    </div>
-                </div>
-                <div class="chat-menu-item">
-                    <h2>Зв’язатися з підтримкою</h2>
-                    <div class="chat-menu-pic">
-                        <img src="img/system/chatMenuIcons/AskForHelp.svg" alt="image not found">
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
         <script src="/js/chat.js"></script>
         <script src="/js/script.js"></script>
     </body>
