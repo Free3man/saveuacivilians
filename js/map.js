@@ -4,9 +4,14 @@ const markerType = {
 	transport: "transport",
 	military: "military"
 };
+const styles = {
+	streets: "mapbox://styles/mapbox/streets-v11",
+	light: "mapbox://styles/mapbox/light-v10",
+};
 let markers,
-mapBox,
-map;
+	// mapboxgl,
+	mapBox,
+	map;
 function mapInit(container, style, center, zoom){
 	mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
 	map = new mapboxgl.Map({
@@ -16,22 +21,25 @@ function mapInit(container, style, center, zoom){
 		zoom: zoom
 	});
 }
-function getMarkers(){
-	fetch("php/markers.php", {
-		method: "POST",
-		body: JSON.stringify({zero: 0})
-	}).then((response)=>{
-		if (response.ok && response.status == 200) {
-			console.log(response.text());
-		}
-	}).then((answer)=>{
-		markers = answer;
-	}).catch(()=>{
-
-	}).finally(()=>{
-
-	});
+function createMarker(){
+	
 }
+// function getMarkers(){
+// 	fetch("php/markers.php", {
+// 		method: "POST",
+// 		body: JSON.stringify({zero: 0})
+// 	}).then((response)=>{
+// 		if (response.ok && response.status == 200) {
+// 			console.log(response.text());
+// 		}
+// 	}).then((answer)=>{
+// 		markers = answer;
+// 	}).catch(()=>{
+
+// 	}).finally(()=>{
+
+// 	});
+// }
 function toJSON(marker){
 	return JSON.stringify({
 		contatiner: marker.container,
@@ -49,5 +57,5 @@ function toObject(marker){
 function render(){
 	markers[markers.length()] = new mapboxgl.Marker(mapBox).setLngLat().addTo(map);
 }
-mapInit("map", "mapbox://styles/mapbox/light-v10", [0,0], 0);
-getMarkers();
+mapInit("map", styles.streets, [0,0], 0);
+// getMarkers();
