@@ -27,7 +27,6 @@ let geojson = [{
 		},
 		properties: {
 			title: "Mapbox DC",
-			"marker-symbol": "monument"
 		}
 	}
 },],
@@ -48,6 +47,9 @@ function toObject(marker) {
 		feature: marker.feature
 	};
 }
+function Conserter(input){
+
+}
 //API
 function mapInit(container, style, center, zoom) {
 	mapboxgl.accessToken = "pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA";
@@ -58,54 +60,58 @@ function mapInit(container, style, center, zoom) {
 		zoom: zoom
 	});
 }
-function createGeoJson() {
-	
+function createGeoJson(coordinates, title) {
+	return {
+		type: types.geojson,
+		data: {
+			type: types.feature,
+			geometry: {
+				type: types.point,
+				coordinates: coordinates
+			},
+			properties: {
+				title: title,
+			}
+		}
+	};
 }
 function renderMarker(geojson) {
 	const element = document.createElement("div");
 	element.className = "marker";
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(geojson.data.geometry.coordinates).addTo(map);
 }
+function searching(){
+	fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/2%20Lincoln%20Memorial%20Cir%20NW.json?access_token=pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA", {
+		method: "GET"
+	}).then(responce => responce.json()
+	).then(answer => console.log(answer));
+}
+function getMarkers() {
+	fetch("php/markers.php", {
+		method: "POST",
+		body: JSON.stringify({zero: 0})
+	}).then((response)=>{
+		if (response.ok && response.status == 200) {
+			console.log(response.text());
+		}
+	}).then((answer)=>{
+		markers = answer;
+	}).catch(()=>{
+
+	}).finally(()=>{
+
+	});
+}
 
 
-// function getMarkers() {
-// 	fetch("php/markers.php", {
-// 		method: "POST",
-// 		body: JSON.stringify({zero: 0})
-// 	}).then((response)=>{
-// 		if (response.ok && response.status == 200) {
-// 			console.log(response.text());
-// 		}
-// 	}).then((answer)=>{
-// 		markers = answer;
-// 	}).catch(()=>{
-//
-// 	}).finally(()=>{
-//
-// 	});
-// }
+//hiding bad things
 window.addEventListener("load", ()=>{
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
 });
+
 //Mainflow
 mapInit("map", styles.streets, [75, 50], 2);
-// map.on('load', () => {
-//     map.addLayer({
-//         id: 'rpd_parks',
-//         type: 'fill',
-//         source: {
-//             type: 'vector',
-//             url: 'mapbox://mapbox.3o7ubwm8'
-//         },
-//         'source-layer': 'RPD_Parks',
-//         layout: {
-//             visibility: 'visible'
-//         },
-//         paint: {
-//             'fill-color': 'rgba(61,153,80,0.55)'
-//         }
-//     });
-// });
-// getMarkers();
+getMarkers();
 renderMarker(geojson[0]);
+searching("");
