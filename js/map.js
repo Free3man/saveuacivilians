@@ -14,15 +14,15 @@ styles = {
 types = {
 	geojson: "geojson",
 	feature: "Feature",
-
+	point: "Point"
 };
 //variables
-let markers = [{
+let geojson = [{
 	type: types.geojson,
 	data: {
 		type: types.feature,
 		geometry: {
-			type: "Point",
+			type: types.point,
 			coordinates: [-77.0323, 38.9131]
 		},
 		properties: {
@@ -31,7 +31,7 @@ let markers = [{
 		}
 	}
 },],
-mapBox,
+markers = [],
 map;
 //functions
 function toJSON(marker) {
@@ -58,11 +58,13 @@ function mapInit(container, style, center, zoom) {
 		zoom: zoom
 	});
 }
-function createMarker() {
+function createGeoJson() {
 	
 }
-function render() {
-	markers[markers.length()] = new mapboxgl.Marker(mapBox).setLngLat().addTo(map);
+function renderMarker(geojson) {
+	const element = document.createElement("div");
+	element.className = "marker";
+	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(geojson.data.geometry.coordinates).addTo(map);
 }
 
 
@@ -82,31 +84,28 @@ function render() {
 //
 // 	});
 // }
-
-//Mainflow
-mapInit("map", styles.streets, [75, 50], 2);
-console.log(map);
-map.on('load', () => {
-    map.addLayer({
-        id: 'rpd_parks',
-        type: 'fill',
-        source: {
-            type: 'vector',
-            url: 'mapbox://mapbox.3o7ubwm8'
-        },
-        'source-layer': 'RPD_Parks',
-        layout: {
-            visibility: 'visible'
-        },
-        paint: {
-            'fill-color': 'rgba(61,153,80,0.55)'
-        }
-    });
-});
 window.addEventListener("load", ()=>{
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
 });
-
-
+//Mainflow
+mapInit("map", styles.streets, [75, 50], 2);
+// map.on('load', () => {
+//     map.addLayer({
+//         id: 'rpd_parks',
+//         type: 'fill',
+//         source: {
+//             type: 'vector',
+//             url: 'mapbox://mapbox.3o7ubwm8'
+//         },
+//         'source-layer': 'RPD_Parks',
+//         layout: {
+//             visibility: 'visible'
+//         },
+//         paint: {
+//             'fill-color': 'rgba(61,153,80,0.55)'
+//         }
+//     });
+// });
 // getMarkers();
+renderMarker(geojson[0]);
