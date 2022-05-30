@@ -17,19 +17,7 @@ types = {
 	point: "Point"
 };
 //variables
-let geojson = [{
-	type: types.geojson,
-	data: {
-		type: types.feature,
-		geometry: {
-			type: types.point,
-			coordinates: [-77.0323, 38.9131]
-		},
-		properties: {
-			title: "Mapbox DC",
-		}
-	}
-},],
+let geojson = [],
 markers = [],
 map;
 //functions
@@ -47,8 +35,9 @@ function toObject(marker) {
 		feature: marker.feature
 	};
 }
-function Conserter(input){
-
+function convertIntoGeocoding(input){
+	return `https://api.mapbox.com/geocoding/v5/mapbox.places/${input.replace(" ", "%20")}
+	.json?access_token=pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA`;
 }
 //API
 function mapInit(container, style, center, zoom) {
@@ -75,16 +64,20 @@ function createGeoJson(coordinates, title) {
 		}
 	};
 }
-function renderMarker(geojson) {
+function renderMarker(coordinates) {
 	const element = document.createElement("div");
 	element.className = "marker";
-	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(geojson.data.geometry.coordinates).addTo(map);
+	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
-function searching(){
-	fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/2%20Lincoln%20Memorial%20Cir%20NW.json?access_token=pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA", {
+function searching(input){
+	let data;
+	fetch(convertIntoGeocoding(input), {
 		method: "GET"
 	}).then(responce => responce.json()
-	).then(answer => console.log(answer));
+	).then(answer => {
+		console.log(answer);
+	}).catch(answer => console.log(answer));
+	return data;
 }
 function getMarkers() {
 	fetch("php/markers.php", {
@@ -102,16 +95,12 @@ function getMarkers() {
 
 	});
 }
-
-
 //hiding bad things
 window.addEventListener("load", ()=>{
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
 });
-
 //Mainflow
 mapInit("map", styles.streets, [75, 50], 2);
-getMarkers();
-renderMarker(geojson[0]);
-searching("");
+// getMarkers();
+console.log(searching("Dnipro"));
