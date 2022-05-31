@@ -127,5 +127,4 @@ window.addEventListener("load", ()=>{
 document.addEventListener("DOMContentLoaded",  async () => {
 	//Mainflow
 	mapInit("map", styles.streets, [35, 47.5], 5);
-	searching("Ukraine", {}).then(answer => console.log(answer));
 });
