@@ -117,8 +117,7 @@ async function searching(search, searchSettings){
 	const responce = await fetch(convertIntoGeocoding(search, searchSettings), {
 		method: "GET"
 	});
-	const data = await responce.json();
-	return data;
+	return responce.json();
 }
 //hiding bad things
 window.addEventListener("load", ()=>{
@@ -128,6 +127,5 @@ window.addEventListener("load", ()=>{
 document.addEventListener("DOMContentLoaded",  async () => {
 	//Mainflow
 	mapInit("map", styles.streets, [35, 47.5], 5);
-	const ddd = searching("Ukraine", {});
-	ddd.then(ddr => console.log(ddr));
+	searching("Ukraine", {}).then(answer => console.log(answer));
 });
