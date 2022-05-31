@@ -72,6 +72,7 @@ function mapInit(container, style, center, zoom) {
 		zoom: zoom
 	});
 }
+
 function createGeoJson(coordinates, title) {
 	const geojsonData = {
 		type: types.geojson,
@@ -89,23 +90,11 @@ function createGeoJson(coordinates, title) {
 	geojsons[geojsons.length] = geojsonData;
 	return geojsonData;
 }
+
 function renderMarker(coordinates) {
 	const element = document.createElement("div");
 	element.className = "marker";
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
-}
-function searching(search, searchSettings){
-	let data;
-	fetch(convertIntoGeocoding(search, searchSettings), {
-		method: "GET"
-	}).then(responce => responce.json()
-	).then(answer => {
-		// answer.features.forEach(item => {
-		// 	renderMarker(item.center);
-		// });
-		data = answer;
-		return data;
-	}).catch(answer => console.log(answer));
 }
 function getMarkers() {
 	fetch("php/markers.php", {
@@ -123,15 +112,22 @@ function getMarkers() {
 
 	});
 }
+
+async function searching(search, searchSettings){
+	const responce = await fetch(convertIntoGeocoding(search, searchSettings), {
+		method: "GET"
+	});
+	const data = await responce.json();
+	return data;
+}
 //hiding bad things
 window.addEventListener("load", ()=>{
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
 });
-//Mainflow
-mapInit("map", styles.streets, [35, 47.5], 5);
-// getMarkers();
-console.log(searching("Ukraine", {
-	country: "UA",
-	limit: 8,
-}));
+document.addEventListener("DOMContentLoaded",  async () => {
+	//Mainflow
+	mapInit("map", styles.streets, [35, 47.5], 5);
+	const ddd = searching("Ukraine", {});
+	ddd.then(ddr => console.log(ddr));
+});
