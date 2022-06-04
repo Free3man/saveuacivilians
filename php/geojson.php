@@ -1,5 +1,9 @@
 <?php
     require("connect.php");
-    $geojson = mysqli_query($connection, "SELECT * FROM `geojson`");
-    echo ;
+    $geojsons = mysqli_query($connection, "SELECT * FROM `geojson`");
+    $data = [];
+    while($geojson = mysqli_fetch_assoc($geojsons)){
+        $data[] = json_encode($geojson);
+    }
+    echo $data;
 ?>
