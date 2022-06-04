@@ -110,20 +110,25 @@ function renderMarker(coordinates) {
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
 function getGeojsons() {
-	fetch("php/markers.php", {
-		method: "POST",
-		body: JSON.stringify({zero: 0})
+	fetch("php/geojson.php", {
+		method: "GET"
 	}).then((response)=>{
 		if (response.ok && response.status == 200) {
-			console.log(response.arrayBuffer());
+			console.log(response);
 		}
-	}).then((answer)=>{
-		answer.forEach(item => createGeoJson(item));
-	}).catch((answer)=>{
-		console.error(answer);
-	}).finally(()=>{
-		
+	}).then(answer =>{
+		console.log(answer);
 	});
+	// .then((answer)=>{
+	// 	answer.forEach(item => createGeoJson(item));
+	// }).catch((answer)=>{
+	// 	console.error(answer);
+	// }).finally(()=>{
+
+	// });
+}
+function saveGeoJson(geojson) {
+	
 }
 
 async function searching(search, searchSettings){
@@ -141,8 +146,6 @@ window.addEventListener("load", ()=>{
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
 	mapInit("map", styles.streets, [35, 47.5], 5);
-	searching("Dnipro", {
-		country: "UA",
-	}).then(answer => answer.features.forEach(item => renderMarker(item.center)));
-	console.log(markers);
+	getGeojsons();
+	console.log(geojsons);
 });
