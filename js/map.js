@@ -38,20 +38,6 @@ let geojsons = [],
 markers = [],
 map;
 //functions
-function toJSON(marker) {
-	return JSON.stringify({
-		contatiner: marker.container,
-		type: marker.type,
-		feature: marker.feature
-	});
-}
-function toObject(marker) {
-	return {
-		contatiner: marker.container,
-		type: marker.type,
-		feature: marker.feature
-	};
-}
 function convertIntoGeocoding(search, searchSettings){
 	let request = `${search.replace(" ", "%20")}.json?`;
 	if (searchSettings.hasOwnProperty("limit")){
@@ -114,7 +100,7 @@ function getGeojsons() {
 		method: "GET"
 	}).then((response)=>{
 		if (response.ok && response.status == 200) {
-			console.log(response);
+			console.log(response.arrayBuffer());
 		}
 	}).then(answer =>{
 		console.log(answer);
@@ -138,14 +124,13 @@ async function searching(search, searchSettings){
 	return responce.json();
 }
 //hiding bad things
-window.addEventListener("load", ()=>{
-	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
-	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
-});
+// window.addEventListener("load", ()=>{
+// 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
+// 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
+// });
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	mapInit("map", styles.streets, [35, 47.5], 5);
+	// mapInit("map", styles.streets, [35, 47.5], 5);
 	getGeojsons();
-	console.log(geojsons);
 });
