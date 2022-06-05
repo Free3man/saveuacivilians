@@ -32,11 +32,13 @@ let container = document.getElementById('month-calendar'),
     yearContainer = container.getElementsByClassName('year-name')[0],
     prev = container.getElementsByClassName('prev')[0],
     next = container.getElementsByClassName('next')[0],
-    monthName = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
-    weekName = ["Неділя","Понеділок","Вівторок","Середа","Четвер","П'ятниця","Субота"];
+    monthName = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень',
+            'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+    weekName = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"];
 
 var dateSelected = new Date(),
-    selectedHours = dateSelected.getHours(), selectedMinutes = dateSelected.getMinutes(),
+    selectedHours = dateSelected.getHours(), 
+    selectedMinutes = dateSelected.getMinutes(),
     dateMoved = new Date();
 //Set time indexes
 class Timer{
@@ -173,7 +175,7 @@ const labelTrigerMenu = document.querySelectorAll(".labelTrigerMenu"),
 var taskProgress = 0;
 let typesofWorkValid = false;
 //Functions for validation 
-function increment(indexProgress) {ф
+function increment(indexProgress) {
     let sec = 1;
     let i = indexProgress;
     svgCircleProgress.style.setProperty('--value', `${(i+1)*12.5}`);
@@ -534,5 +536,3 @@ window.onload = function () {
     });
     
 };
-
-
