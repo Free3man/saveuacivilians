@@ -89,22 +89,30 @@ function createGeoJson(coordinates, title) {
 	geojsons[geojsons.length] = geojsonData;
 	return geojsonData;
 }
+function getCoordinatesFromGeojson(geojson){
+	return geojson.data.geometry.coordinates;
+}
 
 function renderMarker(coordinates) {
+	console.log(coordinates);
 	const element = document.createElement("div");
 	element.className = "marker";
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
 function getGeojsons() {
-	fetch("php/geojson.php", {
-		method: "GET"
-	}).then((response)=>{
-		// if (response.ok && response.status == 200) {
-			response.json();
-		// }
-	}).then(answer =>{
-		console.log(answer);
-	}).catch(e => console.log(e));
+	const response = fetch("php/geojson.php", {method: "GET"});
+	const answer = response.then(answer => answer.json());
+	let geojsons = [1];
+	answer.then(geojsons => {
+		if(geojsons.hasOwnProperty('array')){
+			geojsons.array.forEach(item => {
+				item = JSON.parse(item);
+				geojsons[geojsons.length] = item;
+				createGeoJson([+item.x, +item.y], item.title);
+			});
+		}
+	});
+	return geojsons;
 }
 function saveGeoJson(geojson) {
 	
@@ -124,6 +132,8 @@ async function searching(search, searchSettings){
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	// mapInit("map", styles.streets, [35, 47.5], 5);
-	getGeojsons();
+	mapInit("map", styles.streets, [35, 47.5], 5);
+	console.log(getGeojsons()[0]);
+	console.log(geojsons);
+	renderMarker(geojsons[0]);
 });
