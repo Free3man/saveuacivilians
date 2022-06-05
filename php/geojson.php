@@ -5,5 +5,5 @@
     while($geojson = mysqli_fetch_assoc($geojsons)){
         $data[] = json_encode($geojson);
     }
-    echo $data;
+    echo json_encode(['array' => $data]);
 ?>
