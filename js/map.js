@@ -99,19 +99,12 @@ function getGeojsons() {
 	fetch("php/geojson.php", {
 		method: "GET"
 	}).then((response)=>{
-		if (response.ok && response.status == 200) {
-			console.log(response.arrayBuffer());
-		}
+		// if (response.ok && response.status == 200) {
+			response.json();
+		// }
 	}).then(answer =>{
 		console.log(answer);
-	});
-	// .then((answer)=>{
-	// 	answer.forEach(item => createGeoJson(item));
-	// }).catch((answer)=>{
-	// 	console.error(answer);
-	// }).finally(()=>{
-
-	// });
+	}).catch(e => console.log(e));
 }
 function saveGeoJson(geojson) {
 	
