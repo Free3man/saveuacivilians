@@ -1,6 +1,6 @@
-main {
-	background-color:  #EFF1F3;
-	overflow: auto;
+main 
+*{
+    box-sizing: border-box;
 }
 .contentBox
 {
@@ -29,7 +29,9 @@ main {
 }
 .inceptionContainer {
 	display: flex;
-	flex-direction: row;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 .timerContainer {
 	display: inherit;
@@ -39,7 +41,7 @@ main {
     align-items: center;
 }
 .timerContainer > input[type="number"] {
-	width: 2em;
+	width: 100%;
     background: transparent;
     font-size: 5em;
     text-align: center;
@@ -68,8 +70,15 @@ main {
 .timerContainer > img {
 	width: 5vh;
 }
+.timerContainer > img:active {
+	transform: scale(.96);
+}
+  
 .timerContainer > img:nth-child(1) {
 	transform: rotate(180deg);
+}
+.timerContainer > img:nth-child(1):active {
+	transform: rotate(180deg) scale(.96);
 }
 .contentFields > textarea
 {
@@ -221,10 +230,6 @@ input[type=checkbox]:disabled+label::before{
 	border: none;
 	overflow:hidden;
 }
-.activitiesList.active {
-    max-height:300px;
-	box-shadow: 0px 5px 5px 1px rgb(0 0 0 / 55%);
-}
 .invalidInputSelect
 {
 	border-color: red !important;
@@ -242,7 +247,7 @@ input[type=checkbox]:disabled+label::before{
     border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
-table{
+.contentFields > table{
 	margin: 10px 0;
 	padding: 0;
 	width: 100%;
@@ -251,16 +256,16 @@ table{
 	border: 1px #ddd solid;
 	border-radius: 8px;
 }
-table tr{
+.contentFields > table tr{
 	padding: .35em;
 	background-color: #f8f8f8;
 }
-table th,
-table td {
+.contentFields > table th,
+.contentFields > table td {
 	text-align: center;
 	border: 1px solid #ddd;
 }
-table td > input{
+.contentFields > table td > input{
 	padding: 10px 0;
 	width: -webkit-fill-available;
     font-size: 1.1em;
@@ -271,13 +276,13 @@ table td > input{
 	border: none;
 }
 @media screen and (max-device-width: 768px) {
-	table{
+	.contentFields > table{
 		border: 0;
 	}
-	table caption{
+	.contentFields > table caption{
 		/* font-size: 1.3em; */
 	}
-	table thead{
+	.contentFields > table thead{
 		border: none;
 		clip: rect(0 0 0 0);
 		height: 1px;
@@ -287,27 +292,27 @@ table td > input{
 		position: absolute;
 		width: 1px;
 	}	
-	table tr{
+	.contentFields > table tr{
 		border-bottom: 3px solid #ddd;
 		display: block;
 		margin-bottom: .625em;
 	}
-	table td{
+	.contentFields > table td{
 		border-bottom: 1px solid #ddd;
 		display: block;
 		/* font-size: .8em; */
 		text-align: right;
 	}
-	table td::before {
+	.contentFields > table td::before {
 		content: attr(data-label);
 		float: left;
 		font-weight: bold;
 	}
-	table td:last-child {
+	.contentFields > table td:last-child {
 		border-bottom: 0;
 	}
-	table th,
-	table td {
+	.contentFields > table th,
+	.contentFields > table td {
 		text-align: center;
 		border: none;
 	}
@@ -517,3 +522,145 @@ table td > input{
 		width: 100%;
 	} 
 }
+.calendar-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+	display: none;
+    bottom: 0;
+    z-index: 5;
+}
+.calendar-container.active {
+   display: flex;
+}
+/* месяцы и годы */
+#month-calendar{
+    width: 50%;
+	margin: auto;
+	z-index: 10;
+}
+
+.month{
+    margin: 0;
+    padding: 3rem 2rem 2rem;
+    background: #555555;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    list-style: none;
+	
+}
+
+.month li{
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.month li.prev,
+.month li.next{
+    cursor: pointer;
+}
+
+.month li.next > img{
+    transform: scaleX(-1);
+}
+
+.month li.prev > img,
+.month li.next > img{
+	width: 40px;
+}
+
+.month li.prev{
+    float: left;
+}
+
+.month li.next{
+    float: right;
+}
+
+.month li.year-name{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* дни недели */
+.weekdays{
+    margin: 0;
+    padding: 1rem 0;
+    background-color: #dddddd;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.weekdays li{
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    text-align: center;
+}
+
+/* дни */
+.days{
+    margin: 0;
+    padding: 1rem 0;
+    background-color: #eeeeee;
+    width: 100%;
+	min-height: 325px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-content: flex-start;
+	cursor: pointer;
+}
+
+.days li{
+    padding: 0.5rem;
+    list-style: none;
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    color: #999;
+    font-size: 1rem;
+    line-height: 1rem;
+	text-align: center;
+}
+.days li > p {
+	padding: 10px;
+	width: fit-content;
+	text-align: center;
+	margin: auto;
+	border-radius: 50%;
+	display: inline-block;
+	padding: 0.5em 0;
+	width: 2em;
+	height: 2em;
+}
+
+.days li > p.date-now{
+    color: white;
+    font-weight: 700;
+	background-color: #D77A61;
+	transition: 1s;
+}
+.alert-error {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	background-color: #ebc8c4;
+	z-index: 6;
+	margin: auto;
+	width: 100%;
+	padding: 5px 20px;
+}
+
+
+
+
+
+
+

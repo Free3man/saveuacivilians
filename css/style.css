@@ -4,6 +4,7 @@
 body{
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 	display: flex;
 	font-family: 'Montserrat', sans-serif;
 	font-family: 'Montserrat';
@@ -26,6 +27,19 @@ main {
 	flex-grow: 1;
 	width: 100%;
 }
+/* main::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+main::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
+}
+main::-webkit-scrollbar-thumb {
+	background-color: #dfdfdf;
+	border-radius: 10px;
+} */
+  
 .circleNavigation{
 	margin: 0 17px;
 	position: absolute;
@@ -257,7 +271,7 @@ main {
 }
  
 .activitiesList.active {
-    max-height:300px;
+    max-height:500px;
 	box-shadow: 0px 5px 5px 1px rgb(0 0 0 / 55%);
 }
 
@@ -333,4 +347,7 @@ main {
 		display: block;
 	}
 }
+
+
+
 
