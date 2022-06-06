@@ -1,4 +1,4 @@
-<?php
+<?
     require("connect.php");
     $geojsons = mysqli_query($connection, "SELECT * FROM `geojson`");
     $data = [];
