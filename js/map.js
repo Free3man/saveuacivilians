@@ -102,17 +102,14 @@ function renderMarker(coordinates) {
 function getGeojsons() {
 	const response = fetch("php/geojson.php", {method: "GET"});
 	const answer = response.then(answer => answer.json());
-	let geojsons = [1];
 	answer.then(geojsons => {
 		if(geojsons.hasOwnProperty('array')){
 			geojsons.array.forEach(item => {
 				item = JSON.parse(item);
-				geojsons[geojsons.length] = item;
 				createGeoJson([+item.x, +item.y], item.title);
 			});
 		}
 	});
-	return geojsons;
 }
 function saveGeoJson(geojson) {
 	
@@ -133,7 +130,7 @@ async function searching(search, searchSettings){
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
 	mapInit("map", styles.streets, [35, 47.5], 5);
-	console.log(getGeojsons()[0]);
+	getGeojsons();
 	console.log(geojsons);
-	renderMarker(geojsons[0]);
+	geojsons.forEach(item => {renderMarker(getCoordinatesFromGeojson(item)); console.log(item);});
 });
