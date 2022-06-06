@@ -1,6 +1,4 @@
 "use strict";
-//thing that helms me not to became mad while typing cod but must be commented before lauching
-// let mapboxgl;
 //enums
 const markerType = {
 	basic: "basic",
@@ -38,30 +36,15 @@ let geojsons = [],
 markers = [],
 map;
 //API
-function convertIntoGeocoding(search, searchSettings){
-	let request = `${search.replace(" ", "%20")}.json?`;
-	if (searchSettings.hasOwnProperty("limit")){
-		if(searchSettings.limit>10){
-			searchSettings.limit = 10;
-		}
-		if (searchSettings.limit<0){
-			searchSettings.limit = 5;
-		}
-	}
-	for (const key in searchSettings) {
-		if (searchSettings.hasOwnProperty(key) && searchProperties.includes(key)){
-			request += `${key}=${searchSettings[key]}&`;
-		}
-	}
-	for (const key in defaultSearchSettings) {
-		if (defaultSearchSettings.hasOwnProperty(key) && !searchSettings.hasOwnProperty(key) &&
-																	searchProperties.includes(key)) {
-			request += `${key}=${defaultSearchSettings[key]}&`;
-		}
-	}
-	return `https://api.mapbox.com/geocoding/v5/mapbox.places/${request}access_token=${accessToken}`;
-}
-
+/**
+ * 
+ * @param {HTMLElement} container in this container map will be uploaded
+ * @param {link} style There is an object "styles" in which you can find two links and use them,
+ *  if you find more, just insert them to that place not to male a mess here
+ * @param {coordinates} center that is start coordinates which will be in the center of the screem after initialization 
+ * @param {int} zoom zoom
+ * 
+ */
 function mapInit(container, style, center, zoom) {
 	mapboxgl.accessToken = accessToken;
 	map = new mapboxgl.Map({
@@ -70,6 +53,12 @@ function mapInit(container, style, center, zoom) {
 		center: center,
 		zoom: zoom
 	});
+}
+function renderMarker(coordinates) {
+	console.log(coordinates);
+	const element = document.createElement("div");
+	element.className = "marker";
+	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
 
 function createGeoJson(coordinates, title) {
@@ -93,12 +82,36 @@ function getCoordinatesFromGeojson(geojson){
 	return geojson.data.geometry.coordinates;
 }
 
-function renderMarker(coordinates) {
-	console.log(coordinates);
-	const element = document.createElement("div");
-	element.className = "marker";
-	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
+function convertIntoGeocoding(search, searchSettings){
+	let request = `${search.replace(" ", "%20")}.json?`;
+	if (searchSettings.hasOwnProperty("limit")){
+		if(searchSettings.limit>10){
+			searchSettings.limit = 10;
+		}
+		if (searchSettings.limit<0){
+			searchSettings.limit = 5;
+		}
+	}
+	for (const key in searchSettings) {
+		if (searchSettings.hasOwnProperty(key) && searchProperties.includes(key)){
+			request += `${key}=${searchSettings[key]}&`;
+		}
+	}
+	for (const key in defaultSearchSettings) {
+		if (defaultSearchSettings.hasOwnProperty(key) && !searchSettings.hasOwnProperty(key) &&
+																	searchProperties.includes(key)) {
+			request += `${key}=${defaultSearchSettings[key]}&`;
+		}
+	}
+	return `https://api.mapbox.com/geocoding/v5/mapbox.places/${request}access_token=${accessToken}`;
 }
+async function searching(search, searchSettings){
+	const responce = await fetch(convertIntoGeocoding(search, searchSettings), {
+		method: "GET"
+	});
+	return responce.json();
+}
+
 async function getGeojsons() {
 	const response =  await fetch("php/getGeojson.php", {method: "GET"});
 	const answer = response.json();
@@ -123,21 +136,13 @@ async function saveGeoJson() {
 		body: JSON.stringify({array: temp})
 	}).then(response => response.json());
 }
-
-async function searching(search, searchSettings){
-	const responce = await fetch(convertIntoGeocoding(search, searchSettings), {
-		method: "GET"
-	});
-	return responce.json();
-}
 //hiding bad things
-// window.addEventListener("load", ()=>{
-// 	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
-// 	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
-// });
+window.addEventListener("load", ()=>{
+	document.getElementsByClassName("mapboxgl-ctrl-bottom-right")[0].remove();
+	document.getElementsByClassName("mapboxgl-ctrl-bottom-left")[0].remove();
+});
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	getGeojsons();
-	createGeoJson([0,0], "start point");
+	
 });
