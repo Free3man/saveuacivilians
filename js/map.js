@@ -37,7 +37,7 @@ defaultSearchSettings = {
 let geojsons = [],
 markers = [],
 map;
-//functions
+//API
 function convertIntoGeocoding(search, searchSettings){
 	let request = `${search.replace(" ", "%20")}.json?`;
 	if (searchSettings.hasOwnProperty("limit")){
@@ -61,7 +61,7 @@ function convertIntoGeocoding(search, searchSettings){
 	}
 	return `https://api.mapbox.com/geocoding/v5/mapbox.places/${request}access_token=${accessToken}`;
 }
-//API
+
 function mapInit(container, style, center, zoom) {
 	mapboxgl.accessToken = accessToken;
 	map = new mapboxgl.Map({
@@ -101,7 +101,7 @@ function renderMarker(coordinates) {
 }
 async function getGeojsons() {
 	const response =  await fetch("php/getGeojson.php", {method: "GET"});
-	const answer = await response.then(answer => answer.json());
+	const answer = response.json();
 	answer.then(geojsons => {
 		if(geojsons.hasOwnProperty('array')){
 			geojsons.array.forEach(item => {
@@ -111,7 +111,7 @@ async function getGeojsons() {
 		}
 	});
 }
-async function saveGeoJson(geojson) {
+async function saveGeoJson() {
 	const temp = geojsons;
 	temp.forEach(item => item = JSON.stringify({
 		title: item.title,
@@ -138,5 +138,6 @@ async function searching(search, searchSettings){
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	
+	getGeojsons();
+	createGeoJson([0,0], "start point");
 });
