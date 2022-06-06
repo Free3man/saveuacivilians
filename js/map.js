@@ -112,9 +112,15 @@ async function getGeojsons() {
 	});
 }
 async function saveGeoJson(geojson) {
+	const temp = geojsons;
+	temp.forEach(item => item = JSON.stringify({
+		title: item.title,
+		x: getCoordinatesFromGeojson(item)[0],
+		y: getCoordinatesFromGeojson(item)[1],
+	}));
 	return await fetch("php/saveGeojson.php", {
 		method:"POST",
-		body: JSON.stringify(geojsons)
+		body: JSON.stringify({array: temp})
 	}).then(response => response.json());
 }
 
