@@ -99,9 +99,9 @@ function renderMarker(coordinates) {
 	element.className = "marker";
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
-function getGeojsons() {
-	const response = fetch("php/geojson.php", {method: "GET"});
-	const answer = response.then(answer => answer.json());
+async function getGeojsons() {
+	const response =  await fetch("php/getGeojson.php", {method: "GET"});
+	const answer = await response.then(answer => answer.json());
 	answer.then(geojsons => {
 		if(geojsons.hasOwnProperty('array')){
 			geojsons.array.forEach(item => {
@@ -111,8 +111,11 @@ function getGeojsons() {
 		}
 	});
 }
-function saveGeoJson(geojson) {
-	
+async function saveGeoJson(geojson) {
+	return await fetch("php/saveGeojson.php", {
+		method:"POST",
+		body: JSON.stringify(geojsons)
+	}).then(response => response.json());
 }
 
 async function searching(search, searchSettings){
@@ -129,8 +132,5 @@ async function searching(search, searchSettings){
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	mapInit("map", styles.streets, [35, 47.5], 5);
-	getGeojsons();
-	console.log(geojsons);
-	geojsons.forEach(item => {renderMarker(getCoordinatesFromGeojson(item)); console.log(item);});
+	
 });
