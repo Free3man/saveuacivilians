@@ -3,7 +3,8 @@
 const markerType = {
 	basic: "basic",
 	transport: "transport",
-	military: "military"
+	humanitary: "humanitary",
+	medical: "medical"
 },
 styles = {
 	streets: "mapbox://styles/mapbox/streets-v11",
@@ -57,11 +58,12 @@ function mapInit(container, style, center, zoom) {
 /**
  * renders a marker on a map that is located due to the coordinates
  * @param {coordinates} coordinates is responsible for the marker`s location
+ * @param {markerType} markerType one parameter from markerType enum that defines a type of marker
  */
-function renderMarker(coordinates) {
+function renderMarker(coordinates, markerType) {
 	console.log(coordinates);
 	const element = document.createElement("div");
-	element.className = "marker";
+	element.className = `marker ${markerType}`;
 	markers[markers.length] = new mapboxgl.Marker(element).setLngLat(coordinates).addTo(map);
 }
 
@@ -244,5 +246,4 @@ window.addEventListener("load", ()=>{
 //place where you will be writing your code using my api
 document.addEventListener("DOMContentLoaded",  async () => {
 	//mainflow
-	
 });
