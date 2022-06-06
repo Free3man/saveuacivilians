@@ -11,3 +11,16 @@
     background-color: blue;
 	cursor: pointer;
 }
+
+.basic{
+	background-image: url("../img/system/markers/basic.svg");
+}
+.humanitary{
+	background-image: url("../img/system/markers/humanitary.svg");
+}
+.transport{
+	background-image: url("../img/system/markers/transportation.svg");
+}
+.medical{
+	background-image: url("../img/system/markers/medical.svg");
+}
