@@ -195,7 +195,6 @@ main::-webkit-scrollbar-thumb {
 	stroke-linecap: round;
 	--value: 0;
 	stroke-dasharray: var(--value) 100;
-	transition: 1s linear;
 }
 .circular-chart .circle {
 	stroke: #D77A61;

@@ -45,7 +45,8 @@ class Timer{
     constructor (valueTime) {
         this.value = valueTime;
     }
-    setDate() { }
+    setDate() { 
+    }
     increment() { }
     decrement() { }
 }
@@ -119,16 +120,15 @@ class Calendar {
                 }
                 e.target.classList.add("date-now");
                 //Update day
-                console.log(this.yearSelected, this.monthSelected, e.target.innerText);
                 let dayIndicator = new Day(e.target.innerText).setDate();
                 let monthIndicator = new Month(this.monthSelected).setDate();
                 let yearIndicator = new Year(this.yearSelected).setDate();
                 //Update calendar on form
-                console.log(dateSelected);
                 let calendarIndex = document.querySelector("#dateTrigger").children;
                 calendarIndex[0].innerText = weekName[dateSelected.getDay()];
                 calendarIndex[1].innerText = dateSelected.getDate();
                 calendarIndex[2].innerText = `${monthName[dateSelected.getMonth()]} ${dateSelected.getFullYear()}`;
+                if(dateSelected != new Date() && dateValid == false) {taskProgress = increment(taskProgress, 20); dateValid = true;};
             });
         }
     }
@@ -172,45 +172,42 @@ const labelTrigerMenu = document.querySelectorAll(".labelTrigerMenu"),
       adressInfoBox = document.getElementById("adress_info_box_form"),
       acceptPolicy = document.querySelectorAll("#accept_form > input[type=checkbox]"),
       extraInfoBox = document.getElementById("extra_info_box_form");
-var taskProgress = 0;
-let typesofWorkValid = false;
+var taskProgress = 0, typesofWorkValid = false, dateValid = false;
 //Functions for validation 
-function increment(indexProgress) {
+function increment(indexProgress, percentage) {
     let sec = 1;
-    let i = indexProgress;
-    svgCircleProgress.style.setProperty('--value', `${(i+1)*12.5}`);
+    svgCircleProgress.style.transition=`${percentage/10}s linear`;
+    svgCircleProgress.style.setProperty('--value', `${indexProgress+percentage}`);
     let decrementInterval = setInterval(function() { 
-        if(sec<=13) {
-            svgCirclePercentage.innerHTML = `${(i*12.5) + sec}%`;
+        if(sec<=percentage) {
+            svgCirclePercentage.innerHTML = `${(indexProgress+sec)}%`;
         }
         else {
             clearInterval(decrementInterval);
         }
         sec++;
     }, 100);
-    indexProgress++;
-    return indexProgress;
+    return indexProgress + percentage;
 }  
-function decrement(indexProgress) {
+function decrement(indexProgress, percentage) {
     let sec = 1;
-    let i = indexProgress;
-    svgCircleProgress.style.setProperty('--value', `${(i-1)*12.5}`);
+    svgCircleProgress.style.transition=`${percentage/10}s linear`;
+    svgCircleProgress.style.setProperty('--value', `${indexProgress-percentage}`);
     let decrementInterval = setInterval(function() { 
-        if(sec<=10) {
-            svgCirclePercentage.innerHTML = `${(i*12.5) - sec}%`;
+        if(sec<=percentage) {
+            svgCirclePercentage.innerHTML = `${(indexProgress-sec)}%`;
         }
         else {
             clearInterval(decrementInterval);
         }
         sec++;
     }, 100);
-    indexProgress--;
-    return indexProgress;
+    return indexProgress - percentage;
 } 
-function checkboxMenuValid() {
+function checkboxMenuProgress() {
     if(!typesofWorkValid && this.checked) {
         typesofWorkValid = true;
-        taskProgress = increment(taskProgress);
+        taskProgress = increment(taskProgress, 10);
     }
     for (let workChecked of document.querySelectorAll(".FormActivities > .activity input[type=checkbox]")) {
         if(workChecked.checked) {
@@ -222,7 +219,7 @@ function checkboxMenuValid() {
         }
     }
     if(!typesofWorkValid) {
-        taskProgress = decrement(taskProgress);
+        taskProgress = decrement(taskProgress, 10);
     }
 }
 //Selectbox control
@@ -236,7 +233,7 @@ for (let selectors of labelTrigerMenu) {
 inputAddBlock.addEventListener("change", function(){
     let typeExtra = document.querySelector(".FormActivities > .activity").cloneNode(true);
     typeExtra.innerHTML += `<img src="/img/deleteBin.svg" alt=""class="deleteRecord">`;
-    typeExtra.children[0].addEventListener("click", checkboxMenuValid, false);
+    typeExtra.children[0].addEventListener("click", checkboxMenuProgress, false);
     typeExtra.children[0].id = this.value;
     typeExtra.children[1].setAttribute("for", this.value);
     typeExtra.children[1].innerText = this.value;
@@ -253,7 +250,7 @@ inputAddBlock.addEventListener("change", function(){
             inputAddBlock.style.opacity = "1";
         }
         if(deleteRecord) {
-            checkboxMenuValid();
+            checkboxMenuProgress();
         }
     });
     selectCheckbox.appendChild(typeExtra);
@@ -291,15 +288,15 @@ inputTableAdd.addEventListener("change", function () {
 });
 //Donut Progress count and animations
 for (let checkBoxWork of  document.querySelectorAll(".FormActivities > .activity input[type=checkbox]")) {
-    checkBoxWork.addEventListener("click", checkboxMenuValid);
+    checkBoxWork.addEventListener("click", checkboxMenuProgress);
 }
 for (let fieldAccept of acceptPolicy) {
     fieldAccept.addEventListener("click", function() {
         if(this.checked) {
-            taskProgress = increment(taskProgress);
+            taskProgress = increment(taskProgress, 5);
         }
         else {
-            taskProgress = decrement(taskProgress);
+            taskProgress = decrement(taskProgress, 5);
         }
     });
 }
@@ -307,13 +304,13 @@ for (let fieldAccept of acceptPolicy) {
     if(this.value.length >= 1) {
         if(this.getAttribute("data-filled") != "true") {
             this.setAttribute("data-filled", "true");
-            taskProgress = increment(taskProgress);
+            taskProgress = increment(taskProgress, 15);
         }
     }
     if(this.value.length == 0) {
         if(this.getAttribute("data-filled") != "false") {
             this.setAttribute("data-filled", "false");
-            taskProgress = decrement(taskProgress);
+            taskProgress = decrement(taskProgress, 15);
         }
     }
 }));
@@ -392,7 +389,6 @@ formSubmitBtn.addEventListener("click", () => {
             formData.typeOfWork.push(checkWork.id);
         }
     }
-    console.log(formData);
 });
 
 //***Website onload callback***
@@ -434,12 +430,10 @@ window.onload = function () {
     timerContainer[0].children[1].addEventListener("input", function() {
         selectedHours = this.value;
         dateSelected = new Date(`${dateSelected.getYear()}-${dateSelected.getMonth()}-${dateSelected.getDate()}T${selectedHours}:${selectedMinutes}`);
-        console.log(dateSelected);
     });
     timerContainer[1].children[1].addEventListener("input", function() {
         selectedMinutes = this.value;
         dateSelected = new Date(`${dateSelected.getYear()}-${dateSelected.getMonth()}-${dateSelected.getDate()}T${selectedHours}:${selectedMinutes}`);
-        console.log(dateSelected);
     });
     function forCreatedCalendar() {
         let createdCalendar = new Calendar(dateMoved.getFullYear(), dateMoved.getMonth(), dateSelected.getFullYear(), dateSelected.getMonth());
@@ -462,6 +456,10 @@ window.onload = function () {
     const hourIndicator = new Hours (countHour),
           minuteIndicator = new Minutes (countMinute);
     // Callback functions of timer
+    function setProgressTime(timeOut) {
+        clearInterval(timeOut);
+        if(dateSelected != new Date() && dateValid == false) {taskProgress = increment(taskProgress, 20); dateValid = true;};
+    }
     btnsUpSwitch[0].addEventListener("mousedown", function(e) {
         const timeOut = setInterval(() => {
             hourIndicator.increment();
@@ -474,10 +472,10 @@ window.onload = function () {
             }
         }, 100);
         this.addEventListener("mouseup", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
         this.addEventListener("mouseleave", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
     });
     btnsDownSwitch[0].addEventListener("mousedown", function(e) {
@@ -492,10 +490,10 @@ window.onload = function () {
             }
         }, 100);
         this.addEventListener("mouseup", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
         this.addEventListener("mouseleave", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
     });
     btnsUpSwitch[1].addEventListener("mousedown", function(e) {
@@ -510,10 +508,10 @@ window.onload = function () {
             }
         }, 100);
         this.addEventListener("mouseup", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
         this.addEventListener("mouseleave", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
     });
     btnsDownSwitch[1].addEventListener("mousedown", function(e) {
@@ -528,10 +526,10 @@ window.onload = function () {
             }
         }, 100);
         this.addEventListener("mouseup", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
         this.addEventListener("mouseleave", function() {
-            clearInterval(timeOut);
+            setProgressTime(timeOut);
         });
     });
     
