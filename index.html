@@ -3,11 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+        <link rel="stylesheet" href="css/map.css">
         <link rel="stylesheet" href="css/basic_styles.css">     
         <link rel="stylesheet" href="css/mobile.css" media="screen and (max-width: 768px)">
         <link rel="stylesheet" href="css/style.css" media="screen and (min-width: 769px)">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
         <title>SaveUACivilians - соціальна мережа для волонтерів</title>
         <meta name="description" content="Шукаєш на волонтерську допомогу? SaveUACivilians прийде на допомогу!"> 
         <meta name="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
@@ -34,8 +36,8 @@
         
         <!-- main-section -->
         <main>
-            <section class="mainContent" style="display: none;"> 
-                Lol 1
+            <section style="display: none;"> 
+               <div id="mapSection"></div>
             </section>
             <section class="mainContent"> 
                 <div class="filterBox">
@@ -159,7 +161,7 @@
                 Lol 3
             </section>
             <section class="mainContent" style="display: none;"> 
-                Lol 4
+
             </section>
             <!-- section reqest form -->
             <div class="sectionRequestForm" >
@@ -254,32 +256,36 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Гум. товари</th>
-                                                <th scope="col">Кількість</th>
-                                                <th scope="col">Один. вимір.</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="data_form_staff">
-                                        </tbody>
-                                        <tbody class="add-new-field">
-                                            <tr class="form_table">
-                                                <td data-label="Гум. товари"><input class="input-table add-next-field-input" type="text" name="" id="" required></td>
-                                                <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
-                                                <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Гум. товари</th>
+                                                    <th scope="col">Кількість</th>
+                                                    <th scope="col">Один. вимір.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="data_form_staff">
+                                                
+                                            </tbody>
+                                            </div>
+                                            <tbody class="add-new-field">
+                                                <tr class="form_table">
+                                                    <td data-label="Гум. товари"><input class="input-table add-next-field-input" type="text" name="" id="" required></td>
+                                                    <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
+                                                    <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <div class="accept-table-on">
                                         <input type="checkbox" name="" id="turn_on_table"><label for="turn_on_table">Таблиця (гумунітарна та медичні допомоги)</label>
                                     </div>
                                 </div>
                                 <!-- adress-form -->
                                 <div id="adress_form" class="contentFields" style="display: none;">
-                                    <input type="text" id="adress_info_box_form" placeholder="Адреса">
-                                    <div id='map' style='width: 400px; height: 300px;'></div>
+                                    <div id="geocoder" class="geocoder"></div>
+                                    <div id="mapForm"></div>
                                 </div>
                                 <!-- contact-form -->
                                 <div id="contact_form" class="contentFields" style="display: none;">
@@ -319,7 +325,7 @@
                                 <b style="font-weight: 600;">Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
                             </p>
                             <div class="control-box">
-                                <button class="animate__animated">Далі</button>
+                                <button class="animate__animated" id="moveForward">Далі</button>
                                 <button class="animate__animated volunteeringformSendButton" style="display: none;">Надіслати</button>
                             </div>
                         </div>         
@@ -361,26 +367,9 @@
                 <div class="iconLink"><img src="img/infoLink.svg" alt="Інформаційна сторінка"></div>
             </div>
         </footer>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+        <script src="js/map.js"></script>
         <script src="js/script.js"></script>
-        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA';
-            var map1 = new mapboxgl.Map({
-                container: 'map1',
-                style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
-            });
-            var map2 = new mapboxgl.Map({
-                container: 'map2',
-                style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
-            });
-            var map3 = new mapboxgl.Map({
-                container: 'map3',
-                style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
-            });
-            var map4 = new mapboxgl.Map({
-                container: 'map4',
-                style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
-            });
-        </script>
     </body>
 </html>

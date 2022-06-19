@@ -10,7 +10,9 @@ body{
 	font-family: 'Montserrat';
 	font-style: normal;
 	max-height: 100vh;
-    font-size: calc(10px + 14 * (100vw / 1440));
+}
+body, input, textarea {
+	font-size: calc(10px + 14 * (100vw / 1440));
 }
 @media screen and (max-device-width: 768px){
 	body, input, textarea{
@@ -111,6 +113,7 @@ main::-webkit-scrollbar-thumb {
 .modalRequestForm {
 	padding: 3em;
     height: min-content;
+	min-height: 600px;
     background: #EFF1F3;
     box-shadow: 9px 9px 21px rgb(0 0 0 / 55%);
     border-radius: 20px;

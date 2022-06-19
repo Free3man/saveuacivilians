@@ -169,7 +169,6 @@ const labelTrigerMenu = document.querySelectorAll(".labelTrigerMenu"),
       svgCirclePercentage = document.querySelector(".circular-chart > .percentage"),
       titleInfoBox = document.getElementById("title_box_form"),
       mainInfoBox = document.getElementById("main_info_box_form"),
-      adressInfoBox = document.getElementById("adress_info_box_form"),
       acceptPolicy = document.querySelectorAll("#accept_form > input[type=checkbox]"),
       extraInfoBox = document.getElementById("extra_info_box_form");
 var taskProgress = 0, typesofWorkValid = false, dateValid = false;
@@ -300,7 +299,7 @@ for (let fieldAccept of acceptPolicy) {
         }
     });
 }
-[titleInfoBox, mainInfoBox, extraInfoBox, adressInfoBox].forEach(elementFormVolunteer => elementFormVolunteer.addEventListener("change", function() {   
+function inputProgress() {
     if(this.value.length >= 1) {
         if(this.getAttribute("data-filled") != "true") {
             this.setAttribute("data-filled", "true");
@@ -313,7 +312,8 @@ for (let fieldAccept of acceptPolicy) {
             taskProgress = decrement(taskProgress, 15);
         }
     }
-}));
+}
+[titleInfoBox, mainInfoBox, extraInfoBox].forEach(elementFormVolunteer => elementFormVolunteer.addEventListener("change", inputProgress));
 
 //***Animation for Form***
 //Variables
@@ -321,7 +321,7 @@ const contentForm = document.querySelector(".contentBox"),
       iconLinkFormSet = document.querySelectorAll(".mobileIconForm"),
       hintParagraph = document.querySelectorAll(".hintParagraph"),
       buttonSwitch = document.querySelectorAll(".control-box button"),
-      rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.", "Якщо характер допомоги є гумунітарним, то задля відстежування прогресу збору вкажіть усі необхідні ресурси у таблиці.", "Оберіть вашу локацію (місце збору гуманітарної допомоги, зустрічі для перевезення).",  "Напишіть у цій секції додаткові контактні дані, розкажіть більш детально про вашу організацію (необов’язково).", "Оберіть дату та час завершення заявки.", ""];
+      rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.", "Якщо характер допомоги є гумунітарним, то задля відстежування прогресу збору вкажіть усі необхідні ресурси у таблиці.", "Оберіть вашу локацію (місце збору гуманітарної допомоги, зустрічі для перевезення).",  "Напишіть у цій секції додаткові контактні дані, розкажіть більш детально про вашу організацію.", "Оберіть дату та час завершення заявки.", ""];
 let numSection = 0;
 //Callback animations and switchers
 hintParagraph.forEach(hint => {hint.addEventListener('animationend', () => {hint.classList.remove("animate__flipInX");});});
@@ -356,26 +356,21 @@ iconLinkFormSet.forEach(iconLink => {
         }
         contentForm.children[numSection].style.display="flex";
         contentForm.classList.add("animate__fadeIn");
+        if(contentForm.children[numSection].style.display === "flex") {
+            map.resize();
+        }
     });
 });
 
 //***Send form***
+let adressLine = []; 
 formSubmitBtn.addEventListener("click", () => {
-    if (dateSelected <= new Date()) {
-        document.querySelector(".alert-error").style.display = "block";
-        document.querySelector(".alert-error > p").innerHTML = "Укажіть коректну дату";
-    }
-    else {
-        document.querySelector(".alert-error").style.display = "none";
-    }
     const formData = {
         title: titleInfoBox.value,
         mainInfo: mainInfoBox.value,
         typeOfWork: [],
-        table: {
-            
-        },
-        adressLine: adressInfoBox.value,
+        table: [],
+        adressLine: adressLine,
         timer: dateSelected,
         extraInfo: extraInfoBox.value,
         accept: {
@@ -383,10 +378,75 @@ formSubmitBtn.addEventListener("click", () => {
             line2: acceptPolicy[1].checked
         }
     };
-    for (var checkWork of  document.querySelectorAll(".FormActivities > .activity input[type=checkbox]"))
+    let typeworkcheck = false, tablerowcheck = true;
+    for (let checkWork of document.querySelectorAll(".FormActivities > .activity input[type=checkbox]"))
     {
         if(checkWork.checked) {
             formData.typeOfWork.push(checkWork.id);
+            typeworkcheck = true;
+        }
+    }
+    for (let rowTable of document.querySelectorAll(".form_table"))
+    {
+        if(rowTable.children[0].children[0].value != "") {
+            let rowObject = {
+                stuffTable: rowTable.children[0].children[0].value, 
+                numberTable: rowTable.children[1].children[0].value, 
+                measureTable: rowTable.children[2].children[0].value
+            };
+            if (rowObject.stuffTable == "" || rowObject.number == "" || rowObject.measureTable == "") {
+                tablerowcheck = false;
+                break;
+            }
+            formData.table.push(rowObject);
+        }
+    }
+    function setSection (numberSection, text) {
+        document.querySelector(".alert-error").style.display = "block";
+        document.querySelector(".alert-error > p").innerHTML = text;
+        for(let formSection of contentForm.children)
+        {
+            formSection.style.display = "none";
+        }
+        contentForm.children[numberSection].style.display="flex";
+        contentForm.classList.add("animate__fadeIn");
+    }
+    if (titleInfoBox.value == "" || mainInfoBox.value == "") {
+        setSection(0, "Заповніть ці поля(-е)");
+    }
+    else if (adressLine == []) {
+        setSection(2, "Вкажіть адресу");
+    }
+    else if (dateSelected <= new Date()) {
+        setSection(4, "Укажіть коректну дату");
+    }
+    else if (extraInfoBox.value == "") {
+        setSection(3, "Вкажіть додаткову інформації");
+    }
+    else if (!acceptPolicy[0].checked || !acceptPolicy[1].checked) {
+        setSection(5, "Підтвердіть усі пункти");
+    }
+    else if(!typeworkcheck) {
+        setSection(1, "Вкажіть вид волонтерської роботи");
+    }
+    else if(!tablerowcheck) {
+        setSection(1, "Заповніть усі пункти таблиці");
+    }
+    else {
+        document.querySelector(".alert-error").style.display = "none";
+        const url = '../system/form_send.php';
+        try {
+            const response = fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then ((resolve) => console.log(resolve.json()));
+        }
+        catch (error) {
+            console.error('Ошибка:', error);
         }
     }
 });
