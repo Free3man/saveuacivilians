@@ -33,6 +33,7 @@ iconLinks.forEach(iconLink => {
             }
             if (counter >= step && !fadeOut){
                 clearInterval(fadeing);
+                currentPage.style.opacity = 1;
             }
         }, 1);
         iconLinks.forEach(item => item.classList.remove("active"));
