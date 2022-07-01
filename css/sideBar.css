@@ -53,5 +53,5 @@
     top: calc(3 * (6vw) + 1.7vw);
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
-    top: 93vh;
+    top: 90vh;
 }
