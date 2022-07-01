@@ -1,5 +1,5 @@
 const iconLinks = document.querySelectorAll(".iconLink"),
-    pages = ["mapSection", "volunteering-page", "donation-page", "info-page"];
+    pages = ["mapSection", "volunteering-page", "donation-page", "info-page", "profile"];
 let currentPage = document.getElementById(pages[0]);
 console.log(currentPage);
 iconLinks.forEach(iconLink => {
@@ -17,7 +17,6 @@ iconLinks.forEach(iconLink => {
             counter = step;
         let fadeing = setInterval(() => {
             currentPage.style.opacity = (counter/step);
-            console.log(counter);
             if (fadeOut){
                 counter--;
             }
