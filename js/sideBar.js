@@ -1,7 +1,6 @@
 const iconLinks = document.querySelectorAll(".iconLink"),
     pages = ["mapSection", "volunteering-page", "donation-page", "info-page", "profile"];
 let currentPage = document.getElementById(pages[0]);
-console.log(currentPage);
 iconLinks.forEach(iconLink => {
     iconLink.addEventListener("click", function() {
         function findIndex(element, array){
