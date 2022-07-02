@@ -1,9 +1,9 @@
-.info-section{
+#info-page .info-section{
     width: 90%;
     margin: auto;
 }
 
-.info{
+#info-page .info-section .info{
     display: flex;
     width: 90%;
     margin: auto;
