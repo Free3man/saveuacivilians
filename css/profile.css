@@ -8,7 +8,7 @@
     height: 20%;
 
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 #profile .profile-photo-div #profile-photo{
     width: 100%;
@@ -22,28 +22,41 @@
 }
 
 #profile .info-section{
-    width: 100%;
+    width: 90%;
 
-    margin: auto;
+    margin: auto 5%;
 
     display: flex;
 }
 #profile .info-section .info{
-    width: 45%;
+    width: 40%;
     height: 100%;
 
     margin: auto;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 #profile .info-section .info h3, 
 #profile .info-section .info p{
     width: 100%;
     letter-spacing: 0.1em;
+    margin: 5%;
 }
 #profile .info-section .info h3{
-    font-weight: lighter;
+    font-weight: 100;
 }
-#profile .info-section .info p, #personName{
+#profile .info-section .info p, #person-name{
     font-weight: bolder;
+}
+
+#person-name{
+    margin: 2%;
+    text-align: center;
+}
+#person-description{
+    line-height: 185%;
+}
+
+#diagram-section{
+
 }
