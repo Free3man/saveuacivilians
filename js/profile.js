@@ -33,22 +33,38 @@ class Person{
         function diagramsData(){
 
         }
+        function advData(){
+
+        }
+        function chatsData(){
+
+        }
         nameBlock.innerText = this.name + " " + this.surname;
         eMailBlock.innerText = this.eMail;
         phoneNumberBlock.innerText = this.phoneNumber || "not stated";
         cityBlock.innerText = this.city || "not stated";
         descriptionBlock.innerText = this.description || "not stated";
         renderDiagrams(diagramsBlock, diagramsData());
+        renderAdvertisements(advertisementsBlock, advData());
+        renderChats(chatsBlock, chatsData());
     }
 }
 //Variables
-const userName = document.getElementById("name"),
-    postAdress = document.getElementById("email"),
+const userName = document.getElementById("person-name"),
+    postAdress = document.getElementById("person-email"),
     phoneNumber = document.getElementById("phone-number"),
-    city = document.getElementById("city");
+    city = document.getElementById("person-city");
 //mainflow
-let Nikita = new Person("Nikita", "Briazgin", "bryazginnik2005@gmail.com", "+380506666666");
-Nikita.render(document.getElementById("name"),
-        document.getElementById("email"),
-        document.getElementById("phone-number"),
-        document.getElementById());
+let Nikita = new Person("Nikita", "Briazgin", "bryazginnik2005@gmail.com", "+380993100138", "Дніпро",
+"Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
+                            " своєму регіоні. Адміністратор сайту “SaveUACivillians”.");
+Nikita.render(document.getElementById("person-name"),
+        document.getElementById("person-email"),
+        document.getElementById("person-phone-number"),
+        document.getElementById("person-city"),
+        document.getElementById("person-description"),
+        document.getElementById("person-city"),
+        document.getElementById("diagram-section"),
+        document.getElementById("active-requests"),
+        document.getElementById("chats"));
+        
