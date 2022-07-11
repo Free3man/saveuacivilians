@@ -166,18 +166,21 @@ const labelTrigerMenu = document.querySelectorAll(".labelTrigerMenu"),
       selectCheckbox = document.querySelector(".FormActivities"),
       formSubmitBtn = document.querySelector(".volunteeringformSendButton"),
       svgCircleProgress = document.querySelector(".circular-chart > .circle"),
+      progressBar = document.querySelector(".mobileProgressBar"),
       svgCirclePercentage = document.querySelector(".circular-chart > .percentage"),
       titleInfoBox = document.getElementById("title_box_form"),
+      adressBox = document.querySelector(".mapboxgl-ctrl-geocoder--input"),
       mainInfoBox = document.getElementById("main_info_box_form"),
-      adressInfoBox = document.getElementById("adress_info_box_form"),
       acceptPolicy = document.querySelectorAll("#accept_form > input[type=checkbox]"),
       extraInfoBox = document.getElementById("extra_info_box_form");
-var taskProgress = 0, typesofWorkValid = false, dateValid = false;
+var taskProgress = 0, listValid = false, dateValid = false;
 //Functions for validation 
 function increment(indexProgress, percentage) {
     let sec = 1;
     svgCircleProgress.style.transition=`${percentage/10}s linear`;
     svgCircleProgress.style.setProperty('--value', `${indexProgress+percentage}`);
+    progressBar.style.transition=`${percentage/10}s linear`;
+    progressBar.style.setProperty('--value', `${indexProgress+percentage}%`);
     let decrementInterval = setInterval(function() { 
         if(sec<=percentage) {
             svgCirclePercentage.innerHTML = `${(indexProgress+sec)}%`;
@@ -193,6 +196,8 @@ function decrement(indexProgress, percentage) {
     let sec = 1;
     svgCircleProgress.style.transition=`${percentage/10}s linear`;
     svgCircleProgress.style.setProperty('--value', `${indexProgress-percentage}`);
+    progressBar.style.transition=`${percentage/10}s linear`;
+    progressBar.style.setProperty('--value', `${indexProgress-percentage}%`);
     let decrementInterval = setInterval(function() { 
         if(sec<=percentage) {
             svgCirclePercentage.innerHTML = `${(indexProgress-sec)}%`;
@@ -205,21 +210,23 @@ function decrement(indexProgress, percentage) {
     return indexProgress - percentage;
 } 
 function checkboxMenuProgress() {
-    if(!typesofWorkValid && this.checked) {
-        typesofWorkValid = true;
-        taskProgress = increment(taskProgress, 10);
-    }
+    let workValid = false;
     for (let workChecked of document.querySelectorAll(".FormActivities > .activity input[type=checkbox]")) {
+        if(this !== workChecked) {
+            workChecked.checked = false;
+        } 
         if(workChecked.checked) {
-            typesofWorkValid = true;
+            workValid = true;
+            if(!listValid) {
+                taskProgress = increment(taskProgress, 10);
+                listValid = true;
+            }
             break;
         }
-        else {
-            typesofWorkValid = false;
-        }
     }
-    if(!typesofWorkValid) {
+    if(!workValid) {
         taskProgress = decrement(taskProgress, 10);
+        listValid = false;
     }
 }
 //Selectbox control
@@ -250,7 +257,16 @@ inputAddBlock.addEventListener("change", function(){
             inputAddBlock.style.opacity = "1";
         }
         if(deleteRecord) {
-            checkboxMenuProgress();
+            let validCheck = false;
+            for (let workChecked of document.querySelectorAll(".FormActivities > .activity input[type=checkbox]")) {
+                if(workChecked.checked) {
+                    validCheck = true;
+                } 
+            }
+            if(!validCheck) {
+                taskProgress = decrement(taskProgress, 10);
+                listValid = false;
+            }
         }
     });
     selectCheckbox.appendChild(typeExtra);
@@ -300,7 +316,7 @@ for (let fieldAccept of acceptPolicy) {
         }
     });
 }
-[titleInfoBox, mainInfoBox, extraInfoBox, adressInfoBox].forEach(elementFormVolunteer => elementFormVolunteer.addEventListener("change", function() {   
+function inputProgress() {
     if(this.value.length >= 1) {
         if(this.getAttribute("data-filled") != "true") {
             this.setAttribute("data-filled", "true");
@@ -313,15 +329,18 @@ for (let fieldAccept of acceptPolicy) {
             taskProgress = decrement(taskProgress, 15);
         }
     }
-}));
+}
+[titleInfoBox, mainInfoBox, extraInfoBox, adressBox].forEach(elementFormVolunteer => elementFormVolunteer.addEventListener("change", inputProgress));
 
 //***Animation for Form***
 //Variables
 const contentForm = document.querySelector(".contentBox"),
-      iconLinkFormSet = document.querySelectorAll(".mobileIconForm"),
+      iconMobileFormSet = document.querySelectorAll(".mobileIconForm > svg"),
+      iconComputerFormSet = document.querySelectorAll(".pcIconForm > svg"),
       hintParagraph = document.querySelectorAll(".hintParagraph"),
       buttonSwitch = document.querySelectorAll(".control-box button"),
-      rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.", "Якщо характер допомоги є гумунітарним, то задля відстежування прогресу збору вкажіть усі необхідні ресурси у таблиці.", "Оберіть вашу локацію (місце збору гуманітарної допомоги, зустрічі для перевезення).",  "Напишіть у цій секції додаткові контактні дані, розкажіть більш детально про вашу організацію (необов’язково).", "Оберіть дату та час завершення заявки.", ""];
+      moveForward = document.querySelector("#moveForward"),
+      rules = ["Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.", "Якщо характер допомоги є гумунітарним, то задля відстежування прогресу збору вкажіть усі необхідні ресурси у таблиці.", "Оберіть вашу локацію (місце збору гуманітарної допомоги, зустрічі для перевезення).",  "Напишіть у цій секції додаткові контактні дані, розкажіть більш детально про вашу організацію.", "Оберіть дату та час завершення заявки.", ""];
 let numSection = 0;
 //Callback animations and switchers
 hintParagraph.forEach(hint => {hint.addEventListener('animationend', () => {hint.classList.remove("animate__flipInX");});});
@@ -329,73 +348,229 @@ contentForm.addEventListener('animationend', () => {contentForm.classList.remove
 buttonSwitch[0].addEventListener("click", () => {buttonSwitch[0].classList.add("animate__jello");});
 buttonSwitch[0].addEventListener("animationend", () => {buttonSwitch[0].classList.remove("animate__jello");});
 //Highlight animations
-iconLinkFormSet.forEach(iconLink => {
-    iconLink.addEventListener("click", function() {
-        iconLinkFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.children[0].classList.remove("active"));
-        this.children[0].classList.add("active");
-        numSection = parseInt(this.getAttribute('data-formSection'));
-        if(numSection != 5)
-        {
-            hintParagraph.forEach(hint => {hint.innerHTML = '<b style="font-weight: 600;">Підказка: </b>' +rules[numSection];})
-            hintParagraph.forEach(hint => {
-                hint.classList.add("animate__flipInX");
-            });
-            buttonSwitch[1].style="display:none"; 
-            buttonSwitch[0].style="display:block"; 
-        }
-        else
-        {
-            hintParagraph.forEach(hint => {hint.innerHTML = '';}); 
-            buttonSwitch[0].style="display:none"; 
-            buttonSwitch[1].style="display:block"; 
-        }
-        contentForm.classList.remove("animate__fadeIn");
-        for(let formSection of contentForm.children)
-        {
-            formSection.style.display="none";
-        }
-        contentForm.children[numSection].style.display="flex";
-        contentForm.classList.add("animate__fadeIn");
-    });
+function animateSlideChange(numSection) {
+    if(numSection != 5)
+    {
+        hintParagraph.forEach(hint => {hint.innerHTML = '<b style="font-weight: 600;">Підказка: </b>' +rules[numSection];});
+        hintParagraph.forEach(hint => {
+            hint.classList.add("animate__flipInX");
+        });
+        buttonSwitch[1].style="display:none"; 
+        buttonSwitch[0].style="display:block"; 
+    }
+    else
+    {
+        hintParagraph.forEach(hint => {hint.innerHTML = '';}); 
+        buttonSwitch[0].style="display:none"; 
+        buttonSwitch[1].style="display:block"; 
+    }
+    contentForm.classList.remove("animate__fadeIn");
+    for(let formSection of contentForm.children)
+    {
+        formSection.style.display="none";
+    }
+    contentForm.children[numSection].style.display="flex";
+    contentForm.classList.add("animate__fadeIn");
+    if(contentForm.children[numSection].style.display === "flex") {
+        mapForm.resize();
+    }
+}
+function selectSlideFormthroughIcon() {
+    numSection = parseInt(this.getAttribute('data-formsection'));
+    animateSlideChange(numSection);
+    iconMobileFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+    iconMobileFormSet[numSection].classList.add("active");
+    iconComputerFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+    iconComputerFormSet[numSection].classList.add("active");
+}
+iconMobileFormSet.forEach(iconLink => {
+    iconLink.addEventListener("click", selectSlideFormthroughIcon);
 });
-
+iconComputerFormSet.forEach(iconLink => {
+    iconLink.addEventListener("click", selectSlideFormthroughIcon);
+});
+moveForward.addEventListener("click", function() { 
+    iconMobileFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+    iconComputerFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+    numSection++;
+    iconMobileFormSet[numSection].classList.add("active");
+    iconComputerFormSet[numSection].classList.add("active");
+    animateSlideChange(numSection);
+});
 //***Send form***
+let adressLine = []; 
 formSubmitBtn.addEventListener("click", () => {
-    if (dateSelected <= new Date()) {
-        document.querySelector(".alert-error").style.display = "block";
-        document.querySelector(".alert-error > p").innerHTML = "Укажіть коректну дату";
-    }
-    else {
-        document.querySelector(".alert-error").style.display = "none";
-    }
     const formData = {
         title: titleInfoBox.value,
         mainInfo: mainInfoBox.value,
-        typeOfWork: [],
-        table: {
-            
-        },
-        adressLine: adressInfoBox.value,
-        timer: dateSelected,
+        typeOfWork: "",
+        table: [],
+        adressLine: adressLine,
+        timer: dateSelected.toISOString().split('T')[0] + ' ' + dateSelected.toTimeString().split(' ')[0],
         extraInfo: extraInfoBox.value,
         accept: {
             line1: acceptPolicy[0].checked,
             line2: acceptPolicy[1].checked
         }
     };
-    for (var checkWork of  document.querySelectorAll(".FormActivities > .activity input[type=checkbox]"))
+    let typeworkcheck = false, tablerowcheck = true;
+    for (let checkWork of document.querySelectorAll(".FormActivities > .activity input[type=checkbox]"))
     {
         if(checkWork.checked) {
-            formData.typeOfWork.push(checkWork.id);
+            formData.typeOfWork = checkWork.id;
+            typeworkcheck = true;
+        }
+    }
+    for (let rowTable of document.querySelectorAll(".form_table"))
+    {
+        if(rowTable.children[0].children[0].value != "") {
+            let rowObject = {
+                stuffTable: rowTable.children[0].children[0].value, 
+                numberTable: rowTable.children[1].children[0].value, 
+                measureTable: rowTable.children[2].children[0].value
+            };
+            if (rowObject.stuffTable == "" || rowObject.number == "" || rowObject.measureTable == "") {
+                tablerowcheck = false;
+                break;
+            }
+            formData.table.push(rowObject);
+        }
+    }
+    function setSection (numberSection, text) {
+        iconMobileFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+        iconMobileFormSet[numberSection].classList.add("active");
+        iconComputerFormSet.forEach(iconLinkFormRemove => iconLinkFormRemove.classList.remove("active"));
+        iconComputerFormSet[numberSection].classList.add("active");
+        document.querySelector(".alert-error").style.display = "block";
+        document.querySelector(".alert-error > p").innerHTML = text;    
+        animateSlideChange(numberSection);
+    }
+    if (titleInfoBox.value == "" || mainInfoBox.value == "") {
+        setSection(0, "Заповніть ці поля(-е)");
+    }
+    else if (adressLine == []) {
+        setSection(2, "Вкажіть адресу");
+    }
+    else if (dateSelected <= new Date()) {
+        setSection(4, "Укажіть коректну дату");
+    }
+    else if (extraInfoBox.value == "") {
+        setSection(3, "Вкажіть додаткову інформації");
+    }
+    else if (!acceptPolicy[0].checked || !acceptPolicy[1].checked) {
+        setSection(5, "Підтвердіть усі пункти");
+    }
+    else if(!typeworkcheck) {
+        setSection(1, "Вкажіть вид волонтерської роботи");
+    }
+    else if(!tablerowcheck) {
+        setSection(1, "Заповніть усі пункти таблиці");
+    }
+    else {
+        document.querySelector(".alert-error").style.display = "none";
+        const url = '../system/form_send.php';
+        try {
+            const response = fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(resolve => {
+                const modalsendBlock = document.querySelector(".block-modal-form"), 
+                      completeFormMessage = document.querySelector(".status-message"),
+                      formSectionVolunteering = document.querySelector("#form-add-request"),
+                      sectionVolunteering = document.querySelector("#addVolunteeringForm");
+                formSectionVolunteering.style.padding = "0 calc(50% - 400px)";
+                modalsendBlock.style.display = 'none';
+                document.querySelector("lottie-player").play();
+                completeFormMessage.children[1].innerText = "Вашу заяву успішно опубліковано";
+                completeFormMessage.style.display = "flex";
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            });
+        }
+        catch (error) {
+            setSection(0, "Сервер тимчасово не працює, перезавантажте сторінку");
         }
     }
 });
 
 //***Website onload callback***
-window.onload = function () {
+window.onload = async function () {
     //Navigation callback
     const navMotion = new Navigation(iconLinks, pageSections);
     navMotion.changePage();
+    //load all elements
+    const mapMainContainer = document.getElementById("mapSection");
+    mapMain = mapInit(mapMainContainer, styles.property, [32.504, 48.464], 5.18);
+    mapMain.resize();
+    mapMain.addControl(new mapboxgl.NavigationControl());
+    const response = await fetch('../system/form_get.php', {method: "GET"});
+	const answer = response.json();
+	answer.then(resolve => {
+		if(resolve.hasOwnProperty('array')){
+			resolve.array.forEach(item => {
+				item = JSON.parse(item);
+                let typeWork; 
+                switch(item.types_of_work) {
+                    case 'Гумунітарна допомога':
+                      typeWork = "humanitary filterHumanitarian";
+                      break;
+                    case 'Медична допомога':
+                      typeWork = "medical filterFirstAid";
+                      break;
+                    case 'Автопревезення':
+                      typeWork = "transport filterTransport";
+                      break;
+                    default:
+                      typeWork = "basic filterMoreTypes";
+                      break;
+                }
+                renderMarker(mapMain, JSON.parse(item.adress_coordinates).coordinates, typeWork);
+			});
+		}
+	});
+    for (let category of document.querySelectorAll(".mapFilterActivity")) {
+        category.addEventListener("click", (e) => { 
+            let filterArray = [];
+            for (let options of document.querySelectorAll(".mapFilterActivity")) { 
+                if (options.checked) {
+                    filterArray.push(options.id);
+                }
+            }
+            if(filterArray.length > 0) {
+                for (let marker of document.querySelectorAll(`.marker`)) {
+                    if (filterArray.includes(marker.classList[3]) && marker.style.display === "none") {
+                        marker.style.display = "block";
+                        marker.classList.add("animate__fadeIn");
+                        marker.addEventListener("animationend", () => {
+                            marker.classList.remove("animate__fadeIn");
+                        }, {once: true});
+                    } 
+                    else if (!filterArray.includes(marker.classList[3]) && marker.style.display === "block") {
+                        marker.classList.add("animate__fadeOut");
+                        marker.addEventListener("animationend", () => {
+                            marker.classList.remove("animate__fadeOut");
+                            marker.style.display = "none";
+                        }, {once: true});
+                    } 
+                }
+            } else {
+                for (let marker of document.querySelectorAll(`.marker`)) {
+                    if (marker.style.display === "none") {
+                        marker.style.display = "block";
+                        marker.classList.add("animate__fadeIn");
+                        marker.addEventListener("animationend", () => {
+                            marker.classList.remove("animate__fadeIn");
+                        }, {once: true});
+                    }
+                }
+            }
+        });
+    }
     // Elements to interact with timer
     const btnsUpSwitch = document.querySelectorAll(".btnUpNum"),
           btnsDownSwitch = document.querySelectorAll(".btnDownNum"),
@@ -532,5 +707,24 @@ window.onload = function () {
             setProgressTime(timeOut);
         });
     });
-    
+
 };
+
+document.querySelectorAll(".rotate-trigger").forEach(rotate => {
+    rotate.addEventListener("click", function(e) {
+        alert(e.target);    
+        document.querySelector(".flip-modal-info-inner").classList.toggle("flip-active");
+        setTimeout(function() {
+            document.querySelectorAll(".rotate-card-flip").forEach(card => {
+                card.classList.toggle("transform-disabled");
+            });
+        }, 300);
+    });
+});
+
+const triggerFilter = document.querySelectorAll(".trigger-open-block");
+for (let trigger of triggerFilter) {
+    trigger.addEventListener("click", function() {
+        this.parentNode.children[0].classList.toggle("active");
+    });
+}

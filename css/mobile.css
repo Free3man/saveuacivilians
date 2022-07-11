@@ -14,7 +14,7 @@ body{
 .mobileProfileBar {
     width: 100vw;
     height: auto;
-    background-color: #223843;
+    background-color: var(--dark-blue);
 }
 .navigationLinks {
     display: flex;
@@ -24,7 +24,7 @@ body{
     display: block;
 	width: 100vw;
     height: auto;
-    background-color: #223843;
+    background-color: var(--dark-blue);
 }
 .navigationLinks > .iconLink img, .mobileIconLink img {
 	margin: 10px;
@@ -42,7 +42,7 @@ body{
     bottom: 0;
 	display: flex;
 	height: 100vh;
-	background: rgba(219, 211, 216, 0.85);
+	background: var(--white);
 }
 .modalRequestForm {
 	padding: 30px 20px 0 20px;
@@ -52,7 +52,7 @@ body{
     gap: 10px;
 	width: 100vw;
 	height: 100vh;
-	background: #EFF1F3;
+	background: var(--white);
 }
 
 .infoFillForm {
