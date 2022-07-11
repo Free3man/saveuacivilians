@@ -21,7 +21,24 @@ body {
 	padding: 0;
 	overflow: hidden;
 	display: flex;
+<<<<<<< HEAD
 	height: 100vh;
+=======
+	font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat';
+	font-style: normal;
+	max-height: 100vh;
+}
+body, input, textarea {
+	font-size: calc(10px + 14 * (100vw / 1440));
+}
+@media screen and (max-device-width: 768px){
+	body, input, textarea{
+		font-size: calc(25px + 4 * (100vw / 1340));
+		font-family: 'Montserrat', sans-serif;
+		font-family: 'Montserrat';
+	}
+>>>>>>> d5ef127d151e2b715b72e5e561a2a674601dbb98
 }
 
 /* Navigation */
@@ -129,7 +146,13 @@ main {
 	box-sizing: border-box;
 	transition: 1s width ease-in-out;
 	padding: 3em;
+<<<<<<< HEAD
     background: var(--white);
+=======
+    height: min-content;
+	min-height: 600px;
+    background: #EFF1F3;
+>>>>>>> d5ef127d151e2b715b72e5e561a2a674601dbb98
     box-shadow: 9px 9px 21px rgb(0 0 0 / 55%);
     border-radius: 20px;
 	margin: auto 0;
