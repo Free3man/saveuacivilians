@@ -21,12 +21,13 @@
     color: #FFFFFF;
 }
 
-#profile .info-section{
+#profile .info-section, #diagram-section{
     width: 90%;
 
     margin: auto 5%;
 
     display: flex;
+    flex-wrap: wrap;
 }
 #profile .info-section .info{
     width: 40%;
