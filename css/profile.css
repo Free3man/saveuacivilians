@@ -3,61 +3,19 @@
     color: #FFFFFF;
 }
 
-#profile .profile-photo-div{
+.profile-photo-div{
     width: 20%;
     height: 20%;
 
     margin: auto;
     margin-top: 5%;
 }
-#profile .profile-photo-div #profile-photo{
+.profile-photo-div #profile-photo{
     width: 100%;
     height: 100%;
 }
 
-#profile #name{
-    margin: 1%;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-#profile .info-section, #diagram-section{
-    width: 90%;
-
-    margin: auto 5%;
-
-    display: flex;
-    flex-wrap: wrap;
-}
-#profile .info-section .info{
-    width: 40%;
-    height: 100%;
-
-    margin: auto;
-    margin-top: 1%;
-}
-
-#profile .info-section .info h3, 
-#profile .info-section .info p{
+#profile p{
     width: 100%;
-    letter-spacing: 0.1em;
-    margin: 5%;
-}
-#profile .info-section .info h3{
-    font-weight: 100;
-}
-#profile .info-section .info p, #person-name{
-    font-weight: bolder;
-}
-
-#person-name{
-    margin: 2%;
     text-align: center;
-}
-#person-description{
-    line-height: 185%;
-}
-
-#diagram-section{
-
 }
