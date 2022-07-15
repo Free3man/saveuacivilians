@@ -366,10 +366,6 @@ input[type=checkbox]:disabled+label::before{
 	margin: 0;
 	padding: 30px 0;
 }
-.hintParagraph
-{
-	margin: 0;
-}
 
 /* volunteering-page */
 .filterBox {
@@ -486,9 +482,6 @@ input[type=checkbox]:disabled+label::before{
 @media (min-width: 1475px){
 	.mainContent {
 	  padding: 0 calc(50% - 690px);
-	}
-	body {
-		font-size: 26px;
 	}
 }
 

@@ -52,7 +52,9 @@ function mapInit(container, style, center, zoom) {
 		container: container,
 		style: style,
 		center: center,
-		zoom: zoom
+		zoom: zoom,
+		minZoom: 2, 
+     	maxZoom: 19
 	});
 	return map;
 }
@@ -68,7 +70,8 @@ function renderMarker(map, coordinates, markerType) {
 	const staticMarkerProperties = {
 		element,
 		anchor: 'bottom',
-		"icon-size": ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+		"icon-size": ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5],
+		"icon-allow-overlap": true,
 	};
 	markers[markers.length] = new mapboxgl.Marker(staticMarkerProperties).setLngLat(coordinates).addTo(map);
 }
@@ -208,24 +211,25 @@ mainMapGeocoder.addEventListener("input", async function() {
 	.then(resolve => {resolve.json().then(
 		result => {
 			suggestionsWrapper.innerHTML = "";
-			console.log(result.features);
-			if(result.features.length != 0) {
-				for(let num = 0; num < result.features.length; num++) {
-					let feature = document.createElement("li"),
-						mainPlace = result.features[num].text,
-						description = result.features[num].place_name.replace(`${result.features[num].text}, `, "");
-					feature.id = result.features[num].id;
-					feature.addEventListener("click", function() {
-						mapMain.flyTo({
-							center: this.getAttribute("data-location").split(":"),
-							essential: true
+			let resultsarr = result.features;
+			if(resultsarr.length != 0) {
+				for(let num = 0; num <  resultsarr.length; num++) {
+					if (resultsarr[num].place_type.includes("address") || resultsarr[num].place_type.includes("poi")) {
+						let feature = document.createElement("li"),
+							mainPlace = resultsarr[num].text,
+							description = resultsarr[num].place_name.replace(`${resultsarr[num].text}, `, "");
+							feature.setAttribute("data-place", num);
+						feature.addEventListener("click", function() {
+							mapMain.flyTo({
+								center: resultsarr[this.getAttribute("data-place")].center,
+								essential: true, 
+								zoom: 18.34
+								});
 						});
-					});
-					feature.innerHTML = `<b>${mainPlace}</b><p>${description}</p>`;
-					suggestionsWrapper.appendChild(feature);
+						feature.innerHTML = `<b>${mainPlace}</b><p>${description}</p>`;
+						suggestionsWrapper.appendChild(feature);
+					}
 				} 
-			} else {
-				suggestionsWrapper.innerHTML = "Не знайдено";
 			}
 		}
 	)});
@@ -237,8 +241,11 @@ mainMapGeocoder.addEventListener("input", async function() {
  * 
  * @returns Promise which contains a response to your reques
  */
-async function searching(longitude, latitude){
-	const response = await fetch(convertIntoGeocoding(longitude, latitude), {
+function conventCoordinatesIntoGeocoding (longitude, latitude) {
+	return `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${accessToken}`;
+}
+async function searchingCoordinates(longitude, latitude){
+	const response = await fetch(conventCoordinatesIntoGeocoding(longitude, latitude), {
 		method: "GET"
 	});
 	return response.json();
@@ -324,7 +331,7 @@ const searchFilterMain = new MapboxGeocoder({
 	});
 	mapForm.on('click', (event) => {
 		let longitude = event.lngLat.lng, latitude = event.lngLat.lat;
-		searching(longitude, latitude).then((resolve) => {
+		searchingCoordinates(longitude, latitude).then((resolve) => {
 			mapForm.getSource('single-point').setData(resolve.features[0].geometry);
 			adressLine = resolve.features[0].geometry;
 			geocoder.container.children[1].value = resolve.features[0].place_name;

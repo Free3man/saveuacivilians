@@ -508,6 +508,17 @@ window.onload = async function () {
     mapMain = mapInit(mapMainContainer, styles.property, [32.504, 48.464], 5.18);
     mapMain.resize();
     mapMain.addControl(new mapboxgl.NavigationControl());
+    mapMain.on("zoom", function() {
+        if(mapMain.getZoom() > 12) {
+            for (let marker of document.querySelectorAll(".marker")) {
+                marker.classList.add("active");
+            }
+        } else {
+            for (let marker of document.querySelectorAll(".marker")) {
+                marker.classList.remove("active");
+            }
+        }
+    });
     const response = await fetch('../system/form_get.php', {method: "GET"});
 	const answer = response.json();
 	answer.then(resolve => {
@@ -533,44 +544,6 @@ window.onload = async function () {
 			});
 		}
 	});
-    for (let category of document.querySelectorAll(".mapFilterActivity")) {
-        category.addEventListener("click", (e) => { 
-            let filterArray = [];
-            for (let options of document.querySelectorAll(".mapFilterActivity")) { 
-                if (options.checked) {
-                    filterArray.push(options.id);
-                }
-            }
-            if(filterArray.length > 0) {
-                for (let marker of document.querySelectorAll(`.marker`)) {
-                    if (filterArray.includes(marker.classList[3]) && marker.style.display === "none") {
-                        marker.style.display = "block";
-                        marker.classList.add("animate__fadeIn");
-                        marker.addEventListener("animationend", () => {
-                            marker.classList.remove("animate__fadeIn");
-                        }, {once: true});
-                    } 
-                    else if (!filterArray.includes(marker.classList[3]) && marker.style.display === "block") {
-                        marker.classList.add("animate__fadeOut");
-                        marker.addEventListener("animationend", () => {
-                            marker.classList.remove("animate__fadeOut");
-                            marker.style.display = "none";
-                        }, {once: true});
-                    } 
-                }
-            } else {
-                for (let marker of document.querySelectorAll(`.marker`)) {
-                    if (marker.style.display === "none") {
-                        marker.style.display = "block";
-                        marker.classList.add("animate__fadeIn");
-                        marker.addEventListener("animationend", () => {
-                            marker.classList.remove("animate__fadeIn");
-                        }, {once: true});
-                    }
-                }
-            }
-        });
-    }
     // Elements to interact with timer
     const btnsUpSwitch = document.querySelectorAll(".btnUpNum"),
           btnsDownSwitch = document.querySelectorAll(".btnDownNum"),
@@ -721,10 +694,56 @@ document.querySelectorAll(".rotate-trigger").forEach(rotate => {
         }, 300);
     });
 });
-
+// Map filter
 const triggerFilter = document.querySelectorAll(".trigger-open-block");
 for (let trigger of triggerFilter) {
     trigger.addEventListener("click", function() {
         this.parentNode.children[0].classList.toggle("active");
+        suggestionsWrapper.innerHTML = "";
+       
+    });
+}
+document.querySelector(".searchbar-filter > .cross-input").addEventListener("click", function(e) {
+    document.getElementsByClassName("search-adress-main-map")[0].value = "";
+    suggestionsWrapper.innerHTML = "";
+});
+for (let categoryApp of document.querySelectorAll(".box-category-help")) {
+    categoryApp.addEventListener("click", function(e) {
+        this.classList.toggle("active");
+        this.children[0].checked = (this.children[0].checked) ? false : true;
+        let filterArray = [];
+        for (let options of document.querySelectorAll(".mapFilterActivity")) { 
+            if (options.checked) {
+                filterArray.push(options.id);
+            }
+        }
+        if(filterArray.length > 0) {
+            for (let marker of document.querySelectorAll(`.marker`)) {
+                if (filterArray.includes(marker.classList[3]) && marker.style.display === "none") {
+                    marker.style.display = "block";
+                    marker.classList.add("animate__fadeIn");
+                    marker.addEventListener("animationend", () => {
+                        marker.classList.remove("animate__fadeIn");
+                    }, {once: true});
+                } 
+                else if (!filterArray.includes(marker.classList[3]) && marker.style.display === "block") {
+                    marker.classList.add("animate__fadeOut");
+                    marker.addEventListener("animationend", () => {
+                            marker.classList.remove("animate__fadeOut");
+                            marker.style.display = "none";
+                    }, {once: true});
+                } 
+            }
+        } else {
+            for (let marker of document.querySelectorAll(`.marker`)) {
+                if (marker.style.display === "none") {
+                    marker.style.display = "block";
+                    marker.classList.add("animate__fadeIn");
+                    marker.addEventListener("animationend", () => {
+                        marker.classList.remove("animate__fadeIn");
+                    }, {once: true});
+                }
+            }
+        }
     });
 }
