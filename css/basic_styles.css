@@ -249,8 +249,9 @@ input[type=checkbox]:disabled+label::before{
 }
 .table-container {
 	overflow: auto;
-	max-height: 300px;
+	max-height: 200px;
 	margin: 10px 0;
+	flex-grow: 1;
 }
 .table-container::-webkit-scrollbar {
 	display: none;
@@ -509,17 +510,17 @@ input[type=checkbox]:disabled+label::before{
 }
 .calendar-container {
     background-color: rgba(0, 0, 0, 0.75);
-    position: fixed;
+    position: sticky;
 	display: none;
     bottom: 0;
-    z-index: 5;
+    z-index: 15;
 }
 .calendar-container.active {
    display: flex;
 }
 /* месяцы и годы */
 #month-calendar{
-    width: 50%;
+    width: 70%;
 	margin: auto;
 	z-index: 10;
 }
@@ -529,7 +530,6 @@ input[type=checkbox]:disabled+label::before{
     padding: 3rem 2rem 2rem;
     background: #555555;
     text-align: center;
-    width: 100%;
     color: #ffffff;
     list-style: none;
 	
@@ -605,7 +605,6 @@ input[type=checkbox]:disabled+label::before{
 }
 
 .days li{
-    padding: 0.5rem;
     list-style: none;
     display: inline-block;
     flex: 0 0 calc(100% / 7);
@@ -621,9 +620,7 @@ input[type=checkbox]:disabled+label::before{
 	margin: auto;
 	border-radius: 50%;
 	display: inline-block;
-	padding: 0.5em 0;
-	width: 2em;
-	height: 2em;
+	padding: 1em;
 }
 
 .days li > p.date-now{

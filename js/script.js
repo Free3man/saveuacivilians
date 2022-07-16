@@ -608,79 +608,76 @@ window.onload = async function () {
         clearInterval(timeOut);
         if(dateSelected != new Date() && dateValid == false) {taskProgress = increment(taskProgress, 20); dateValid = true;};
     }
-    btnsUpSwitch[0].addEventListener("mousedown", function(e) {
-        const timeOut = setInterval(() => {
-            hourIndicator.increment();
-            countHour = hourIndicator.setDate();
-            if(countHour <= 9) {
-                parentElementTime[0].value = "0" + countHour;
-            }
-            else {
-                parentElementTime[0].value = countHour;
-            }
-        }, 100);
-        this.addEventListener("mouseup", function() {
-            setProgressTime(timeOut);
+    ['mousedown','touchstart'].forEach(evt => {
+        btnsUpSwitch[0].addEventListener(evt, function(e) {
+            const timeOut = setInterval(() => {
+                hourIndicator.increment();
+                countHour = hourIndicator.setDate();
+                if(countHour <= 9) {
+                    parentElementTime[0].value = "0" + countHour;
+                }
+                else {
+                    parentElementTime[0].value = countHour;
+                }
+            }, 100);
+            ['mouseup', 'mouseleave','touchend','touchcancel'].forEach(underevt =>  {
+                this.addEventListener(underevt, function() {
+                    setProgressTime(timeOut);
+                });
+            });
         });
-        this.addEventListener("mouseleave", function() {
-            setProgressTime(timeOut);
+        btnsUpSwitch[1].addEventListener(evt, function(e) {
+            const timeOut = setInterval(() => {
+                minuteIndicator.increment();
+                countHour = minuteIndicator.setDate();
+                if(countHour <= 9) {
+                    parentElementTime[1].value = "0" + countHour;
+                }
+                else {
+                    parentElementTime[1].value = countHour;
+                }
+            }, 100);
+            ['mouseup', 'mouseleave','touchend','touchcancel'].forEach(underevt =>  {
+                this.addEventListener(underevt, function() {
+                    setProgressTime(timeOut);
+                });
+            });
         });
-    });
-    btnsDownSwitch[0].addEventListener("mousedown", function(e) {
-        const timeOut = setInterval(() => {
-            hourIndicator.decrement();
-            countHour = hourIndicator.setDate();
-            if(countHour <= 9) {
-                parentElementTime[0].value = "0" + countHour;
-            }
-            else {
-                parentElementTime[0].value = countHour;
-            }
-        }, 100);
-        this.addEventListener("mouseup", function() {
-            setProgressTime(timeOut);
+        btnsDownSwitch[0].addEventListener(evt, function(e) {
+            const timeOut = setInterval(() => {
+                hourIndicator.decrement();
+                countHour = hourIndicator.setDate();
+                if(countHour <= 9) {
+                    parentElementTime[0].value = "0" + countHour;
+                }
+                else {
+                    parentElementTime[0].value = countHour;
+                }
+            }, 100);
+            ['mouseup', 'mouseleave','touchend','touchcancel'].forEach(underevt =>  {
+                this.addEventListener(underevt, function() {
+                    setProgressTime(timeOut);
+                });
+            });
         });
-        this.addEventListener("mouseleave", function() {
-            setProgressTime(timeOut);
-        });
-    });
-    btnsUpSwitch[1].addEventListener("mousedown", function(e) {
-        const timeOut = setInterval(() => {
-            minuteIndicator.increment();
-            countHour = minuteIndicator.setDate();
-            if(countHour <= 9) {
-                parentElementTime[1].value = "0" + countHour;
-            }
-            else {
-                parentElementTime[1].value = countHour;
-            }
-        }, 100);
-        this.addEventListener("mouseup", function() {
-            setProgressTime(timeOut);
-        });
-        this.addEventListener("mouseleave", function() {
-            setProgressTime(timeOut);
-        });
-    });
-    btnsDownSwitch[1].addEventListener("mousedown", function(e) {
-        const timeOut = setInterval(() => {
-            minuteIndicator.decrement();
-            countHour = minuteIndicator.setDate();
-            if(countHour <= 9) {
-                parentElementTime[1].value = "0" + countHour;
-            }
-            else {
-                parentElementTime[1].value = countHour;
-            }
-        }, 100);
-        this.addEventListener("mouseup", function() {
-            setProgressTime(timeOut);
-        });
-        this.addEventListener("mouseleave", function() {
-            setProgressTime(timeOut);
+        btnsDownSwitch[1].addEventListener(evt, function(e) {
+            const timeOut = setInterval(() => {
+                minuteIndicator.decrement();
+                countHour = minuteIndicator.setDate();
+                if(countHour <= 9) {
+                    parentElementTime[1].value = "0" + countHour;
+                }
+                else {
+                    parentElementTime[1].value = countHour;
+                }
+            }, 100);
+            ['mouseup', 'mouseleave','touchend','touchcancel'].forEach(underevt =>  {
+                this.addEventListener(underevt, function() {
+                    setProgressTime(timeOut);
+                });
+            });
         });
     });
-
 };
 
 document.querySelectorAll(".rotate-trigger").forEach(rotate => {
