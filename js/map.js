@@ -63,10 +63,59 @@ function mapInit(container, style, center, zoom) {
  * @param {coordinates} coordinates is responsible for the marker`s location
  * @param {markerType} markerType one parameter from markerType enum that defines a type of marker
  */
-function renderMarker(map, coordinates, markerType) {
+let cardVT = document.querySelector("#volunteering-output"),
+	closeVT = document.querySelectorAll(".nav-trigger.close-trigger"),
+	infoVT = document.querySelector(".main-text-card").children,
+	timerTV = document.querySelectorAll(".timer-set > b");
+var clockIntervalTV;
+closeVT.forEach(closeBtn => {
+	closeBtn.addEventListener("click", () => {
+		cardVT.classList.toggle("active");
+	});
+});
+function setTimer (dataTime, inputInterval) {
+	clearInterval(inputInterval);
+	let countDownDate = new Date(dataTime),
+	outputInterval = setInterval(function() {
+		let now = new Date().getTime(),
+			distance = countDownDate - now;
+		timerTV[0].innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+		timerTV[1].innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		timerTV[2].innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		timerTV[3].innerText =Math.floor((distance % (1000 * 60)) / 1000);
+	}, 1000);
+	return outputInterval;
+}
+function renderMarker(map, coordinates, markerType, id) {
 	const element = document.createElement("div");
 	element.className = `animate__animated marker ${markerType}`;
 	element.style.display = "block";
+	element.setAttribute("data-marker", id);
+	element.addEventListener("click", function(e) { 
+        let id = this.getAttribute("data-marker");
+        const answer = fetch("../system/marker_data.php", {
+            method: 'POST',
+            body: JSON.stringify(id),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+		.then(markerData => {
+			console.log(markerData);
+			infoVT[0].innerText = markerData.title;
+			infoVT[1].innerText = markerData.main_text;
+			let placeType = JSON.parse(markerData.adress_coordinates);
+			clockIntervalTV = setTimer(markerData.deadline, clockIntervalTV);
+			searchingCoordinates(placeType.coordinates[0], placeType.coordinates[1]).then((resolve) => {
+				console.log(resolve);
+				infoVT[2].innerText = "Адреса: " + resolve.features[0].place_name;
+			});
+		})
+		.finally(() => {
+			cardVT.classList.add("active");
+		});
+    });
 	const staticMarkerProperties = {
 		element,
 		anchor: 'bottom',
