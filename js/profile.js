@@ -1,12 +1,12 @@
 //Classes
 class Person{
-    constructor(name, surname, eMail, phoneNumber, city, description){
-        this.name = name;
-        this.surname = surname;
-        this.eMail = eMail;
-        this.phoneNumber = phoneNumber;
-        this.city = city;
-        this.description = description;
+    constructor(user){
+        this.name = user.name;
+        this.surname = user.surname;
+        this.eMail = user.eMail;
+        this.phoneNumber = user.phoneNumber;
+        this.city = user.city;
+        this.description = user.description;
     }
     static async getPersonFromServer(searchingParams) {
         const response = await fetch("php/profile.php", {
@@ -49,12 +49,18 @@ class Person{
         renderChats(chatsBlock, chatsData());
     }
 }
-//object
-
+//Object
+const user = {
+    name: "Nikita",
+    surname: "Briazgin",
+    eMail: "bryazginnik2005@gmail.com",
+    phoneNumber: "+380993100138",
+    city: "Дніпро",
+    description: "Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
+                " своєму регіоні. Адміністратор сайту “SaveUACivillians”."
+};
 //mainflow
-let Nikita = new Person("Nikita", "Briazgin", "bryazginnik2005@gmail.com", "+380993100138", "Дніпро",
-"Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
-                            " своєму регіоні. Адміністратор сайту “SaveUACivillians”.");
+let Nikita = new Person();
 Nikita.render(document.getElementById("person-name"),
         document.getElementById("person-email"),
         document.getElementById("person-phone-number"),
