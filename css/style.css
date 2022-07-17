@@ -417,9 +417,8 @@ main {
 	color: var(--dark-blue);
 	margin: 0 3.5rem 3.5rem;	
 	display: grid;
-	grid-gap: 10px;
   	grid-template-columns: 40% 60%;
-  	grid-template-rows: 80% 20%;
+	grid-template-rows: 85% 15%;
 	grid-template-areas: 
     "card-img card-text" 
     "card-img card-deadline";	
@@ -454,6 +453,9 @@ main {
 .flip-card > .img-main-card img {
 	box-sizing: content-box;
 	border-radius: 20px;
+	width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    object-fit: cover;
 }
 .flip-card > .main-text-card {
 	grid-area: card-text;
