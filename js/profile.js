@@ -49,11 +49,8 @@ class Person{
         renderChats(chatsBlock, chatsData());
     }
 }
-//Variables
-const userName = document.getElementById("person-name"),
-    postAdress = document.getElementById("person-email"),
-    phoneNumber = document.getElementById("phone-number"),
-    city = document.getElementById("person-city");
+//object
+
 //mainflow
 let Nikita = new Person("Nikita", "Briazgin", "bryazginnik2005@gmail.com", "+380993100138", "Дніпро",
 "Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
