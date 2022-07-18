@@ -525,22 +525,25 @@ window.onload = async function () {
 		if(resolve.hasOwnProperty('array')){
 			resolve.array.forEach(item => {
 				item = JSON.parse(item);
-                let typeWork; 
-                switch(item.types_of_work) {
-                    case 'Гумунітарна допомога':
-                      typeWork = "humanitary filterHumanitarian";
-                      break;
-                    case 'Медична допомога':
-                      typeWork = "medical filterFirstAid";
-                      break;
-                    case 'Автопревезення':
-                      typeWork = "transport filterTransport";
-                      break;
-                    default:
-                      typeWork = "basic filterMoreTypes";
-                      break;
+                let deadline = new Date(item.deadline);
+                if(deadline.getTime() > Date.now()) {
+                    let typeWork; 
+                    switch(item.types_of_work) {
+                        case 'Гумунітарна допомога':
+                          typeWork = "humanitary filterHumanitarian";
+                          break;
+                        case 'Медична допомога':
+                          typeWork = "medical filterFirstAid";
+                          break;
+                        case 'Автопревезення':
+                          typeWork = "transport filterTransport";
+                          break;
+                        default:
+                          typeWork = "basic filterMoreTypes";
+                          break;
+                    }
+                    renderMarker(mapMain, JSON.parse(item.adress_coordinates).coordinates, typeWork, item.id_request);
                 }
-                renderMarker(mapMain, JSON.parse(item.adress_coordinates).coordinates, typeWork, item.id_request);
 			});
 		}
 	});

@@ -86,36 +86,37 @@ function setTimer (dataTime, inputInterval) {
 	}, 1000);
 	return outputInterval;
 }
+function uploadVolunteeringData() { 
+	let id = this.getAttribute("data-marker");
+	const answer = fetch("../system/marker_data.php", {
+		method: 'POST',
+		body: JSON.stringify(id),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	.then(response => response.json())
+	.then(markerData => {
+		console.log(markerData);
+		infoVT[0].innerText = markerData.title;
+		infoVT[1].innerText = markerData.main_text;
+		let placeType = JSON.parse(markerData.adress_coordinates);
+		clockIntervalTV = setTimer(markerData.deadline, clockIntervalTV);
+		searchingCoordinates(placeType.coordinates[0], placeType.coordinates[1]).then((resolve) => {
+			console.log(resolve);
+			infoVT[2].innerText = "Адреса: " + resolve.features[0].place_name;
+		});
+	})
+	.finally(() => {
+		cardVT.classList.add("active");
+	});
+}
 function renderMarker(map, coordinates, markerType, id) {
 	const element = document.createElement("div");
 	element.className = `animate__animated marker ${markerType}`;
 	element.style.display = "block";
 	element.setAttribute("data-marker", id);
-	element.addEventListener("click", function(e) { 
-        let id = this.getAttribute("data-marker");
-        const answer = fetch("../system/marker_data.php", {
-            method: 'POST',
-            body: JSON.stringify(id),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-		.then(markerData => {
-			console.log(markerData);
-			infoVT[0].innerText = markerData.title;
-			infoVT[1].innerText = markerData.main_text;
-			let placeType = JSON.parse(markerData.adress_coordinates);
-			clockIntervalTV = setTimer(markerData.deadline, clockIntervalTV);
-			searchingCoordinates(placeType.coordinates[0], placeType.coordinates[1]).then((resolve) => {
-				console.log(resolve);
-				infoVT[2].innerText = "Адреса: " + resolve.features[0].place_name;
-			});
-		})
-		.finally(() => {
-			cardVT.classList.add("active");
-		});
-    });
+	element.addEventListener("click", uploadVolunteeringData);
 	const staticMarkerProperties = {
 		element,
 		anchor: 'bottom',
@@ -386,5 +387,3 @@ const searchFilterMain = new MapboxGeocoder({
 			geocoder.container.children[1].value = resolve.features[0].place_name;
 		});
 	});
-
-	
