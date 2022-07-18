@@ -540,7 +540,7 @@ window.onload = async function () {
                       typeWork = "basic filterMoreTypes";
                       break;
                 }
-                renderMarker(mapMain, JSON.parse(item.adress_coordinates).coordinates, typeWork, item.id_request);
+                renderMarker(mapMain, JSON.parse(item.adress_coordinates).coordinates, typeWork);
 			});
 		}
 	});
@@ -682,6 +682,7 @@ window.onload = async function () {
 
 document.querySelectorAll(".rotate-trigger").forEach(rotate => {
     rotate.addEventListener("click", function(e) {
+        alert(e.target);    
         document.querySelector(".flip-modal-info-inner").classList.toggle("flip-active");
         setTimeout(function() {
             document.querySelectorAll(".rotate-card-flip").forEach(card => {
@@ -743,11 +744,3 @@ for (let categoryApp of document.querySelectorAll(".box-category-help")) {
         }
     });
 }
-
-
-// // Code for receiving information about volunteering task from database on clicking marker 
-// let cardVT = document.querySelector(".modal-window"),
-//     markersMap = document.querySelectorAll(".marker .mapboxgl-marker");
-// for (let marker of markersMap) {
-//     marker
-// }

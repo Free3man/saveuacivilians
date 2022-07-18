@@ -124,11 +124,8 @@ main {
     position: sticky;
 	bottom: 0;
     z-index: 10;
-    display: none;
+    display: flex;
     height: 100vh;
-}
-.modal-window.active {
-	display: flex;
 }
 .block-modal-form {
 	display: flex;
@@ -381,6 +378,8 @@ main {
 }
 .flip-modal-info-inner {
 	transition: transform 1s;
+	transform-style: preserve-3d;
+	perspective: 1000px
 }
 .flip-active {
 	transform: rotateY(180deg);
