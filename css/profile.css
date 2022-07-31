@@ -23,9 +23,9 @@
 #person-name{
     text-align: center;
 }
-
-.person-info .info{
-    width: 100%;
+.section .info{
+    margin: auto;
+    margin-top: 1%;
     display: flex;
 }
 .person-info .item{
@@ -54,11 +54,9 @@
 .circle-info h2{
     text-align: center;
 }
-
-#circles{
-    width: 90%;
-    margin: 5%;
-    display: flex;
+.info .item{
+    margin-right: 5%;
+    line-height: 175%;
 }
 #circles .item{
     max-width: 50%;
@@ -73,10 +71,12 @@
 
     border-radius: 50%;
     border: 10px solid #D77A61;
-}
-#circles .circle > p{
-    width: 100%;
-    height: 100%;
+    margin: auto;
+    margin-bottom: 15%;
     text-align: center;
-    line-height: 100%;
+    font-size: 3vw;
+    line-height: 10vw;
+}
+.item .description{
+
 }
