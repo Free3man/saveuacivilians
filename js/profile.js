@@ -30,34 +30,21 @@ class Person{
     }
     render(nameBlock, eMailBlock, phoneNumberBlock, cityBlock,
         descriptionBlock, diagramsBlock, advertisementsBlock, chatsBlock) {
-        function renderDiagrams(diagramsBlock, diagramsData) {
-            
-        }
-        function renderAdvertisements(advBlock, advData) {
-            
-        }
-        function renderChats(chatsBlock, chatsData) {
-            
-        }
-        function diagramsData(){
-
-        }
-        function advData(){
-
-        }
-        function chatsData(){
-
-        }
         nameBlock.innerText = this.name + " " + this.surname;
         eMailBlock.innerText = this.eMail;
         phoneNumberBlock.innerText = this.phoneNumber || "not stated";
         cityBlock.innerText = this.city || "not stated";
         descriptionBlock.innerText = this.description || "not stated";
-        renderDiagrams(diagramsBlock, diagramsData());
-        renderAdvertisements(advertisementsBlock, advData());
-        renderChats(chatsBlock, chatsData());
     }
 }
+
+
+
+
+
+
+
+
 //Objects
 localStorage.setItem("mainUser", JSON.stringify({
     name: "Nikita",
