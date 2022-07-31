@@ -538,13 +538,13 @@ main {
 .set-filters-box > div {
 	width: inherit;
 }
-.content-pull-block.searchbar-filter {
+.searchbar-filter {
 	padding: 20px 0 5px 0;
 	display: flex;
 	gap: 5px;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
-.content-pull-block.searchbar-filter > img {
+.searchbar-filter > img {
 	width: 0.8em;
 	padding: 5px;
 }
@@ -573,7 +573,7 @@ main {
 	padding: 0;
 	margin: 0;
 }
-.search-adress-main-map {
+.search-adress {
 	background-color: transparent;
 	width: 100%;
     font-size: 1em;
