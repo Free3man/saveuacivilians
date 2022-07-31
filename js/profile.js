@@ -1,4 +1,13 @@
 //Classes
+class Circle{
+    constructor(data){
+        this.value = data.value;
+        this.description = data.description;
+    }
+    render(block){
+        
+    }
+}
 class Person{
     constructor(user){
         this.name = user.name;
@@ -49,8 +58,8 @@ class Person{
         renderChats(chatsBlock, chatsData());
     }
 }
-//Object
-const user = {
+//Objects
+localStorage.setItem("mainUser", JSON.stringify({
     name: "Nikita",
     surname: "Briazgin",
     eMail: "bryazginnik2005@gmail.com",
@@ -58,9 +67,9 @@ const user = {
     city: "Дніпро",
     description: "Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
                 " своєму регіоні. Адміністратор сайту “SaveUACivillians”."
-};
+}));
 //mainflow
-let Nikita = new Person();
+let Nikita = new Person(JSON.parse(localStorage.mainUser));
 Nikita.render(document.getElementById("person-name"),
         document.getElementById("person-email"),
         document.getElementById("person-phone-number"),
@@ -70,4 +79,3 @@ Nikita.render(document.getElementById("person-name"),
         document.getElementById("diagram-section"),
         document.getElementById("active-requests"),
         document.getElementById("chats"));
-        
