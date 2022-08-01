@@ -10,6 +10,7 @@ class Circle{
 }
 class Person{
     constructor(user){
+        this.picture = user.picture;
         this.name = user.name;
         this.surname = user.surname;
         this.eMail = user.eMail;
@@ -28,8 +29,8 @@ class Person{
             }
         });
     }
-    render(nameBlock, eMailBlock, phoneNumberBlock, cityBlock,
-        descriptionBlock, diagramsBlock, advertisementsBlock, chatsBlock) {
+    render() {
+        document.getElementById("person-picture").innerHTML = document.createElement("img").src = "currentUser.svg";
         nameBlock.innerText = this.name + " " + this.surname;
         eMailBlock.innerText = this.eMail;
         phoneNumberBlock.innerText = this.phoneNumber || "not stated";
@@ -53,16 +54,9 @@ localStorage.setItem("mainUser", JSON.stringify({
     phoneNumber: "+380993100138",
     city: "Дніпро",
     description: "Я - волонтер з міста Дніпро. Допомогаю людям з пошуком гуманітарної допомоги у" + 
-                " своєму регіоні. Адміністратор сайту “SaveUACivillians”."
+                " своєму регіоні. Адміністратор сайту “SaveUACivillians”.",
+    picture: "briazgin2005.svg",
 }));
 //mainflow
 let Nikita = new Person(JSON.parse(localStorage.mainUser));
-Nikita.render(document.getElementById("person-name"),
-        document.getElementById("person-email"),
-        document.getElementById("person-phone-number"),
-        document.getElementById("person-city"),
-        document.getElementById("person-description"),
-        document.getElementById("person-city"),
-        document.getElementById("diagram-section"),
-        document.getElementById("active-requests"),
-        document.getElementById("chats"));
+Nikita.render();
