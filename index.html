@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/infoPage.css">
     <!-- profile-info -->
     <link rel="stylesheet" href="css/profile.css">
-    <!-- additional -->
+    <!-- other -->
     <link rel="icon" type="image/x-icon" href="/img/system/favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
@@ -707,8 +707,31 @@
             </footer>
         </section>
         <section id="profile" style="display: block;">
-            <div id="person-picture">
-                
+            <div id="person-picture"></div>
+            <div class="info-block">
+                <h2 id="person-name" class="header"></h2>
+                <div class="info" id="person-info-block">
+                    <div class="item">
+                        <p>Поштова адреса:</p>
+                        <h3 id="person-e-mail"></h3>
+                        <p>Номер телефону:</p>
+                        <h3 id="person-phone-number"></h3>
+                        <p>Місто (населений пункт):</p>
+                        <h3 id="person-city"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="info-block">
+                <h2 class="header">Волонтерська активність</h2>
+                <div class="info" id="person-circles-block"></div>
+            </div>
+            <div class="info-block">
+                <h2 class="header">Активні заявки</h2>
+                <div class="info" id="persons-requests-block"></div>
+            </div>
+            <div class="info-block">
+                <h2 id="" class="header"></h2>
+                <div class="info" id="persons-chats-block"></div>
             </div>
         </section>
     </main>
