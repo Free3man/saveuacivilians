@@ -16,17 +16,11 @@ body{
     height: auto;
     background-color: var(--dark-blue);
 }
-.navigationLinks {
+.navigation-links {
     display: flex;
     justify-content: space-between;
 }
-.mobileFooter {
-    display: block;
-	width: 100vw;
-    height: auto;
-    background-color: var(--dark-blue);
-}
-.navigationLinks > .iconLink img, .mobileIconLink img {
+.navigation-links > .navigation__icon icon  img, .mobilenavigation__icon icon  img {
 	margin: 10px;
 	position: relative;
 	z-index: 3;
@@ -36,7 +30,7 @@ body{
 }
 
 /* form-styles */
-.modal-window {
+.modal__container {
 	position: sticky;
     z-index: 2;
     bottom: 0;
@@ -72,6 +66,6 @@ body{
 .control-box > button {
 	display: none;
 }
-.sideBar {
+.navigation {
     display: none;
 }

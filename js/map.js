@@ -16,7 +16,6 @@ types = {
 	point: "Point"
 },
 mapParameters = {
-	styles: "mapbox://styles/suac/cl2ramh2d000714nwclodz0k9",
 	minZoom: 2, 
     maxZoom: 19
 };
@@ -26,6 +25,7 @@ searchProperties = ["autocomplete", "bbox", "country", "fuzzyMatch",
 			"language", "limit", "proximity", "routing", "types", "worldview"],
 defaultSearchSettings = {"language" : "uk"};
 let geojsons = [], markers = [];
+mapboxgl.accessToken = accessToken;
 /**
  * Initalizes maps and targeting properties to them
  * @param {container} container is consisting of DOM element, where the map'll be displayed
@@ -37,6 +37,7 @@ let geojsons = [], markers = [];
 function mapInit(container, center, zoom) {
 	let map = new mapboxgl.Map({
 		container: container,
+		style: "mapbox://styles/suac/cl2ramh2d000714nwclodz0k9",
 		center: center,
 		zoom: zoom,
 		mapParameters
@@ -159,7 +160,12 @@ async function recieveOffersData(map) {
 	});
 	return dataMarker;
 }
-
+/**
+ * 
+ * @param {search} search is an adress from input box
+ * @param {searchSettings} searchSettings is an array with settings for the search request
+ * @param {longitude, latitude} coordinates is a geocoding (latitude and longitude)
+*/
 function convertTextIntoGeocoding(search, searchSettings) {
 	let request = `${search.replace(" ", "%20")}.json?`;
 	if (searchSettings.hasOwnProperty("limit")){
@@ -191,55 +197,15 @@ async function searchingCoordinates(longitude, latitude){
 	});
 	return response.json();
 }
-// let cardVT = document.querySelector("#volunteering-output"),
-// 	closeVT = document.querySelectorAll(".nav-trigger.close-trigger"),
-// 	infoVT = document.querySelector(".main-text-card").children,
-// 	modalTimer = document.querySelectorAll(".timer-set > b");
-// var clockIntervalTV;
-// closeVT.forEach(closeBtn => {
-// 	closeBtn.addEventListener("click", () => {
-// 		cardVT.classList.toggle("active");
-// 	});
-// });
-// function setTimer(dataTime, inputInterval) {
-// 	clearInterval(inputInterval);
-// 	let countDownDate = new Date(dataTime),
-// 	outputInterval = setInterval(function() {
-// 		let now = new Date().getTime(),
-// 			distance = countDownDate - now;
-// 		modalTimer[0].innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-// 		modalTimer[1].innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-// 		modalTimer[2].innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-// 		modalTimer[3].innerText = Math.floor((distance % (1000 * 60)) / 1000);
-// 	}, 1000);
-// 	return outputInterval;
-// }
-// function uploadVolunteeringData() { 
-// 	console.log(jsonDataMarker);
-// 	let id = this.getAttribute("data-marker");
-// 	infoVT[0].innerText = jsonDataMarker[id].title;
-// 	infoVT[1].innerText = jsonDataMarker[id].main_text;
-// 	let placeType = JSON.parse(jsonDataMarker[id].adress_coordinates);
-// 	clockIntervalTV = setTimer(jsonDataMarker[id].deadline, clockIntervalTV);
-// 	searchingCoordinates(placeType.coordinates[0], placeType.coordinates[1]).then((resolve) => {
-// 		console.log(resolve);
-// 		infoVT[2].innerText = "Адреса: " + resolve.features[0].place_name;
-// 	});
-// 	cardVT.classList.add("active");
-// }
-
-
-
-
 const mapFormContainer = document.getElementById("mapForm"),
-	  mapMainContainer = document.getElementById("mapSection"),
+	  mapMainContainer = document.getElementById("interactive-map"),
 	  filterAdress = document.getElementById("searchTownFilter"),
-	  categoryBoxes = document.querySelectorAll(".box-category-help"),
+	  categoryBoxes = document.querySelectorAll(".category-box-help"),
 	  formGeocoder = document.querySelectorAll(".geocoding-block"),
-	  triggerFilter = document.querySelector(".trigger-open-block");
+	  triggerFilter = document.querySelector(".trigger-open-filter");
 // Set control functions for the map inside the offer Form
-mapboxgl.accessToken = accessToken;
 let mapForm = mapInit(mapFormContainer, [35.393, 48.282], 7.63)
+	.addControl(new mapboxgl.NavigationControl())
 	.on('load', function() {
 		this.loadImage(
 			'../img/markers/basic.png',
@@ -277,7 +243,8 @@ let mapForm = mapInit(mapFormContainer, [35.393, 48.282], 7.63)
 			geocoder.container.children[1].value = resolve.features[0].place_name;
 		});
 	});
-let mapMain = mapInit(mapMainContainer, [32.504, 48.464], 5.18);
+let mapMain = mapInit(mapMainContainer, [32.504, 48.464], 5.18)
+	.addControl(new mapboxgl.NavigationControl());
 let jsonDataMarker = recieveOffersData(mapMain),
 	mapSettings = [];
 // Listeners for geocoding and filtrating
@@ -342,3 +309,80 @@ for (let geoBlock of formGeocoder) {
 		this.previousSibling.value = "";
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let cardVT = document.querySelector("#volunteering-output"),
+// 	closeVT = document.querySelectorAll(".nav-trigger.close-trigger"),
+// 	infoVT = document.querySelector(".main-text-card").children,
+// 	modalTimer = document.querySelectorAll(".timer-set > b");
+// var clockIntervalTV;
+// closeVT.forEach(closeBtn => {
+// 	closeBtn.addEventListener("click", () => {
+// 		cardVT.classList.toggle("active");
+// 	});
+// });
+// function setTimer(dataTime, inputInterval) {
+// 	clearInterval(inputInterval);
+// 	let countDownDate = new Date(dataTime),
+// 	outputInterval = setInterval(function() {
+// 		let now = new Date().getTime(),
+// 			distance = countDownDate - now;
+// 		modalTimer[0].innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+// 		modalTimer[1].innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+// 		modalTimer[2].innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+// 		modalTimer[3].innerText = Math.floor((distance % (1000 * 60)) / 1000);
+// 	}, 1000);
+// 	return outputInterval;
+// }
+// function uploadVolunteeringData() { 
+// 	console.log(jsonDataMarker);
+// 	let id = this.getAttribute("data-marker");
+// 	infoVT[0].innerText = jsonDataMarker[id].title;
+// 	infoVT[1].innerText = jsonDataMarker[id].main_text;
+// 	let placeType = JSON.parse(jsonDataMarker[id].adress_coordinates);
+// 	clockIntervalTV = setTimer(jsonDataMarker[id].deadline, clockIntervalTV);
+// 	searchingCoordinates(placeType.coordinates[0], placeType.coordinates[1]).then((resolve) => {
+// 		console.log(resolve);
+// 		infoVT[2].innerText = "Адреса: " + resolve.features[0].place_name;
+// 	});
+// 	cardVT.classList.add("active");
+// }
