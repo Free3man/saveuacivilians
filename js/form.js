@@ -1,5 +1,5 @@
 const Form = {
-    linksForm: document.querySelectorAll(".roadmap__child"),
+    linksForm: document.querySelectorAll(".roadmap__section"),
     sections: document.querySelectorAll(".form__section"),
     selectPart: function (partIndex) {
         for (let part of this.sections) {
@@ -38,12 +38,12 @@ Validation = {
 ListProperties = {
     inputNewCategory: document.querySelector(".form__input.add__category"),
     inputNewStuff: document.querySelector(".form__input.add__stuff"),
-    containerCategories: document.querySelector(".categories"),
+    containerCategories: document.querySelector(".field__categories"),
     containerToDoList: document.querySelector(".todolist"), 
     classCategoty: "categories__category",
     classStuff: "todolist__stuff",
-    btnRemoveCategories: document.querySelector(".btn__remove.remove__category"),
-    btnRemoveStuff: document.querySelector(".btn__remove.remove__stuff"),
+    // btnRemoveCategories: document.querySelector(".btn__remove.remove__category"),
+    // btnRemoveStuff: document.querySelector(".btn__remove.remove__stuff"),
     setNewValue: (name_, class_, container_, prefix_) => {
         let point = document.createElement("div");
         point.className = class_;
@@ -59,17 +59,24 @@ ListProperties = {
             }
         });
         container_.appendChild(point);
-    },
-    removeAllValues: class_ => {
-        for (let point of document.querySelectorAll(`.${class_}`)) {
-            point.remove();
-        }
-    } 
+    }
+    // removeAllValues: class_ => {
+    //     for (let point of document.querySelectorAll(`.${class_}`)) {
+    //         point.remove();
+    //     }
+    // } 
+},
+Settings = {
+    triggerSettings: document.querySelector(".widget__trigger"),
+    bodySettings: document.querySelector(".form__widget"),
+    openSettings: function () {
+        this.bodySettings.classList.toggle("form__widget-active");
+    }
 };
 //Form 
 for (let link of Form.linksForm) {
     link.addEventListener("click", function() {
-        Form.selectPart(this.getAttribute("data-mapform"));
+        Form.selectPart(this.getAttribute("data-form"));
     });
 }
 // Validation
@@ -102,9 +109,14 @@ ListProperties.inputNewStuff.addEventListener("change", function () {
     let stuffElements = ListProperties.setNewValue(this.value, ListProperties.classStuff, ListProperties.containerToDoList, "");
     this.value = "";
 });
-ListProperties.btnRemoveCategories.addEventListener("click", function () {
-    ListProperties.removeAllValues(ListProperties.classCategoty);
-});
-ListProperties.btnRemoveStuff.addEventListener("click", function () {
-    ListProperties.removeAllValues(ListProperties.classStuff);
+// ListProperties.btnRemoveCategories.addEventListener("click", function () {
+//     ListProperties.removeAllValues(ListProperties.classCategoty);
+// });
+// ListProperties.btnRemoveStuff.addEventListener("click", function () {
+//     ListProperties.removeAllValues(ListProperties.classStuff);
+// });
+//Settings
+console.log(Settings.triggerSettings)
+Settings.triggerSettings.addEventListener("click", function () {
+    Settings.openSettings();
 });

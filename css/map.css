@@ -3,9 +3,7 @@
 	border-radius: 8px;
 	flex-grow: 1;
 	transition: all 0.3s;
-	margin: 20px 0;
 }
-
 #geocoder {
 	z-index: 1;
 }

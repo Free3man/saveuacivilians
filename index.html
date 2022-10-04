@@ -36,19 +36,6 @@
         <main class="main">
             <!-- Interactive Map Section -->
             <section class="main__page page page-active">
-                <!-- Filter for a map -->
-                <div class="map__filter filter">
-                    <div class="filter__settings settings settings-active">
-                        <div class="settings__search search">
-                            <img src="/img/search-icon.svg">
-                            <input type="text">
-                            <img src="/img/cross-delete.svg">
-                        </div>
-                        </div>
-                    <div class="filter__trigger">
-                        <div></div>
-                    </div>
-                </div>
                <div class="section__map map"></div>
             </section>
             <!-- Donation Section -->
@@ -68,179 +55,157 @@
                         <p></p>
                     </div>
                     <div class="application__form">
-                        <!-- Navigation for tablets  -->
-                        <div class="application__statistics statistics tablet">
-                            <div class="statistics__roadmap roadmap">
-                                <div class="roadmap__child" data-mapform="0">
-                                    <img src="/img/form/form-info.svg">
-                                </div>
-                                <div class="roadmap__child" data-mapform="1">
-                                    <img src="/img/form/form-stuff.svg">
-                                </div>
-                                <div class="roadmap__child" data-mapform="2">
-                                    <img src="/img/form/form-map.svg">
-                                </div>
-                                <div class="roadmap__child" data-mapform="3">
-                                    <img src="/img/form/form-contact.svg">
-                                </div>
-                                <div class="roadmap__child" data-mapform="4">
-                                    <img src="/img/form/form-timer.svg">
-                                </div>
-                                <div class="roadmap__child" data-mapform="5">
-                                    <img src="/img/form/form-check.svg">
-                                </div>
-                            </div>
-                            <div class="statistics__progress progress">
-                                <div class="progress__bar bar"></div>
-                            </div>
+                        <div class="form__progress">
+                            <div class="progress__bar bar"></div>
                         </div>
-                        <!-- Navigation for laptops -->
-                        <div class="application__statistics statistics laptop">
-                            <div class="statistics__container">
-                                <!-- <div class="container__roadmap right">
-                                    <div class="roadmap__child" data-mapform="0">
-                                        <img src="/img/form/form-info.svg">
-                                    </div>
-                                    <div class="roadmap__child" data-mapform="1">
-                                        <img src="/img/form/form-stuff.svg">
-                                    </div>
-                                    <div class="roadmap__child" data-mapform="2">
-                                        <img src="/img/form/form-map.svg">
-                                    </div>
-                                </div> -->
-                                <div class="single-chart">
-                                    <svg viewBox="0 0 36 36" class="circular-chart"> <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /> <path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /> <text x="18" y="20.35" class="percentage">0%</text> </svg>
-                                </div>  
-                                <!-- <div class="container__roadmap left">
-                                    <div class="roadmap__child" data-mapform="3">
-                                        <img src="/img/form/form-contact.svg">
-                                    </div>
-                                    <div class="roadmap__child" data-mapform="4">
-                                        <img src="/img/form/form-timer.svg">
-                                    </div>
-                                    <div class="roadmap__child" data-mapform="5">
-                                        <img src="/img/form/form-check.svg">
-                                    </div>
-                                </div> -->
-                            </div>  
-                            <div class="form__tools">
-                                <button class="btn btn__save__form"></button>
-                                <button class="btn btn__remove__form"></button>
-                                <button class="btn btn__upload__form"></button>
+                        <div class="form__widget widget">
+                            <div class="widget__settings settings settings-active">
+                                <img src="/img/icons/UI/upload.png">    
+                                <img src="/img/icons/UI/settings.png">
+                                <img src="/img/icons/UI/hint.png">
                             </div>
-                        </div>
-                        <div class="application__field field">
-                            <div class="field__form form">
-                                <!-- General information (title and description) -->
-                                <div class="form__section section">
-                                    <input class="form__input" type="text" placeholder="Заголовок до вашої заяви" data-input="false"/>
-                                    <textarea class="form__textarea" maxlength="500" placeholder="Коротко опишіть завдання для наших волонтерів" data-input="false"></textarea>
-                                </div> 
-                                <div class="form__section section form-stage-active">
-                                    <input class="form__input add__category" type="text" placeholder="Додайте категорію"/>
-                                    <div class="categories">
-                                        <p class="form__hint">
-                                            Введіть <mark>#категорія</mark> для швидкого пошуку та обробки заявки серед команд волонтерів у вашому місті <img src="/img/emoji/cute.svg" />
-                                        </p>
-                                    </div>
-                                    <button class="btn btn__remove remove__category">Видалити усі поля<img src="img/icons/UI/bin.svg"></button>
+                            <div class="widget__trigger">
+                                <div></div>
+                            </div>
+                        </div>  
+                        <div class="form__field">
+                            <div class="roadmap__form">
+                                <div class="roadmap__section" data-form="0">
+                                    <span></span>
+                                    <p>Основна інформація</p>
                                 </div>
-                                <div class="form__section section">
-                                    <input class="form__input add__stuff" type="text" placeholder="993 Бар'яктари"/>
-                                    <div class="todolist">
-                                        <p class="form__hint">
-                                            Додайте до списку речі, що стануть у нагоді для <mark>допомоги</mark> побратимам <img src="/img/emoji/flag.svg"> та <mark>боротьбі</mark> з ордою <img src="/img/emoji/demon.svg">
-                                        </p>
+                                <div class="roadmap__section" data-form="1">
+                                    <span></span>
+                                    <p>Категорії</p>
+                                </div>
+                                <div class="roadmap__section" data-form="2">
+                                    <span></span>
+                                    <p>Перелік послуг та речей</p>
+                                </div>
+                                <div class="roadmap__section" data-form="3">
+                                    <span></span>
+                                    <p>Місце доставки</p>
+                                </div>
+                                <div class="roadmap__section" data-form="4">
+                                    <span></span>
+                                    <p>Дедлайн</p>
+                                </div>
+                            </div>
+                            <div class="application__field field">
+                                <div class="field__form form">
+                                    <!-- General information (title and description) -->
+                                    <div class="form__section section">
+                                        <input class="form__input" type="text" placeholder="Заголовок до вашої заяви" data-input="false"/>
+                                        <textarea class="form__textarea" maxlength="500" placeholder="Коротко опишіть завдання для наших волонтерів" data-input="false"></textarea>
+                                    </div> 
+                                    <div class="form__section section form-stage-active">
+                                        <input class="form__input add__category" type="text" placeholder="Додайте категорію"/>
+                                        <div class="categories">
+                                            <div class="field__categories"></div>
+                                        </div>
+                                        <!-- <button class="btn btn__remove remove__category">Видалити усі поля<img src="img/icons/UI/bin.svg"></button> -->
                                     </div>
-                                    <button class="btn btn__remove remove__stuff">Видалити усі поля <img src="img/icons/UI/bin.svg" alt=""></button>
-                                </div>  
-                                <div class="form__section section">
-                                    <div class="inceptionContainer">
-                                        <div class="timerContainer">
-                                            <img src="/img/btnUpDown.svg" class="btnUpNum">
-                                            <input type="number" name="" id="" value="00" min="00" max="23" disabled>
-                                            <img src="/img/btnUpDown.svg" class="btnDownNum">
+                                    <div class="form__section section">
+                                        <input class="form__input add__stuff" type="text" placeholder="10 Зоряних руйнівників типу «Венатор»"/>
+                                        <div class="todolist">
+                                            <!-- <p class="form__hint">
+                                                Додайте до списку речі, що стануть у нагоді для <mark>допомоги</mark> побратимам <img src="/img/emoji/flag.svg"> та <mark>боротьбі</mark> з ордою <img src="/img/emoji/demon.svg">
+                                            </p> -->
                                         </div>
-                                        <div class="timerContainer">
-                                            <img src="/img/btnUpDown.svg" class="btnUpNum">
-                                            <input type="number" name="" id="" value="00" min="00" max="59" disabled>
-                                            <img src="/img/btnUpDown.svg" class="btnDownNum">
-                                        </div>
-                                        <div class="timerContainer">
-                                            <input type="date" id="date_type">
-                                            <label for="date_type" id="dateTrigger">
-                                                <p>П'ятниця</p>
-                                                <p>15</p>
-                                                <p>Квітень 2022</p>
-                                            </label>
-                                        </div>
+                                        <!-- <button class="btn btn__remove remove__stuff">Видалити усі поля <img src="img/icons/UI/bin.svg" alt=""></button> -->
+                                    </div>  
+                                    <div class="form__section section">
+                                        <div id="geocoder" class="geocoder"></div>
+                                        <div id="mapForm"></div>
                                     </div>
-                                </div>  
-                                <!-- <div id="timer_form" class="contentFields">
-                                   
-                                </div> -->
-                                <!-- <div class="form__section section">
-                                    <div class="section__dropdown dropdown">
-                                        <div class="">
-                                            <b>Оберіть вид діяльності</b>
-                                            <img src="img/dropdown.svg" alt="">
-                                        </div>
-                                        <div class="activitiesList">
-                                            
-                                            <div class="activity">
-                                                <input type="text" name="" class="add_field_type" placeholder="Інше">
+                                    <div class="form__section section">
+                                        <div class="inceptionContainer">
+                                            <div class="timerContainer">
+                                                <img src="/img/btnUpDown.svg" class="btnUpNum">
+                                                <input type="number" name="" id="" value="00" min="00" max="23" disabled>
+                                                <img src="/img/btnUpDown.svg" class="btnDownNum">
+                                            </div>
+                                            <div class="timerContainer">
+                                                <img src="/img/btnUpDown.svg" class="btnUpNum">
+                                                <input type="number" name="" id="" value="00" min="00" max="59" disabled>
+                                                <img src="/img/btnUpDown.svg" class="btnDownNum">
+                                            </div>
+                                            <div class="timerContainer">
+                                                <input type="date" id="date_type">
+                                                <label for="date_type" id="dateTrigger">
+                                                    <p>П'ятниця</p>
+                                                    <p>15</p>
+                                                    <p>Квітень 2022</p>
+                                                </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="table-container">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Гум. товари</th>
-                                                    <th scope="col">Кількість</th>
-                                                    <th scope="col">Один. вимір.</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="data_form_staff">
+                                    </div>  
+                                    <!-- <div id="timer_form" class="contentFields">
+                                       
+                                    </div> -->
+                                    <!-- <div class="form__section section">
+                                        <div class="section__dropdown dropdown">
+                                            <div class="">
+                                                <b>Оберіть вид діяльності</b>
+                                                <img src="img/dropdown.svg" alt="">
+                                            </div>
+                                            <div class="activitiesList">
                                                 
-                                            </tbody>
-                                            <tbody class="add-new-field">
-                                                <tr class="form_table">
-                                                    <td data-label="Гум. товари"><input class="input-table add-next-field-input" type="text" name="" id="" required></td>
-                                                    <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
-                                                    <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="accept-table-on">
-                                        <input type="checkbox" name="" id="turn_on_table"><label for="turn_on_table">Таблиця (гумунітарна та медичні допомоги)</label>
-                                    </div>
+                                                <div class="activity">
+                                                    <input type="text" name="" class="add_field_type" placeholder="Інше">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-container">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Гум. товари</th>
+                                                        <th scope="col">Кількість</th>
+                                                        <th scope="col">Один. вимір.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="data_form_staff">
+                                                    
+                                                </tbody>
+                                                <tbody class="add-new-field">
+                                                    <tr class="form_table">
+                                                        <td data-label="Гум. товари"><input class="input-table add-next-field-input" type="text" name="" id="" required></td>
+                                                        <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
+                                                        <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="accept-table-on">
+                                            <input type="checkbox" name="" id="turn_on_table"><label for="turn_on_table">Таблиця (гумунітарна та медичні допомоги)</label>
+                                        </div>
+                                    </div> -->
+                                    <!-- adress-form -->
+                                    <!-- <div id="adress_form" class="contentFields">
+                                        <div id="geocoder" class="geocoder"></div>
+                                        <div id="mapForm"></div>
+                                    </div> -->
+                                    <!-- contact-form -->
+                                    <!-- <div id="contact_form" class="contentFields">
+                                        <textarea class="textfield form__textfield" data-input="false" maxlength="500" name="extra_info" id="extra_info_box_form" placeholder="Додаткова інформація..."></textarea>
+                                    </div> -->
+    
+                                    <!-- accept-form -->
+                                    <!-- <div id="accept_form" class="contentFields" style="display: none;">
+                                        <input type="checkbox" class="checkbox form__checkbox" id="policy_accept"><label for="policy_accept">Натиснувши , ви погоджуєтеся з правилами розміщення об’яв на платформі та даєте згоду на обробку вашої інформації.</label>
+                                        <input type="checkbox" class="checkbox form__checkbox" id="complete_accept"><label for="complete_accept">Я перевірив усю інформацію та готовий публікувати на платформу “SaveUACivilians”.</label>
+                                    </div> -->
+                                <!-- <p class="form__hint hint"> 
+                                    <b>Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
+                                </p>
+                                <div class="control-box">
+                                    <button class="animate__animated" id="moveForward">Далі</button>
+                                    <button class="animate__animated volunteeringformSendButton" style="display: none;">Надіслати</button>
                                 </div> -->
-                                <!-- adress-form -->
-                                <!-- <div id="adress_form" class="contentFields">
-                                    <div id="geocoder" class="geocoder"></div>
-                                    <div id="mapForm"></div>
-                                </div> -->
-                                <!-- contact-form -->
-                                <!-- <div id="contact_form" class="contentFields">
-                                    <textarea class="textfield form__textfield" data-input="false" maxlength="500" name="extra_info" id="extra_info_box_form" placeholder="Додаткова інформація..."></textarea>
-                                </div> -->
-
-                                <!-- accept-form -->
-                                <!-- <div id="accept_form" class="contentFields" style="display: none;">
-                                    <input type="checkbox" class="checkbox form__checkbox" id="policy_accept"><label for="policy_accept">Натиснувши , ви погоджуєтеся з правилами розміщення об’яв на платформі та даєте згоду на обробку вашої інформації.</label>
-                                    <input type="checkbox" class="checkbox form__checkbox" id="complete_accept"><label for="complete_accept">Я перевірив усю інформацію та готовий публікувати на платформу “SaveUACivilians”.</label>
-                                </div> -->
-                            <!-- <p class="form__hint hint"> 
-                                <b>Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
-                            </p>
-                            <div class="control-box">
-                                <button class="animate__animated" id="moveForward">Далі</button>
-                                <button class="animate__animated volunteeringformSendButton" style="display: none;">Надіслати</button>
-                            </div> -->
-                            </div> 
-                        </div>        
+                                </div> 
+                            </div>        
+                        </div>
                     </div>
                 </section>
             </modal>
@@ -274,7 +239,15 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
         <!-- <script src="/js/script.js"></script> -->
-        <!-- <script src="/js/map.js"></script> -->
+        <script src="/js/map.js"></script>
         <script src="js/form.js"></script>
+        <!-- <p class="form__hint">
+            Введіть #категорія для швидкого пошуку та обробки заявки серед команд волонтерів у вашому місті
+        </p> -->
+        <!-- <div class="form__tools">
+            <button class="btn btn__save__form"></button>
+            <button class="btn btn__remove__form"></button>
+            <button class="btn btn__upload__form"></button>
+        </div> -->
     </body>
 </html>
