@@ -733,6 +733,257 @@
             });
         </script>
         <script src="/js/script.js" async></script>
+<!-- from Nekit -->
+<html lang="uk">
+    <head>
+        <!-- Meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Шукаєш на волонтерську допомогу? SaveUACivilians прийде на допомогу!"> 
+        <meta name="keywords" content="інтерактивна мапа, чат, соціальна мережа, допомога, волонтерство, пожертвування, interactive map, chat, social media, assistance, volunteering, donation, интерактивная карта, чат, социальная сеть, помощь, волонтерство, пожертвование">
+        <title>SaveUACivilians - соціальна мережа для волонтерів</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/basic_styles.css">     
+        <link rel="stylesheet" href="css/map.css">
+        <!-- Framework CSS -->
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    </head>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="navigation">
+            <div class="navigation__link link_active" data-page="0">
+                <img src="img/icons/links/link-map.svg">
+            </div> 
+            <div class="navigation__link" data-page="1">
+                <img src="img/icons/links/link-donation.svg">
+            </div>
+            <div class="navigation__link" data-page="2">
+                <img src="img/icons/links/link-information.svg">
+            </div>
+            <div class="navigation__link" data-page="3">
+                <img src="img/icons/links/link-user.svg">
+            </div>
+            <div class="navigation__highlight"></div>
+        </nav>
+        <!-- Main-block -->
+        <main class="main">
+            <!-- Interactive Map Section -->
+            <section class="main__page page page-active">
+               <div class="section__map map"></div>
+            </section>
+            <!-- Donation Section -->
+            <section class="main__page page"> 
+            </section>
+            <!-- About Us Section -->
+            <section class="main__page page"> 
+            </section>
+            <!-- Profile Section -->
+            <section class="main__page page"> 
+            </section>
+            <!-- Section request form -->
+            <modal class="modal modal__request__form modal-active">
+                <div class="modal__container">
+                    <div class="successful__animation">
+                        <lottie-player class="complete__animation animation" src="https://assets5.lottiefiles.com/packages/lf20_eweazwqo.json"  background="transparent"  speed="1"></lottie-player>
+                        <p></p>
+                    </div>
+                    <div class="application__form">
+                        <div class="form__progress">
+                            <div class="progress__bar bar"></div>
+                        </div>
+                        <div class="form__widget widget">
+                            <div class="widget__settings settings settings-active">
+                                <img src="/img/icons/UI/upload.png">    
+                                <img src="/img/icons/UI/settings.png">
+                                <img src="/img/icons/UI/hint.png">
+                            </div>
+                            <div class="widget__trigger">
+                                <div></div>
+                            </div>
+                        </div>  
+                        <div class="form__field">
+                            <div class="roadmap__form">
+                                <div class="roadmap__section" data-form="0">
+                                    <span></span>
+                                    <p>Основна інформація</p>
+                                </div>
+                                <div class="roadmap__section" data-form="1">
+                                    <span></span>
+                                    <p>Категорії</p>
+                                </div>
+                                <div class="roadmap__section" data-form="2">
+                                    <span></span>
+                                    <p>Перелік послуг та речей</p>
+                                </div>
+                                <div class="roadmap__section" data-form="3">
+                                    <span></span>
+                                    <p>Місце доставки</p>
+                                </div>
+                                <div class="roadmap__section" data-form="4">
+                                    <span></span>
+                                    <p>Дедлайн</p>
+                                </div>
+                            </div>
+                            <div class="application__field field">
+                                <div class="field__form form">
+                                    <!-- General information (title and description) -->
+                                    <div class="form__section section">
+                                        <input class="form__input" type="text" placeholder="Заголовок до вашої заяви" data-input="false"/>
+                                        <textarea class="form__textarea" maxlength="500" placeholder="Коротко опишіть завдання для наших волонтерів" data-input="false"></textarea>
+                                    </div> 
+                                    <div class="form__section section form-stage-active">
+                                        <input class="form__input add__category" type="text" placeholder="Додайте категорію"/>
+                                        <div class="categories">
+                                            <div class="field__categories"></div>
+                                        </div>
+                                        <!-- <button class="btn btn__remove remove__category">Видалити усі поля<img src="img/icons/UI/bin.svg"></button> -->
+                                    </div>
+                                    <div class="form__section section">
+                                        <input class="form__input add__stuff" type="text" placeholder="10 Зоряних руйнівників типу «Венатор»"/>
+                                        <div class="todolist">
+                                            <!-- <p class="form__hint">
+                                                Додайте до списку речі, що стануть у нагоді для <mark>допомоги</mark> побратимам <img src="/img/emoji/flag.svg"> та <mark>боротьбі</mark> з ордою <img src="/img/emoji/demon.svg">
+                                            </p> -->
+                                        </div>
+                                        <!-- <button class="btn btn__remove remove__stuff">Видалити усі поля <img src="img/icons/UI/bin.svg" alt=""></button> -->
+                                    </div>  
+                                    <div class="form__section section">
+                                        <div id="geocoder" class="geocoder"></div>
+                                        <div id="mapForm"></div>
+                                    </div>
+                                    <div class="form__section section">
+                                        <div class="inceptionContainer">
+                                            <div class="timerContainer">
+                                                <img src="/img/btnUpDown.svg" class="btnUpNum">
+                                                <input type="number" name="" id="" value="00" min="00" max="23" disabled>
+                                                <img src="/img/btnUpDown.svg" class="btnDownNum">
+                                            </div>
+                                            <div class="timerContainer">
+                                                <img src="/img/btnUpDown.svg" class="btnUpNum">
+                                                <input type="number" name="" id="" value="00" min="00" max="59" disabled>
+                                                <img src="/img/btnUpDown.svg" class="btnDownNum">
+                                            </div>
+                                            <div class="timerContainer">
+                                                <input type="date" id="date_type">
+                                                <label for="date_type" id="dateTrigger">
+                                                    <p>П'ятниця</p>
+                                                    <p>15</p>
+                                                    <p>Квітень 2022</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <!-- <div id="timer_form" class="contentFields">
+                                       
+                                    </div> -->
+                                    <!-- <div class="form__section section">
+                                        <div class="section__dropdown dropdown">
+                                            <div class="">
+                                                <b>Оберіть вид діяльності</b>
+                                                <img src="img/dropdown.svg" alt="">
+                                            </div>
+                                            <div class="activitiesList">
+                                                
+                                                <div class="activity">
+                                                    <input type="text" name="" class="add_field_type" placeholder="Інше">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-container">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Гум. товари</th>
+                                                        <th scope="col">Кількість</th>
+                                                        <th scope="col">Один. вимір.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="data_form_staff">
+                                                    
+                                                </tbody>
+                                                <tbody class="add-new-field">
+                                                    <tr class="form_table">
+                                                        <td data-label="Гум. товари"><input class="input-table add-next-field-input" type="text" name="" id="" required></td>
+                                                        <td data-label="Кількість"><input class="input-table" type="number" name="" id="" required></td>
+                                                        <td data-label="Один. вимір."><input class="input-table" type="text" name="" id=" required"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="accept-table-on">
+                                            <input type="checkbox" name="" id="turn_on_table"><label for="turn_on_table">Таблиця (гумунітарна та медичні допомоги)</label>
+                                        </div>
+                                    </div> -->
+                                    <!-- adress-form -->
+                                    <!-- <div id="adress_form" class="contentFields">
+                                        <div id="geocoder" class="geocoder"></div>
+                                        <div id="mapForm"></div>
+                                    </div> -->
+                                    <!-- contact-form -->
+                                    <!-- <div id="contact_form" class="contentFields">
+                                        <textarea class="textfield form__textfield" data-input="false" maxlength="500" name="extra_info" id="extra_info_box_form" placeholder="Додаткова інформація..."></textarea>
+                                    </div> -->
+    
+                                    <!-- accept-form -->
+                                    <!-- <div id="accept_form" class="contentFields" style="display: none;">
+                                        <input type="checkbox" class="checkbox form__checkbox" id="policy_accept"><label for="policy_accept">Натиснувши , ви погоджуєтеся з правилами розміщення об’яв на платформі та даєте згоду на обробку вашої інформації.</label>
+                                        <input type="checkbox" class="checkbox form__checkbox" id="complete_accept"><label for="complete_accept">Я перевірив усю інформацію та готовий публікувати на платформу “SaveUACivilians”.</label>
+                                    </div> -->
+                                <!-- <p class="form__hint hint"> 
+                                    <b>Підказка:</b> Вкажіть заголовок для залучення уваги волонтерів та детально опишіть вид необхідної допомоги.
+                                </p>
+                                <div class="control-box">
+                                    <button class="animate__animated" id="moveForward">Далі</button>
+                                    <button class="animate__animated volunteeringformSendButton" style="display: none;">Надіслати</button>
+                                </div> -->
+                                </div> 
+                            </div>        
+                        </div>
+                    </div>
+                </section>
+            </modal>
+            <div class="calendar-container mainContent">
+                <div id="month-calendar">
+                    <ul class="month">
+                        <li class="prev"><img src="/img/LeftRightDate.svg" alt=""></li>
+                        <li class="next"><img src="/img/LeftRightDate.svg" alt=""></li>
+                        <li class="month-name"></li>
+                        <li class="year-name"></li>
+                    </ul>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пт</li>
+                        <li>Сб</li>
+                        <li>Нд</li>
+                    </ul>
+                    <ul class="days">
+                    </ul>
+                </div>
+            </div>
+            <div class="alert-error" style="display: none;">
+                <p></p>
+            </div>  
+        </main>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+        <!-- <script src="/js/script.js"></script> -->
+        <script src="/js/map.js"></script>
+        <script src="js/form.js"></script>
+        <!-- <p class="form__hint">
+            Введіть #категорія для швидкого пошуку та обробки заявки серед команд волонтерів у вашому місті
+        </p> -->
+        <!-- <div class="form__tools">
+            <button class="btn btn__save__form"></button>
+            <button class="btn btn__remove__form"></button>
+            <button class="btn btn__upload__form"></button>
+        </div> -->
     </body>
 </html>
 <!-- https://youtu.be/b41K3xEmuoY?list=RDb41K3xEmuoY (JOHN WICK - BABA YAGA)-->

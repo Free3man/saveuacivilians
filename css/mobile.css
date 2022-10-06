@@ -1,8 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,500&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	max-height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+    font-size: calc(10px + 14 * (100vw / 1440));
+}
+
+/* navigation */
+.mobileProfileBar {
+    width: 100vw;
+    height: auto;
+    background-color: var(--dark-blue);
+}
+.navigation-links {
+    display: flex;
+    justify-content: space-between;
+}
+.navigation-links > .navigation__icon icon  img, .mobilenavigation__icon icon  img {
+	margin: 10px;
+	position: relative;
+	z-index: 3;
+    width: 6vw;
+    cursor: pointer;
+	user-select: none;
+}
+
 /* form-styles */
-.sectionRequestForm {
+.modal__container {
+	position: sticky;
+    z-index: 2;
+    bottom: 0;
 	display: flex;
 	height: 100vh;
-	background: rgba(219, 211, 216, 0.85);
+	background: var(--white);
 }
 .modalRequestForm {
 	padding: 30px 20px 0 20px;
@@ -11,7 +45,8 @@
 	overflow: auto;
     gap: 10px;
 	width: 100vw;
-	background: #EFF1F3;
+	height: 100vh;
+	background: var(--white);
 }
 
 .infoFillForm {

@@ -1,0 +1,98 @@
+#mapForm{
+	width: 100%;
+	border-radius: 8px;
+	flex-grow: 1;
+	transition: all 0.3s;
+}
+#geocoder {
+	z-index: 1;
+}
+.mapboxgl-ctrl-geocoder {
+	min-width: 100% !important;
+}
+.cluster {
+	position: absolute;
+    width: 50px;
+    height: 50px;
+	cursor: pointer;
+}
+.cluster > .marker {
+	transition: 0.5s transform linear;
+	transform: translate(0, 0);
+}
+.cluster-union {
+	width: 50px;
+    height: 50px;
+	position: absolute;
+	border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+.cluster.active > .marker {
+	transform: translate(var(--translateX), var(--translateY));
+}
+.marker{
+	position: absolute;	
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-position: bottom;
+}
+.marker.active {
+	opacity: 1;
+}
+.geocoder > .mapboxgl-ctrl-geocoder mapboxgl-ctrl {
+	width: 100%;
+    font-size: 1em;
+    max-width: 100%;
+}
+.basic{
+	background-image: url("../img/markers/basic.svg");
+}
+.humanitary{
+	background-image: url("../img/markers/humanitary.svg");
+}
+.transport{
+	background-image: url("../img/markers/transportation.svg");
+}
+.medical{
+	background-image: url("../img/markers/medical.svg");
+}
+.filterCategoryBox {
+	position: relative;
+	z-index: 2;
+	border-radius: 5px;
+	padding: 10px;
+	/* margin-top: 20px; */
+	background-color: white;
+}
+.filterPlaceName > .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl-geocoder .suggestions {
+	box-shadow: none;
+}
+.category > input[type=checkbox] + label {
+	padding: 5px 0;
+	white-space: nowrap;
+}
+.legend-map-help > img {
+	width: 1em;
+}
+.cluster > span {
+	position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
