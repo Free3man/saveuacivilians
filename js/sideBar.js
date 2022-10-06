@@ -1,7 +1,6 @@
 const iconLinks = document.querySelectorAll(".iconLink"),
-    pages = ["mapSection", "volunteering-page", "donation-page", "info-page"];
+    pages = ["mapSection", "volunteering-page", "donation-page", "info-page", "profile"];
 let currentPage = document.getElementById(pages[0]);
-console.log(currentPage);
 iconLinks.forEach(iconLink => {
     iconLink.addEventListener("click", function() {
         function findIndex(element, array){
@@ -17,7 +16,6 @@ iconLinks.forEach(iconLink => {
             counter = step;
         let fadeing = setInterval(() => {
             currentPage.style.opacity = (counter/step);
-            console.log(counter);
             if (fadeOut){
                 counter--;
             }
@@ -34,6 +32,7 @@ iconLinks.forEach(iconLink => {
             }
             if (counter >= step && !fadeOut){
                 clearInterval(fadeing);
+                currentPage.style.opacity = 1;
             }
         }, 1);
         iconLinks.forEach(item => item.classList.remove("active"));
