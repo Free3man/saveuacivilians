@@ -1,15 +1,12 @@
-.sideBar {
+.navigation {
     width: 5vw;
     height: 100vh;
     position: absolute;
     background-color: #223843;
     z-index: 100;
 }
-.mobileProfileBar, .mobileFooter{
-    display: none;
-}
 
-.iconLink{
+.navigation__link{
     position: relative;
     width: 60%;
     margin: auto;
@@ -18,9 +15,13 @@
     cursor: pointer;
     z-index: 3;
 }
-.iconLink > img {
+.navigation__link > img {
     width: 100%;
     height: 100%;
+    position: relative;
+	z-index: 3;
+	padding: 1.5rem;
+	font-size: 0 !important;
 }
 
 .profileLink {
@@ -54,4 +55,42 @@
 }
 .iconLink:nth-child(5).active ~ .circleNavigation {
     top: 90vh;
+}
+
+
+
+.navigation {
+	background-color: var(--dark-blue);
+	width: auto;
+	height: 100vh;
+}
+.navigation__highlight {
+	position: absolute;
+	z-index: 2;
+	top: 1.25rem;
+	background-color: var(--orange);
+	margin: 0 1.25rem;
+	width: 2.5rem;
+    height: 2.5rem;
+	border-radius: 50%;
+	transition: 1s;
+}
+.navigation__link:nth-child(4) {
+	position: absolute;
+	bottom: 0;
+}
+.navigation__link:nth-child(1).link_active ~ .navigation__highlight  {
+	transform: translateY(0);
+}
+.navigation__link:nth-child(2).link_active  ~ .navigation__highlight  {
+	transform: translateY(calc(5rem * 1));
+}
+.navigation__link:nth-child(3).link_active  ~ .navigation__highlight  {
+	transform: translateY(calc(5rem * 2 + 3px));
+}
+.navigation__link:nth-child(4).link_active ~ .navigation__highlight  {
+	transform: translateY(calc(100vh - 5rem));
+}
+.navigation__link > img {
+	
 }

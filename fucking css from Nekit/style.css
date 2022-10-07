@@ -28,45 +28,7 @@ p {
 }
 
 /* Navigation styles */
-.navigation {
-	background-color: var(--dark-blue);
-	width: auto;
-	height: 100vh;
-}
-.navigation__highlight {
-	position: absolute;
-	z-index: 2;
-	top: 1.25rem;
-	background-color: var(--orange);
-	margin: 0 1.25rem;
-	width: 2.5rem;
-    height: 2.5rem;
-	border-radius: 50%;
-	transition: 1s;
-}
-.navigation__link:nth-child(4) {
-	position: absolute;
-	bottom: 0;
-}
-.navigation__link:nth-child(1).link_active ~ .navigation__highlight  {
-	transform: translateY(0);
-}
-.navigation__link:nth-child(2).link_active  ~ .navigation__highlight  {
-	transform: translateY(calc(5rem * 1));
-}
-.navigation__link:nth-child(3).link_active  ~ .navigation__highlight  {
-	transform: translateY(calc(5rem * 2 + 3px));
-}
-.navigation__link:nth-child(4).link_active ~ .navigation__highlight  {
-	transform: translateY(calc(100vh - 5rem));
-}
-.navigation__link > img {
-	position: relative;
-	z-index: 3;
-	padding: 1.5rem;
-	width: 2rem;
-	font-size: 0 !important;
-}
+
 
 /* Sections' styles */
 .main {
