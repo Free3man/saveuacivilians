@@ -4,11 +4,9 @@
 <head>
     <title>SaveUACivilians - соціальна мережа для волонтерів</title>
     <!-- cssLinks -->
-    <link rel="stylesheet" href="css/mainStyles.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/basic_styles.css">
-    <!-- <link rel="stylesheet" href="/css/style.css" media="(min-width: 768px)"> -->
-    <!-- <link rel="stylesheet" href="css/mobile.css" media="(max-width: 769px)"> -->
+    <link rel="stylesheet" href="fucking css from Nekit/mainStyles.css">
+    <link rel="stylesheet" href="fucking css from Nekit/style.css">
+    <link rel="stylesheet" href="fucking css from Nekit/basic_styles.css">
     <!-- registration and login -->
     <link rel="stylesheet" href="css/RLForm.css">
     <!-- <link rel="stylesheet" href="css/RLFormMobile.css" media="(max-width: 769px)"> -->
@@ -48,14 +46,7 @@
 </head>
 
 <body>
-    <!-- <nav class="sideBar">
-        <div class="iconLink"><img src="img/system/navBar/mapLink.svg"></div>
-        <div class="iconLink"><img src="img/system/navBar/volunteeringLink.svg"></div>
-        <div class="iconLink"><img src="img/system/navBar/donationLink.svg"></div>
-        <div class="iconLink"><img src="img/system/navBar/infoLink.svg"></div>
-        <div class="iconLink profileLink"><img src="img/system/navBar/profileLink.svg" ></div>
-        <div class="circleNavigation"></div>
-    </nav> -->
+    
     <nav class="navigation">
         <div class="navigation__link link_active" data-page="0">
             <img src="img/icons/links/link-map.svg" alt="Карта">
@@ -71,15 +62,137 @@
         </div>
         <div class="navigation__highlight"></div>
     </nav>
-    <!-- <nav class="mobileProfileBar">
-        <div class="mobileIconLink">
-            <img src="img/system/navBar/profileLink.svg" alt="Профіль">
-        </div>
-        <div class="mobileIconLink">
-            <img src="img/system/navBar/exitLink.svg" alt="Вийти">
-        </div>
-    </nav> -->
     <main>
+        <section class="main__page page page-active">
+            <div class="section__map map"></div>
+        </section>
+
+        <section id="donation-page">
+            <div class="donation-card">
+                <div class="donation-content">
+                    <div class="donation-pic-div">
+                        <img src="img/system/donation/helpZSU1.svg" class="donation-pic" alt="">
+                    </div>
+                    <h1 class="donation-text">
+                        Допоможіть українській армії!<br>
+                        Кошти будуть спрямовані на підтримку ЗСУ.
+                    </h1>
+                    <button class="donate">Пожертвувати</button>
+                </div>
+                <div class="donation-content hidden">
+                    <div class="donation-pic-div">
+                        <img src="img/system/donation/helpZSU2.svg" class="donation-pic" alt="">
+                    </div>
+                    <h1 class="donation-text">Разом ми сила!</h1>
+                    <button class="donate">Долучитися</button>
+                </div>
+                <div class="donation-content hidden">
+                    <div class="donation-pic-div">
+                        <img src="img/system/donation/helpZSU3.svg" class="donation-pic" alt="">
+                    </div>
+                    <h1 class="donation-text">З крапель буде море!</h1>
+                    <button class="donate">Приєднатися</button>
+                </div>
+                <div class="dots">
+                    <div class="dot selection"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="arrow" id="left-arrow">
+                    <img src="img/system/arrows/leftArrow.svg" alt="Image not found">
+                </div>
+                <div class="arrow" id="right-arrow">
+                    <img src="img/system/arrows/rightArrow.svg" alt="Image not found">
+                </div>
+            </div>
+            <h4 class="donation-link">
+                <a href="https://t.me/ukraine_volunteering" target="_blank">За данним посиланням</a>
+                Ви можете ознайомитись з інформацією про реалізацію пожертвувань.
+            </h4>
+        </section>
+
+        <section id="info-page">
+            <div class="info-section">
+                <div class="info">
+                    <div class="info-text">
+                        <h3>Прагнеш допомогти громадянам України?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
+                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
+                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
+                    </div>
+                    <div class="info-img-div"><img src="/img/system/blog/blog1.jpg" alt="Image not found"></div>
+                </div>
+                <div class="info">
+                    <div class="info-img-div"><img src="/img/system/blog/blog2.jpg" alt="Image not found"></div>
+                    <div class="info-text">
+                        <h3>Чекаєш на допомогу у складній ситуації?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
+                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
+                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="info-text">
+                        <h3>“SaveUaCivilians” - соціальна мережа?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
+                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
+                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
+                    </div>
+                    <div class="info-img-div"><img src="/img/system/blog/blog3.jpeg" alt="Image not found"></div>
+                </div>
+                <div class="info">
+                    <div class="info-img-div"><img src="/img/system/blog/blog4.png" alt="Image not found"></div>
+                    <div class="info-text">
+                        <h3>Хто ми?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
+                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
+                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="info-footer">
+                <div class="linkList">
+                    <p>Додаткові посилання</p>
+                    <a href="#">FAQ</a>
+                    <a href="#">Telegram канал</a>
+                    <a href="#">Підтримка</a>
+                </div>
+                <div class="socialMedia">
+                    <div class="socialMediaIcons">
+                        <img src="/img/system/socialMedia/telegramIcon.svg" alt="" class="icons">
+                        <img src="/img/system/socialMedia/facebookIcon.svg" alt="" class="icons">
+                        <img src="/img/system/socialMedia/instagramIcon.svg" alt="" class="icons">
+                    </div>
+                    <p>All rights reserved 2022</p>
+                </div>
+            </footer>
+        </section>
+
+        <section id="profile">
+            <div id="person-picture"></div>
+            <div class="info-block">
+                <h2 id="person-name" class="header"></h2>
+                <div class="info" id="person-info-block">
+                    <div class="item">
+                        <p>Поштова адреса:</p>
+                        <h3 id="person-e-mail"></h3>
+                        <p>Номер телефону:</p>
+                        <h3 id="person-phone-number"></h3>
+                        <p>Місто (населений пункт):</p>
+                        <h3 id="person-city"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="info-block">
+                <h2 class="header">Волонтерська активність</h2>
+                <div class="info" id="person-circles-block"></div>
+            </div>
+            <div class="info-block">
+                <h2 class="header">Активні заявки</h2>
+                <div class="info" id="persons-requests-block"></div>
+            </div>
+        </section>
+
         <section id="sign-up-in-form">
             <div id="registration-card">
                 <div class="pic-div">
@@ -155,132 +268,6 @@
                     <button id="ok-registration-failure">OK!</button>
                 </div>
             </div>
-        </section>
-        <section id="info-page">
-            <div class="info-section">
-                <div class="info">
-                    <div class="info-text">
-                        <h3>Прагнеш допомогти громадянам України?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
-                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
-                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
-                    </div>
-                    <div class="info-img-div"><img src="/img/system/blog/blog1.jpg" alt="Image not found"></div>
-                </div>
-                <div class="info">
-                    <div class="info-img-div"><img src="/img/system/blog/blog2.jpg" alt="Image not found"></div>
-                    <div class="info-text">
-                        <h3>Чекаєш на допомогу у складній ситуації?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
-                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
-                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="info-text">
-                        <h3>“SaveUaCivilians” - соціальна мережа?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
-                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
-                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
-                    </div>
-                    <div class="info-img-div"><img src="/img/system/blog/blog3.jpeg" alt="Image not found"></div>
-                </div>
-                <div class="info">
-                    <div class="info-img-div"><img src="/img/system/blog/blog4.png" alt="Image not found"></div>
-                    <div class="info-text">
-                        <h3>Хто ми?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium? Ab,
-                            dignissimos iusto quis tempora labore rerum possimus praesentium unde adipisci, quidem
-                            voluptate, similique quibusdam et mollitia optio cupiditate aperiam.</p>
-                    </div>
-                </div>
-            </div>
-            <footer class="info-footer">
-                <div class="linkList">
-                    <p>Додаткові посилання</p>
-                    <a href="#">FAQ</a>
-                    <a href="#">Telegram канал</a>
-                    <a href="#">Підтримка</a>
-                </div>
-                <div class="socialMedia">
-                    <div class="socialMediaIcons">
-                        <img src="/img/system/socialMedia/telegramIcon.svg" alt="" class="icons">
-                        <img src="/img/system/socialMedia/facebookIcon.svg" alt="" class="icons">
-                        <img src="/img/system/socialMedia/instagramIcon.svg" alt="" class="icons">
-                    </div>
-                    <p>All rights reserved 2022</p>
-                </div>
-            </footer>
-        </section>
-        <section id="profile">
-            <div id="person-picture"></div>
-            <div class="info-block">
-                <h2 id="person-name" class="header"></h2>
-                <div class="info" id="person-info-block">
-                    <div class="item">
-                        <p>Поштова адреса:</p>
-                        <h3 id="person-e-mail"></h3>
-                        <p>Номер телефону:</p>
-                        <h3 id="person-phone-number"></h3>
-                        <p>Місто (населений пункт):</p>
-                        <h3 id="person-city"></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="info-block">
-                <h2 class="header">Волонтерська активність</h2>
-                <div class="info" id="person-circles-block"></div>
-            </div>
-            <div class="info-block">
-                <h2 class="header">Активні заявки</h2>
-                <div class="info" id="persons-requests-block"></div>
-            </div>
-        </section>
-        <section class="main__page page page-active">
-            <div class="section__map map"></div>
-        </section>
-        <section id="donation-page">
-            <div class="donation-card">
-                <div class="donation-content">
-                    <div class="donation-pic-div">
-                        <img src="img/system/donation/helpZSU1.svg" class="donation-pic" alt="">
-                    </div>
-                    <h1 class="donation-text">
-                        Допоможіть українській армії!<br>
-                        Кошти будуть спрямовані на підтримку ЗСУ.
-                    </h1>
-                    <button class="donate">Пожертвувати</button>
-                </div>
-                <div class="donation-content hidden">
-                    <div class="donation-pic-div">
-                        <img src="img/system/donation/helpZSU2.svg" class="donation-pic" alt="">
-                    </div>
-                    <h1 class="donation-text">Разом ми сила!</h1>
-                    <button class="donate">Долучитися</button>
-                </div>
-                <div class="donation-content hidden">
-                    <div class="donation-pic-div">
-                        <img src="img/system/donation/helpZSU3.svg" class="donation-pic" alt="">
-                    </div>
-                    <h1 class="donation-text">З крапель буде море!</h1>
-                    <button class="donate">Приєднатися</button>
-                </div>
-                <div class="dots">
-                    <div class="dot selection"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="arrow" id="left-arrow">
-                    <img src="img/system/arrows/leftArrow.svg" alt="Image not found">
-                </div>
-                <div class="arrow" id="right-arrow">
-                    <img src="img/system/arrows/rightArrow.svg" alt="Image not found">
-                </div>
-            </div>
-            <h4 class="donation-link">
-                <a href="https://t.me/ukraine_volunteering" target="_blank">За данним посиланням</a>
-                Ви можете ознайомитись з інформацією про реалізацію пожертвувань.
-            </h4>
         </section>
         <modal class="modal modal__request__form modal-active">
             <div class="modal__container">
@@ -450,124 +437,7 @@
                 </div>
                 </section>
         </modal>
-        <section id="volunteering-page">
-            <div class="filter-box">
-                <label for="search-bar-filter">Населений пункт</label>
-                <div class="selectBox">
-                    <input type="text" id="searchBarFilter">
-                    <img src="img/system/volunteering/searchIcon.svg" alt="">
-                    <div class="containerFilter">
-                        <label for="oblastSelectFilter">Область</label>
-                        <div class="dropdownMenu">
-                            <div class="selectBox">
-                                <b>Оберіть область</b>
-                                <img src="img/system/volunteering/dropdown.svg" alt="">
-                            </div>
-                            <div class="activitiesList">
-                                <div class="fieldCheckBoxActivity">
-                                    <div class="activity ">
-                                        <input type="checkbox" name="" id="transit_auto">
-                                        <label for="transit_auto">Автопревезення</label>
-                                    </div>
-                                    <div class="activity fieldCheckBoxActivity">
-                                        <input type="checkbox" name="" id="first_aid">
-                                        <label for="first_aid">Медична допомога</label>
-                                    </div>
-                                    <div class="activity fieldCheckBoxActivity">
-                                        <input type="checkbox" name="" id="humanitarian_aid">
-                                        <label for="humanitarian_aid">Гумунітарна допомога</label>
-                                    </div>
-                                </div>
-                                <div class="activity">
-                                    <input type="text" name="" class="add_field_type" placeholder="Інше">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="containerFilter">
-                        <label for="helpSelectFilter">Вид домомоги</label>
-                        <div class="dropdownMenu">
-                            <div class="selectBox">
-                                <b>Оберіть допомогу</b>
-                                <img src="img/system/volunteering/dropdown.svg" alt="">
-                            </div>
-                            <div class="activitiesList">
-                                <div class="fieldCheckBoxActivity">
-                                    <div class="activity ">
-                                        <input type="checkbox" name="" id="transit_auto"><label
-                                            for="transit_auto">Автопревезення</label>
-                                    </div>
-                                    <div class="activity fieldCheckBoxActivity">
-                                        <input type="checkbox" name="" id="first_aid"><label for="first_aid">Медична
-                                            допомога</label>
-                                    </div>
-                                    <div class="activity fieldCheckBoxActivity">
-                                        <input type="checkbox" name="" id="humanitarian_aid"><label
-                                            for="humanitarian_aid">Гумунітарна допомога</label>
-                                    </div>
-                                </div>
-                                <div class="activity">
-                                    <input type="text" name="" class="add_field_type" placeholder="Інше">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="listTasksLoader">
-                <div class="taskWait">
-                    <div class="categoriesHelper">
-                        <img src="img/system/volunteering/minibus.svg" alt="">
-                        <img src="img/system/volunteering/first-aid-kit.svg" alt="">
-                        <img src="img/system/volunteering/volunteering.svg" alt="">
-                    </div>
-                    <div class="informHelper">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus inventore ipsam
-                        consectetur explicabo ab beatae adipisci provident accusamus saepe at vitae labore nihil
-                        tempora, dolor sed sit ducimus similique a.
-                    </div>
-                </div>
-                <div class="taskWait"></div>
-                <div class="taskWait"></div>
-                <div class="taskWait"></div>
-            </div>
-        </section>
-        <div class="calendar-container mainContent">
-            <div id="month-calendar">
-                <ul class="month">
-                    <li class="prev"><img src="/img/LeftRightDate.svg" alt=""></li>
-                    <li class="next"><img src="/img/LeftRightDate.svg" alt=""></li>
-                    <li class="month-name"></li>
-                    <li class="year-name"></li>
-                </ul>
-                <ul class="weekdays">
-                    <li>Пн</li>
-                    <li>Вт</li>
-                    <li>Ср</li>
-                    <li>Чт</li>
-                    <li>Пт</li>
-                    <li>Сб</li>
-                    <li>Нд</li>
-                </ul>
-                <ul class="days">
-                </ul>
-            </div>
-        </div>
     </main>
-    <!-- <section class="main__page page"> 
-    </section> -->
-    <!-- <div class="alert-error" style="display: none;">
-        <p></p>
-    </div>-->
-    <!-- <p class="form__hint">
-        Введіть #категорія для швидкого пошуку та обробки заявки серед команд волонтерів у вашому місті
-    </p> -->
-    <!-- <div class="form__tools">
-        <button class="btn btn__save__form"></button>
-        <button class="btn btn__remove__form"></button>
-        <button class="btn btn__upload__form"></button>
-    </div> -->
-    <!-- </footer> -->
     <!-- <script src="/js/script.js"></script> -->
     <script src="js/map.js"></script>
     <script src="js/form.js"></script>
@@ -576,14 +446,13 @@
     <script src="js/RLBackend.js" async></script>
     <script src="js/sideBar.js" async></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js' async></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'>
-    </script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
         mapboxgl.accessToken =
             'pk.eyJ1Ijoic3VhYyIsImEiOiJjbDJudDdycXkxNjE1M2lxY3QyOTM3NHV3In0.KkzJGb4qqdkbDH0NequqPA';
         var map = new mapboxgl.Map({
-            container: 'map',
+            container: 'map', 
             style: 'mapbox://styles/suac/cl2ramh2d000714nwclodz0k9'
         });
     </script>
